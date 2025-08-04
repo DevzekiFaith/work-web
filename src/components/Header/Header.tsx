@@ -2,85 +2,210 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HiMenu, HiX, HiSun, HiMoon, HiArrowRight } from 'react-icons/hi';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    document.documentElement.classList.toggle('dark', darkMode);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    // Check for saved dark mode preference on component mount
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode !== null) {
+      setDarkMode(JSON.parse(savedDarkMode));
+    } else {
+      // Check system preference if no saved preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setDarkMode(systemPrefersDark);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Apply dark mode to document using Tailwind's class-based approach
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/services', label: 'Services' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/careers', label: 'Careers' },
+    { href: '/contact', label: 'Contact' },
+  ];
+
   return (
-    <header className="bg-white dark:bg-gray-900 shadow p-4 relative z-50">
-      <nav className="flex justify-between items-center max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center space-x-2">
-        <div className="text-xl font-bold text-gray-900 dark:text-white hover:bg-purple-600 rounded-md p-2">mindvest</div>
-        </Link>
-        <div className="hidden md:flex space-x-4 text-gray-800 dark:text-gray-200">
-          <Link href="/">Home</Link>
-          <Link href="/about">About</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/blog">Blog</Link>
-          <Link href="/careers">Careers</Link>
-          <Link href="/contact">Contact</Link>
-        </div>
-        <div className="md:hidden">
+    <motion.header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
+          : 'bg-transparent'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+    >
+      <div className="container-fluid">
+        <nav className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <Link href="/" className="group flex items-center space-x-2">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg blur opacity-75 group-hover:opacity-100 transition-opacity"></div>
+              <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-extrabold text-xl tracking-tight">
+                mindvest
+              </div>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Link
+                  href={item.href}
+                  className="relative text-gray-400 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold transition-colors duration-200 group px-3 py-2 rounded-lg hover:bg-gray-100"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <button
+              onClick={() => setDarkMode(!darkMode)}
+              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <HiSun className="w-5 h-5 text-yellow-500" />
+              ) : (
+                <HiMoon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              )}
+            </button>
+            <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              Get Started
+              <HiArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(true)}
-            className="text-gray-700 dark:text-gray-300 focus:outline-none"
+            className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
+            aria-label="Open menu"
           >
-            ☰
+            <HiMenu className="w-6 h-6 text-gray-700" />
           </button>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black bg-opacity-50 z-50"
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 lg:hidden"
             onClick={() => setIsOpen(false)}
           >
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: '100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
-              className="bg-white dark:bg-gray-400 text-gray-900 dark:text-white w-3/4 max-w-xs h-full p-6 shadow-lg relative"
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute right-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex justify-between items-center mb-6">
-                <span className="text-xl font-semibold">Menu</span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-gray-500 text-2xl leading-none"
-                >
-                  ×
-                </button>
+              <div className="flex flex-col h-full">
+                {/* Mobile Header */}
+                <div className="flex justify-between items-center p-6 border-b border-gray-100 dark:border-gray-700">
+                  <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-1.5 rounded-lg font-bold text-lg">
+                    mindvest
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                    aria-label="Close menu"
+                  >
+                    <HiX className="w-6 h-6 text-gray-500 dark:text-gray-400" />
+                  </button>
+                </div>
+
+                {/* Mobile Navigation */}
+                <nav className="flex-1 px-6 py-8">
+                  <div className="space-y-6">
+                    {navItems.map((item, index) => (
+                      <motion.div
+                        key={item.href}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1, duration: 0.3 }}
+                      >
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="block text-lg font-bold text-gray-900 dark:text-white hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                        >
+                          {item.label}
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </div>
+                </nav>
+
+                {/* Mobile Actions */}
+                <div className="p-6 border-t border-gray-100 dark:border-gray-700 space-y-4">
+                  <button
+                    onClick={() => setDarkMode(!darkMode)}
+                    className="w-full flex items-center justify-center space-x-2 p-3 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+                  >
+                    {darkMode ? (
+                      <HiSun className="w-5 h-5 text-yellow-500" />
+                    ) : (
+                      <HiMoon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                    )}
+                    <span className="text-gray-900 dark:text-white font-bold">
+                      {darkMode ? 'Light Mode' : 'Dark Mode'}
+                    </span>
+                  </button>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsOpen(false)}
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl w-full justify-center"
+                  >
+                    Get Started
+                    <HiArrowRight className="w-4 h-4 arrow" />
+                  </Link>
+                </div>
               </div>
-              <nav className="flex flex-col space-y-4 mb-6">
-                <Link href="/" onClick={() => setIsOpen(false)}>Home</Link>
-                <Link href="/about" onClick={() => setIsOpen(false)}>About</Link>
-                <Link href="/services" onClick={() => setIsOpen(false)}>Services</Link>
-                <Link href="/projects" onClick={() => setIsOpen(false)}>Projects</Link>
-                <Link href="/blog" onClick={() => setIsOpen(false)}>Blog</Link>
-                <Link href="/careers" onClick={() => setIsOpen(false)}>Careers</Link>
-                <Link href="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
-              </nav>
-              <button
-                onClick={() => setDarkMode(!darkMode)}
-                className="w-full px-4 py-2 rounded-md bg-purple-600 text-white hover:bg-purple-700 transition"
-              >
-                Toggle {darkMode ? 'Light' : 'Dark'} Mode
-              </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

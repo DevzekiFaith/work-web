@@ -17,6 +17,7 @@ interface ProjectCardProps {
   location?: string;
   date?: string;
   tech?: string[];
+  viewMode?: string;
 }
 
 export default function ProjectCard({
@@ -27,6 +28,7 @@ export default function ProjectCard({
   location,
   date,
   tech,
+  viewMode,
 }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
