@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
-import { Toaster, toast } from 'react-hot-toast';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from "react";
+import { Dialog } from "@headlessui/react";
+import { Toaster, toast } from "react-hot-toast";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -18,7 +18,9 @@ export default function Contact() {
     }, 3000);
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -26,18 +28,18 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error('Failed to send');
+      if (!res.ok) throw new Error("Failed to send");
       setSubmitted(true);
       setOpen(true);
-      setForm({ name: '', email: '', message: '' });
-      toast.success('Message sent successfully');
+      setForm({ name: "", email: "", message: "" });
+      toast.success("Message sent successfully");
     } catch (err) {
-      toast.error('Failed to send message. Try again later.');
+      toast.error("Failed to send message. Try again later.");
     } finally {
       setLoading(false);
     }
@@ -48,7 +50,9 @@ export default function Contact() {
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="w-full max-w-xl">
-        <h1 className="text-5xl font-semibold mb-8 text-center tracking-tight">Let us Connect</h1>
+        <h1 className="text-5xl font-semibold mb-8 text-center tracking-tight">
+          Let us Connect
+        </h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
@@ -91,18 +95,20 @@ export default function Contact() {
             type="submit"
             disabled={loading}
             className={`w-full py-3 text-white font-medium text-lg rounded-md transition ${
-              loading ? 'bg-gray-400' : 'bg-black hover:bg-gray-900'
+              loading ? "bg-gray-400" : "bg-black hover:bg-gray-900"
             }`}
           >
-            {loading ? 'Sending...' : 'Send Message'}
+            {loading ? "Sending..." : "Send Message"}
           </button>
         </form>
 
         <div className="mt-16 text-center">
           <h2 className="text-2xl font-semibold mb-4">Our Office</h2>
           <p className="text-gray-600 mb-4">
-            123 Innovation Way, Design City, DC 45678<br />
-            Phone: (123) 456-7890<br />
+            123 Innovation Way, Design City, DC 45678
+            <br />
+            Phone: (123) 456-7890
+            <br />
             Email: contact@companyname.com
           </p>
           <div className="aspect-video w-full rounded-xl overflow-hidden shadow">
@@ -120,7 +126,11 @@ export default function Contact() {
 
       <AnimatePresence>
         {open && (
-          <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50">
+          <Dialog
+            open={open}
+            onClose={() => setOpen(false)}
+            className="relative z-50"
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -133,16 +143,29 @@ export default function Contact() {
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 50, opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
                 <Dialog.Panel className="bg-white p-6 rounded-xl max-w-md w-full text-center shadow-lg">
                   <div className="flex justify-center mb-4">
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-  </svg>
-</div>
-<Dialog.Title className="text-2xl font-semibold text-purple-600 mb-2">Message Sent!</Dialog.Title>
-                  <p className="text-gray-600 mb-4">Thank you for reaching out. We'll get back to you shortly.</p>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-12 w-12 text-green-500"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <Dialog.Title className="text-2xl font-semibold text-purple-600 mb-2">
+                    Message Sent!
+                  </Dialog.Title>
+                  <p className="text-gray-600 mb-4">
+                    Thank you for reaching out. We'll get back to you shortly.
+                  </p>
                   <button
                     onClick={() => setOpen(false)}
                     className="mt-2 inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
