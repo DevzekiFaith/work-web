@@ -48,7 +48,7 @@ export default function Contact() {
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="w-full max-w-xl">
-        <h1 className="text-5xl font-semibold mb-8 text-center tracking-tight">Let’s Connect</h1>
+        <h1 className="text-5xl font-semibold mb-8 text-center tracking-tight">Let us Connect</h1>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
