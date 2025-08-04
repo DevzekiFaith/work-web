@@ -7,19 +7,19 @@ const allProjects = [
   {
     title: 'Modern Office Complex',
     summary: 'A cutting-edge office space integrating sustainable design and tech.',
-    images: ['/images/projects/office-1.jpg', '/images/projects/office-2.jpg'],
+    images: ['/sn3.jpg', '/sn2.jpg'],
     category: 'Architecture'
   },
   {
     title: 'Residential Estate',
     summary: 'A community of smart homes with flexible interiors and eco-conscious planning.',
-    images: ['/images/projects/estate-1.jpg', '/images/projects/estate-2.jpg'],
+    images: ['/bulb1.jpg', '/sn1.jpg'],
     category: 'Estate'
   },
   {
     title: 'Software Implementation for Logistics',
     summary: 'A custom-built digital solution for a transport company.',
-    images: ['/images/projects/logistics-1.jpg', '/images/projects/logistics-2.jpg'],
+    images: ['/s5.jpg', '/p10.jpg'],
     category: 'Tech'
   },
 ];

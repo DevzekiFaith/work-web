@@ -8,8 +8,8 @@ const services = [
     description: 'Creative and functional designs for modern infrastructure.',
     href: '/services/architectural',
     images: [
-      '/images/services/architectural-1.jpg',
-      '/images/services/architectural-2.jpg',
+      '/sn1.jpg',
+      '/sn2.jpg',
     ],
   },
   {
@@ -17,8 +17,8 @@ const services = [
     description: 'Reliable and efficient building from ground to finish.',
     href: '/services/construction',
     images: [
-      '/images/services/construction-1.jpg',
-      '/images/services/construction-2.jpg',
+      '/sn3.jpg',
+      '/v5.jpg',
     ],
   },
   {
@@ -26,8 +26,8 @@ const services = [
     description: 'Maximizing space for productivity and comfort.',
     href: '/services/space-planning',
     images: [
-      '/images/services/space-1.jpg',
-      '/images/services/space-2.jpg',
+      '/s2.jpg',
+      '/Natchai.jpg',
     ],
   },
   {
@@ -35,8 +35,8 @@ const services = [
     description: 'Custom tech solutions to streamline your business.',
     href: '/services/software-solutions',
     images: [
-      '/images/services/software-1.jpg',
-      '/images/services/software-2.jpg',
+      '/v5.jpg',
+      '/sn3.jpg',
     ],
   },
   {
@@ -44,8 +44,8 @@ const services = [
     description: 'Training and strategies to grow your team and vision.',
     href: '/services/human-capacity',
     images: [
-      '/images/services/human-1.jpg',
-      '/images/services/human-2.jpg',
+      '/photo3.jpg',
+      '/photo4.jpg',
     ],
   },
 ];

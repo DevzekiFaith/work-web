@@ -1,13 +1,40 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import { FiAperture, FiCpu, FiUsers } from "react-icons/fi";
+import {
+  FiAperture,
+  FiCpu,
+  FiUsers,
+  FiBriefcase,
+  FiCheckCircle,
+  FiSmile,
+} from "react-icons/fi";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
+import Image from "next/image"
+
+const stats = [
+  { icon: <FiBriefcase />, label: "Years in Business", value: "10+" },
+  { icon: <FiCheckCircle />, label: "Projects Completed", value: "50+" },
+  { icon: <FiSmile />, label: "Happy Clients", value: "25+" },
+];
+
+const services = [
+  {
+    icon: <FiAperture />,
+    title: "Architecture & Construction",
+    text: "Modern, functional, and sustainable spaces tailored to your needs.",
+  },
+  {
+    icon: <FiCpu />,
+    title: "Software & Technology",
+    text: "Powerful digital tools to streamline workflows and scale businesses.",
+  },
+  {
+    icon: <FiUsers />,
+    title: "Human Capital",
+    text: "Upskilling teams through training, strategy, and growth programs.",
+  },
+];
 
 export default function About() {
   const containerRef = useRef(null);
@@ -24,7 +51,8 @@ export default function About() {
         style={{ scaleX }}
         className="fixed top-0 left-0 right-0 h-1 bg-purple-600 origin-left z-50"
       />
-      <section className="max-w-7xl mx-auto px-6 py-16 space-y-32">
+
+      <section className="max-w-7xl mx-auto px-6 py-20 space-y-32">
         {/* Mission */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
@@ -37,21 +65,27 @@ export default function About() {
               difference.
             </p>
           </div>
-          <div>
+          <div className="space-y-12">
             <Image
-              src="/photo4.jpg"
-              className="rounded-xl shadow-lg object-cover w-full h-72"
+              src="/v5.jpg"
               width={600}
               height={400}
-              alt="Photo"
-            />
-            {/* <Image
-              src="/public/s5.jpg"
               alt="Mission"
               className="rounded-xl shadow-lg object-cover w-full h-72"
-              width={300}
-              height={300}
-            /> */}
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+              {stats.map((item, i) => (
+                <div key={i} className="space-y-2">
+                  <div className="flex justify-center text-purple-600 text-3xl">
+                    {item.icon}
+                  </div>
+                  <h3 className="text-4xl font-bold text-purple-600">
+                    {item.value}
+                  </h3>
+                  <p className="text-sm text-gray-500">{item.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -60,11 +94,10 @@ export default function About() {
           <blockquote className="bg-white rounded-xl shadow p-8 relative">
             <svg
               className="w-10 h-10 text-purple-300 absolute top-6 left-6 opacity-30"
-              xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
             >
-              <path d="M7.17 3.1C5.67 3.75 4.4 4.93 3.74 6.41 2.67 8.8 2 11.46 2 14.25V21h7v-6H5.74c.07-1.61.4-3.2.98-4.69.32-.84.86-1.58 1.56-2.16l.89-.72-.47-4.33zm11 0c-1.5.65-2.77 1.83-3.43 3.31C14.67 8.8 14 11.46 14 14.25V21h7v-6h-3.26c.07-1.61.4-3.2.98-4.69.32-.84.86-1.58 1.56-2.16l.89-.72-.47-4.33z" />
+              <path d="M7.17 3.1C5.67 3.75 4.4 4.93 3.74 6.41..." />
             </svg>
             <p className="text-gray-700 text-lg italic">
               “Yonan Technologies transformed our vision into a breathtaking
@@ -77,27 +110,11 @@ export default function About() {
           </blockquote>
         </div>
 
-        {/* What We Do */}
-        <div className="text-center">
-          <h2 className="text-3xl font-bold mb-12">What We Do</h2>
+        {/* Services */}
+        <div className="text-center space-y-12">
+          <h2 className="text-3xl font-bold">What We Do</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <FiAperture />,
-                title: "Architecture & Construction",
-                text: "Modern, functional, and sustainable spaces tailored to your needs.",
-              },
-              {
-                icon: <FiCpu />,
-                title: "Software & Technology",
-                text: "Powerful digital tools to streamline workflows and scale businesses.",
-              },
-              {
-                icon: <FiUsers />,
-                title: "Human Capital",
-                text: "Upskilling teams through training, strategy, and growth programs.",
-              },
-            ].map((card, i) => (
+            {services.map((card, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.03 }}
@@ -106,7 +123,7 @@ export default function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-lg shadow p-6 text-center hover:shadow-md transition"
+                className="bg-white rounded-xl shadow p-6 hover:shadow-md transition"
               >
                 <div className="text-4xl mb-4 text-purple-600 flex justify-center">
                   {card.icon}
@@ -118,68 +135,34 @@ export default function About() {
           </div>
         </div>
 
-        {/* Partner Logos Carousel */}
-        <div className="text-center flex justify-center items-center flex-col space-y-8">
-          <h2 className="text-3xl font-bold mb-6">Trusted by Partners</h2>
-          <Swiper
-            modules={[Autoplay, EffectFade]}
-            slidesPerView={3}
-            spaceBetween={30}
-            loop
-            autoplay={{ delay: 2500, disableOnInteraction: false }}
-            effect="fade"
-            className="max-w-5xl mx-auto"
-          >
+        {/* Partners */}
+        <div className="text-center space-y-10">
+          <h2 className="text-3xl font-bold">Our Trusted Partners</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 items-center justify-center">
             {[
-              {
-                src: "/p2.jpg",
-                name: "BuildCore Inc.",
-                description:
-                  " working with mindvest has reduced the stress of finding new vendors daily",
-              },
-              {
-                src: "/p3.jpg",
-                name: "NextSpace Studios",
-                description:
-                  " working with mindvest has reduced the stress of finding new vendors daily",
-              },
-              {
-                src: "/p4.jpg",
-                name: "TechVision Group",
-                description:
-                  " working with mindvest has reduced the stress of finding new vendors daily",
-              },
-              {
-                src: "/p5.jpg",
-                name: "PeopleGrow Academy",
-                description:
-                  " working with mindvest has reduced the stress of finding new vendors daily",
-              },
-            ].map((partner, i) => (
-              <SwiperSlide
-                key={i}
-                className="flex flex-col items-center justify-center gap-4"
-              >
-                <Image
-                  src={partner.src}
-                  width={400}
-                  height={400}
-                  alt={partner.name}
-                  title={partner.name}
-                  className="h-48 object-contain grayscale hover:grayscale-0 transition mb-2"
-                />
-                <p className="text-sm text-gray-500">{partner.name}</p>
-              </SwiperSlide>
+              "/photo1.jpg",
+              "/photo2.jpg",
+              "/photo3.jpg",
+              "/photo4.jpg",
+            ].map((src, index) => (
+              <Image
+                key={index}
+                src={src}
+                width={144}
+                height={80}
+                alt={`Partner ${index + 1}`}
+                className="w-36 h-20 object-contain grayscale hover:grayscale-0 transition ease-in-out duration-300 mx-auto"
+              />
             ))}
-          </Swiper>
+          </div>
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">
+        <div className="text-center space-y-4">
+          <h2 className="text-2xl font-bold">
             Let’s Build the Future Together
           </h2>
-          <p className="text-gray-600 max-w-xl mx-auto mb-6">
+          <p className="text-gray-600 max-w-xl mx-auto">
             Whether you need a reliable construction partner, custom-built
             software, or tailored team development — we’re ready to collaborate.
           </p>
