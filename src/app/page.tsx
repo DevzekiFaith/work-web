@@ -256,7 +256,7 @@ export default function Home() {
             </h2>
             
             <p className="text-xl text-gray-600 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-              Let's collaborate to create something extraordinary. Our team is ready to transform your ideas into reality.
+              Let us collaborate to create something extraordinary. Our team is ready to transform your ideas into reality.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

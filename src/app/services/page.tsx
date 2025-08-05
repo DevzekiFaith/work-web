@@ -305,7 +305,7 @@ export default function Services() {
               Ready to Transform Your Vision?
             </h2>
             <p className="text-xl text-indigo-100 mb-8">
-              Let's discuss your project and explore how our services can 
+              Let us discuss your project and explore how our services can 
               bring your ideas to life with professional excellence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
