@@ -47,93 +47,81 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+      <section className="relative min-h-screen flex items-center justify-center bg-white">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.03),transparent_50%)]" />
         
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-10 right-10 w-64 h-64 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-full blur-3xl"
-            animate={{
-              x: [0, 30, 0],
-              y: [0, -30, 0],
-            }}
-            transition={{
-              duration: 20,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-10 left-10 w-64 h-64 bg-gradient-to-br from-emerald-400/20 to-cyan-400/20 rounded-full blur-3xl"
-            animate={{
-              x: [0, -30, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{
-              duration: 25,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </div>
-
-        <div className="container-fluid relative z-10 px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            {/* Main heading */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-8"
             >
-              <h1 className="heading-1 mb-6">
-                Transform Your Vision Into
-                <span className="block">Reality</span>
+              <h1 className="text-5xl md:text-7xl font-light text-gray-900 leading-tight tracking-tight">
+                Transform
+                <span className="block font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                  Ideas Into Reality
+                </span>
               </h1>
             </motion.div>
             
+            {/* Subtitle */}
             <motion.p
-              className="body-large mb-8 max-w-2xl mx-auto px-4"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed mb-12 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              We specialize in <strong>architectural design</strong>, <strong>construction</strong>, 
-              <strong> software solutions</strong>, <strong>space planning</strong>, and 
-              <strong className="text-indigo-600"> human capital development</strong>. 
-              Let's build something extraordinary together.
+              We create exceptional architectural designs, innovative software solutions, 
+              and develop human capital for a better tomorrow.
             </motion.p>
             
+            {/* CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center mb-12 px-4"
-              initial={{ opacity: 0, y: 30 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl group">
-                Explore Services
-                <HiArrowRight className="w-5 h-5" />
+              <Link 
+                href="/services" 
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Explore Our Work
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 font-semibold rounded-lg border-2 border-indigo-600 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-all duration-200">
-                Contact Us Today
-                <HiArrowRight className="w-5 h-5" />
+              <Link 
+                href="/contact" 
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
+              >
+                Start a Project
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </motion.div>
 
-            {/* Stats */}
+            {/* Minimalist Stats */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
             >
               {stats.map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-indigo-600 mb-1">
+                <motion.div 
+                  key={index} 
+                  className="text-center group cursor-default"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                >
+                  <div className="text-3xl md:text-4xl font-light text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
+                  <div className="text-sm text-gray-500 font-medium tracking-wide uppercase">{stat.label}</div>
+                </motion.div>
               ))}
             </motion.div>
           </div>
@@ -141,172 +129,153 @@ export default function Home() {
       </section>
 
       {/* Services Preview */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-fluid px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4">Our Core Services</h2>
-            <p className="body-large max-w-2xl mx-auto">
-              From concept to completion, we provide comprehensive solutions 
-              tailored to your unique needs and vision.
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+              What We Do
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto">
+              We transform ideas into reality through design, technology, and human expertise.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
                 <motion.div
                   key={index}
-                  className="card card-hover p-8 text-center group"
-                  initial={{ opacity: 0, y: 30 }}
+                  className="group text-center"
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  {/* Icon */}
+                  <div className="mb-8">
+                    <div className="inline-flex p-4 rounded-2xl bg-white shadow-sm group-hover:shadow-md transition-all duration-300 border border-gray-100">
+                      <IconComponent className="w-8 h-8 text-gray-700 group-hover:text-indigo-600 transition-colors duration-300" />
+                    </div>
                   </div>
-                  <h3 className="heading-4 mb-4">{service.title}</h3>
-                  <p className="body-base text-gray-600">{service.description}</p>
+                  
+                  <h3 className="text-2xl font-medium text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed font-light">
+                    {service.description}
+                  </p>
                 </motion.div>
               );
             })}
           </div>
 
           <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <Link 
+              href="/services" 
+              className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+            >
               View All Services
-              <HiArrowRight className="w-5 h-5" />
+              <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-fluid px-4 sm:px-6 lg:px-8">
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4">Our Core Features</h2>
-            <p className="body-large max-w-2xl mx-auto">
-              From concept to completion, we provide comprehensive solutions 
-              tailored to your unique needs and vision.
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+              Why Choose Us
+            </h2>
+            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto">
+              We deliver excellence through proven expertise and innovative solutions.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-12 max-w-4xl mx-auto">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="card card-hover p-8 text-center group"
-                initial={{ opacity: 0, y: 30 }}
+                className="group text-center"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <h3 className="heading-4 mb-4">{feature}</h3>
+                {/* Check icon */}
+                <div className="mb-6">
+                  <div className="inline-flex p-3 rounded-full bg-gray-100 group-hover:bg-indigo-100 transition-colors duration-300">
+                    <HiCheckCircle className="w-6 h-6 text-gray-600 group-hover:text-indigo-600 transition-colors duration-300" />
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-medium text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                  {feature}
+                </h3>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              View All Services
-              <HiArrowRight className="w-5 h-5" />
-            </Link>
-          </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="section-padding">
-        <div className="container-fluid px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="heading-2 mb-6">Why Choose Mindvest?</h2>
-              <p className="body-large mb-8">
-                With years of experience and a commitment to excellence, 
-                we deliver solutions that exceed expectations and drive success.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    className="flex items-center space-x-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <HiCheckCircle className="w-6 h-6 text-emerald-500 flex-shrink-0" />
-                    <span className="body-base">{feature}</span>
-                  </motion.div>
-                ))}
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                  Explore Our Services
-                  <HiArrowRight className="w-5 h-5" />
-                </Link>
-                <Link href="/about" className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 font-semibold rounded-lg border-2 border-indigo-600 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-all duration-200">
-                  Learn About Us
-                  <HiArrowRight className="w-5 h-5" />
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="relative bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 text-white">
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-purple-600/20 rounded-2xl backdrop-blur-sm"></div>
-                <div className="relative z-10">
-                  <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
-                  <p className="text-indigo-100 mb-6">
-                    Let's discuss your project and explore how we can bring your vision to life.
-                  </p>
-                  <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-white text-indigo-600 font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                    Contact Us Today
-                    <HiArrowRight className="w-5 h-5" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+      {/* Call to Action Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            className="text-center max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-light text-gray-900 mb-8 leading-tight">
+              Ready to bring your
+              <span className="block font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                vision to life?
+              </span>
+            </h2>
+            
+            <p className="text-xl text-gray-600 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+              Let's collaborate to create something extraordinary. Our team is ready to transform your ideas into reality.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/contact" 
+                className="group inline-flex items-center justify-center gap-2 px-10 py-5 bg-gray-900 text-white font-medium rounded-full hover:bg-gray-800 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+              >
+                Start Your Project
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link 
+                href="/services" 
+                className="group inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
+              >
+                View Our Services
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

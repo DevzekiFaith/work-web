@@ -2,7 +2,7 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { motion } from 'framer-motion';
-import { HiLocationMarker, HiClock, HiCurrencyDollar, HiUsers, HiLightBulb, HiHeart, HiTrendingUp, HiGlobeAlt } from 'react-icons/hi';
+import { HiLocationMarker, HiClock, HiCurrencyDollar, HiUsers, HiLightBulb, HiHeart, HiTrendingUp, HiArrowLeft, HiArrowRight, HiGlobeAlt } from 'react-icons/hi';
 import Link from 'next/link';
 
 interface JobPosition {
@@ -198,8 +198,9 @@ export default function Careers() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6">
+              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 text-4xl">
                 Join Our
+                <br />
                 <span className="block">Amazing Team</span>
               </h1>
             </motion.div>
@@ -210,7 +211,7 @@ export default function Careers() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              We're always looking for passionate and talented individuals to help shape 
+              We are always looking for passionate and talented individuals to help shape 
               the future of architecture, technology, and human capital development.
             </motion.p>
 
@@ -431,18 +432,18 @@ export default function Careers() {
               Don't See the Perfect Role?
             </h2>
             <p className="text-xl mb-8 text-indigo-100">
-              We're always interested in connecting with talented individuals. 
+              We are always interested in connecting with talented individuals. 
               Send us your resume and let us know how you'd like to contribute to our mission.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="mailto:careers@mindvest.com?subject=General Application"
-                className="btn bg-white text-indigo-600 hover:bg-gray-100"
+                className="btn bg-white text-indigo-600 hover:bg-gray-100 hover:text-indigo-600 w-full justify-center rounded-lg"
               >
                 Send Your Resume
               </Link>
-              <Link href="/contact" className="btn border-2 border-white text-white hover:bg-white hover:text-indigo-600">
+              <Link href="/contact" className="btn border-2 border-white text-white hover:bg-white hover:text-indigo-600 w-full justify-center rounded-lg">
                 Get in Touch
               </Link>
             </div>

@@ -60,7 +60,7 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
@@ -78,11 +78,11 @@ export default function Contact() {
     <div className="min-h-screen bg-white">
       <Header />
       <Toaster position="top-center" reverseOrder={false} />
-      
+
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
-        
+
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -106,19 +106,20 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6">
+              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 text-4xl">
                 Let us Start Your
+                <br />
                 <span className="block">Project Together</span>
               </h1>
             </motion.div>
-            
+
             <motion.p
               className="body-large mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Ready to transform your vision into reality? Get in touch with our expert team 
+              Ready to transform your vision into reality? Get in touch with our expert team
               and let's discuss how we can bring your ideas to life.
             </motion.p>
           </div>
@@ -164,120 +165,157 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-2 mb-6">Send Us a Message</h2>
-              <p className="body-large mb-8 text-gray-600">
+              <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 text-4xl ml-12">Send Us a Message</h2>
+              <p className="body-large mb-8 text-gray-600 ml-12">
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-8 pl-8">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="group">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                       Full Name *
                     </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      className="form-input"
-                      placeholder="John Doe"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        value={form.name}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        placeholder="John Doe"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="group">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                       Email Address *
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      className="form-input"
-                      placeholder="john@example.com"
-                    />
+                    <div className="relative">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        value={form.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        placeholder="john@example.com"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="group">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                       Phone Number
                     </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className="form-input"
-                      placeholder="+1 (555) 123-4567"
-                    />
+                    <div className="relative">
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        placeholder="+1 (555) 123-4567"
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                  <div className="group">
+                    <label htmlFor="company" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                       Company
                     </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={form.company}
-                      onChange={handleChange}
-                      className="form-input"
-                      placeholder="Your Company"
-                    />
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={form.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        placeholder="Your Company"
+                      />
+                    </div>
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label htmlFor="service" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                     Service Interested In
                   </label>
-                  <select
-                    id="service"
-                    name="service"
-                    value={form.service}
-                    onChange={handleChange}
-                    className="form-input"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="architectural">Architectural Design</option>
-                    <option value="construction">Construction</option>
-                    <option value="software">Software Solutions</option>
-                    <option value="space-planning">Space Planning</option>
-                    <option value="human-capital">Human Capital Development</option>
-                    <option value="other">Other</option>
-                  </select>
+                  <div className="relative">
+                    <select
+                      id="service"
+                      name="service"
+                      value={form.service}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md appearance-none cursor-pointer"
+                    >
+                      <option value="" className="text-gray-500">Select a service</option>
+                      <option value="architectural">Architectural Design</option>
+                      <option value="construction">Construction</option>
+                      <option value="software">Software Solutions</option>
+                      <option value="space-planning">Space Planning</option>
+                      <option value="human-capital">Human Capital Development</option>
+                      <option value="other">Other</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <div className="group">
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
                     Project Details *
                   </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={6}
-                    required
-                    value={form.message}
-                    onChange={handleChange}
-                    className="form-textarea"
-                    placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
-                  ></textarea>
+                  <div className="relative">
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      required
+                      value={form.message}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md resize-none"
+                      placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
+                    ></textarea>
+                  </div>
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl w-full justify-center"
-                >
-                  {loading ? 'Sending Message...' : 'Send Message'}
-                </button>
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="group relative w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:from-indigo-700 focus:to-purple-700 transition-all duration-300 transform hover:scale-[1.02] focus:scale-[1.02] shadow-lg hover:shadow-xl focus:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      {loading ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending Message...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                          </svg>
+                        </>
+                      )}
+                    </span>
+                  </button>
+                </div>
               </form>
             </motion.div>
 
@@ -344,16 +382,16 @@ export default function Contact() {
                       <HiCheckCircle className="w-12 h-12 text-emerald-600" />
                     </div>
                   </div>
-                  
+
                   <Dialog.Title className="text-2xl font-bold text-gray-900 mb-4">
                     Message Sent Successfully!
                   </Dialog.Title>
-                  
+
                   <p className="text-gray-600 mb-6">
-                    Thank you for reaching out to us. We've received your message and 
+                    Thank you for reaching out to us. We've received your message and
                     will get back to you within 24 hours.
                   </p>
-                  
+
                   <div className="flex gap-4 justify-center">
                     <button
                       onClick={() => setIsOpen(false)}

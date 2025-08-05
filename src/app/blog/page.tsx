@@ -125,7 +125,7 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6">
+              <h1 className="heading-1 mb-6 flex items-center text-indigo-600 font-bold text-4xl">
                 Insights &
                 <span className="block">Expertise</span>
               </h1>
@@ -364,7 +364,7 @@ export default function Blog() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+                className="flex-1 px-6 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white text-white"
               />
               <button className="btn bg-white text-indigo-600 hover:bg-gray-100 px-8 py-3">
                 Subscribe
