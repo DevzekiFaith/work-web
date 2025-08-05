@@ -43,13 +43,13 @@ const features = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-white">
+      <section className="relative min-h-screen flex items-center justify-center bg-white dark:bg-gray-900">
         {/* Subtle background pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.03),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.03),transparent_50%)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(99,102,241,0.08),transparent_50%)]" />
         
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
@@ -60,7 +60,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-8"
             >
-              <h1 className="text-5xl md:text-7xl font-light text-gray-900 leading-tight tracking-tight">
+              <h1 className="text-5xl md:text-7xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
                 Transform
                 <span className="block font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Ideas Into Reality
@@ -70,7 +70,7 @@ export default function Home() {
             
             {/* Subtitle */}
             <motion.p
-              className="text-xl md:text-2xl text-gray-600 font-light leading-relaxed mb-12 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-12 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -95,7 +95,7 @@ export default function Home() {
               </Link>
               <Link 
                 href="/contact" 
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-300"
               >
                 Start a Project
                 <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -117,10 +117,10 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                 >
-                  <div className="text-3xl md:text-4xl font-light text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">
+                  <div className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                     {stat.number}
                   </div>
-                  <div className="text-sm text-gray-500 font-medium tracking-wide uppercase">{stat.label}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400 font-medium tracking-wide uppercase">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -129,7 +129,7 @@ export default function Home() {
       </section>
 
       {/* Services Preview */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-20"
@@ -138,10 +138,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
               What We Do
             </h2>
-            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
               We transform ideas into reality through design, technology, and human expertise.
             </p>
           </motion.div>
@@ -160,15 +160,15 @@ export default function Home() {
                 >
                   {/* Icon */}
                   <div className="mb-8">
-                    <div className="inline-flex p-4 rounded-2xl bg-white shadow-sm group-hover:shadow-md transition-all duration-300 border border-gray-100">
-                      <IconComponent className="w-8 h-8 text-gray-700 group-hover:text-indigo-600 transition-colors duration-300" />
+                    <div className="inline-flex p-4 rounded-2xl bg-white dark:bg-gray-700 shadow-sm group-hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-600">
+                      <IconComponent className="w-8 h-8 text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300" />
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-medium text-gray-900 mb-4 group-hover:text-indigo-600 transition-colors duration-300">
+                  <h3 className="text-2xl font-medium text-gray-900 dark:text-white mb-4 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed font-light">
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed font-light">
                     {service.description}
                   </p>
                 </motion.div>
@@ -185,7 +185,7 @@ export default function Home() {
           >
             <Link 
               href="/services" 
-              className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+              className="group inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all duration-300 shadow-sm hover:shadow-md"
             >
               View All Services
               <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -195,7 +195,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-20"
@@ -204,10 +204,10 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
               Why Choose Us
             </h2>
-            <p className="text-xl text-gray-600 font-light max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
               We deliver excellence through proven expertise and innovative solutions.
             </p>
           </motion.div>
@@ -224,12 +224,12 @@ export default function Home() {
               >
                 {/* Check icon */}
                 <div className="mb-6">
-                  <div className="inline-flex p-3 rounded-full bg-gray-100 group-hover:bg-indigo-100 transition-colors duration-300">
-                    <HiCheckCircle className="w-6 h-6 text-gray-600 group-hover:text-indigo-600 transition-colors duration-300" />
+                  <div className="inline-flex p-3 rounded-full bg-gray-100 dark:bg-gray-700 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-900 transition-colors duration-300">
+                    <HiCheckCircle className="w-6 h-6 text-gray-600 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300" />
                   </div>
                 </div>
                 
-                <h3 className="text-lg font-medium text-gray-900 group-hover:text-indigo-600 transition-colors duration-300">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">
                   {feature}
                 </h3>
               </motion.div>
@@ -239,7 +239,7 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -248,14 +248,14 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-light text-gray-900 mb-8 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-light text-gray-900 dark:text-white mb-8 leading-tight">
               Ready to bring your
               <span className="block font-medium bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 vision to life?
               </span>
             </h2>
             
-            <p className="text-xl text-gray-600 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               Let us collaborate to create something extraordinary. Our team is ready to transform your ideas into reality.
             </p>
             
@@ -269,7 +269,7 @@ export default function Home() {
               </Link>
               <Link 
                 href="/services" 
-                className="group inline-flex items-center justify-center gap-2 px-10 py-5 bg-white text-gray-900 font-medium rounded-full border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all duration-300"
+                className="group inline-flex items-center justify-center gap-2 px-10 py-5 bg-white dark:bg-gray-700 text-gray-900 dark:text-white font-medium rounded-full border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all duration-300"
               >
                 View Our Services
                 <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />

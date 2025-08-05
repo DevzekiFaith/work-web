@@ -92,12 +92,12 @@ export default function Projects() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -134,14 +134,14 @@ export default function Projects() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6">
+              <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
                 Our Project
                 <span className="block">Portfolio</span>
               </h1>
             </motion.div>
             
             <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
+              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -171,12 +171,12 @@ export default function Projects() {
       </section>
 
       {/* Filter Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gray-50 dark:bg-gray-800">
         <div className="container-fluid">
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             {/* Category Filters */}
             <div className="flex flex-wrap gap-3 mb-6 md:mb-0">
-              <div className="flex items-center gap-2 text-gray-600 mr-4">
+              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 mr-4">
                 <HiFilter className="w-5 h-5" />
                 <span className="font-medium">Filter by:</span>
               </div>
@@ -187,7 +187,7 @@ export default function Projects() {
                   className={`px-6 py-2 rounded-full transition-all duration-300 font-medium ${
                     activeCategory === category
                       ? 'bg-indigo-600 text-white shadow-lg scale-105'
-                      : 'bg-white text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 border border-gray-200'
+                      : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-600 hover:text-indigo-600 dark:hover:text-indigo-400 border border-gray-200 dark:border-gray-600'
                   }`}
                 >
                   {category}
@@ -199,13 +199,13 @@ export default function Projects() {
             </div>
 
             {/* View Mode Toggle */}
-            <div className="flex items-center gap-2 bg-white rounded-lg p-1 border border-gray-200">
+            <div className="flex items-center gap-2 bg-white dark:bg-gray-700 rounded-lg p-1 border border-gray-200 dark:border-gray-600">
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-2 rounded-md transition-colors ${
                   viewMode === 'grid'
                     ? 'bg-indigo-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                 }`}
               >
                 <HiViewGrid className="w-5 h-5" />
@@ -215,7 +215,7 @@ export default function Projects() {
                 className={`p-2 rounded-md transition-colors ${
                   viewMode === 'list'
                     ? 'bg-indigo-600 text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
+                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
                 }`}
               >
                 <HiViewList className="w-5 h-5" />
@@ -293,7 +293,7 @@ export default function Projects() {
               Ready to Start Your Project?
             </h2>
             <p className="body-large mb-8 text-gray-600">
-              Let's collaborate to bring your vision to life. Our experienced team 
+              Let us collaborate to bring your vision to life. Our experienced team 
               is ready to tackle projects of any scale and complexity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

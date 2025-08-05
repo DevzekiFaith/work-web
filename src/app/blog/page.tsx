@@ -95,12 +95,12 @@ export default function Blog() {
   const regularPosts = posts.filter(post => !post.featured);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -125,20 +125,20 @@ export default function Blog() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 flex items-center text-indigo-600 font-bold text-4xl">
-                Insights &
-                <span className="block">Expertise</span>
+              <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
+                Insights & 
+                <span className="block">Knowledge Hub</span>
               </h1>
             </motion.div>
             
             <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
+              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Stay updated with the latest trends, insights, and best practices in architecture, 
-              technology, and leadership from our team of experts.
+              Stay updated with the latest trends, insights, and innovations in 
+              architecture, technology, and human capital development.
             </motion.p>
           </div>
         </div>

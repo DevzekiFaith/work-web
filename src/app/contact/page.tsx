@@ -75,13 +75,13 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
 
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -106,7 +106,7 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 text-4xl">
+              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 dark:text-gray-300 text-4xl">
                 Let us Start Your
                 <br />
                 <span className="block">Project Together</span>
@@ -114,7 +114,7 @@ export default function Contact() {
             </motion.div>
 
             <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
+              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -165,15 +165,15 @@ export default function Contact() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 text-4xl ml-12">Send Us a Message</h2>
-              <p className="body-large mb-8 text-gray-600 ml-12">
+              <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 dark:text-indigo-400 text-4xl ml-12">Send Us a Message</h2>
+              <p className="body-large mb-8 text-gray-600 dark:text-gray-300 ml-12">
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-8 pl-8">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="group">
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                    <label htmlFor="name" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                       Full Name *
                     </label>
                     <div className="relative">
@@ -184,13 +184,13 @@ export default function Contact() {
                         required
                         value={form.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
                         placeholder="John Doe"
                       />
                     </div>
                   </div>
                   <div className="group">
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                    <label htmlFor="email" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                       Email Address *
                     </label>
                     <div className="relative">
@@ -201,7 +201,7 @@ export default function Contact() {
                         required
                         value={form.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -210,7 +210,7 @@ export default function Contact() {
 
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="group">
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                       Phone Number
                     </label>
                     <div className="relative">
@@ -220,13 +220,13 @@ export default function Contact() {
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
                   </div>
                   <div className="group">
-                    <label htmlFor="company" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                    <label htmlFor="company" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                       Company
                     </label>
                     <div className="relative">
@@ -236,7 +236,7 @@ export default function Contact() {
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md"
+                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
                         placeholder="Your Company"
                       />
                     </div>
@@ -244,7 +244,7 @@ export default function Contact() {
                 </div>
 
                 <div className="group">
-                  <label htmlFor="service" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                  <label htmlFor="service" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                     Service Interested In
                   </label>
                   <div className="relative">
@@ -253,7 +253,7 @@ export default function Contact() {
                       name="service"
                       value={form.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md appearance-none cursor-pointer"
+                      className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md appearance-none cursor-pointer"
                     >
                       <option value="" className="text-gray-500">Select a service</option>
                       <option value="architectural">Architectural Design</option>
@@ -264,7 +264,7 @@ export default function Contact() {
                       <option value="other">Other</option>
                     </select>
                     <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </div>
@@ -272,7 +272,7 @@ export default function Contact() {
                 </div>
 
                 <div className="group">
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-800 mb-3 group-focus-within:text-indigo-600 transition-colors duration-200">
+                  <label htmlFor="message" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
                     Project Details *
                   </label>
                   <div className="relative">
@@ -283,7 +283,7 @@ export default function Contact() {
                       required
                       value={form.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-white border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-500 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 hover:border-gray-300 shadow-sm focus:shadow-md resize-none"
+                      className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md resize-none"
                       placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
                     ></textarea>
                   </div>

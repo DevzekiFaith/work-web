@@ -110,13 +110,13 @@ const benefits = [
 
 export default function Services() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
         {/* Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -153,21 +153,20 @@ export default function Services() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 fontbold text-2xl flex items-center text-gray-400">
+              <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
                 Our Professional
                 <span className="block">Services</span>
               </h1>
             </motion.div>
             
             <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
+              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              From architectural design to human capital development, we provide comprehensive 
-              solutions that transform your vision into reality. Our expert team delivers 
-              excellence across every service we offer.
+              From architectural design to human capital development, we provide 
+              comprehensive solutions tailored to your unique needs and vision.
             </motion.p>
             
             <motion.div
@@ -190,7 +189,7 @@ export default function Services() {
       </section>
 
       {/* Services Grid */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gray-50 dark:bg-gray-800">
         <div className="container-fluid">
           <motion.div
             className="text-center mb-16"
@@ -199,8 +198,8 @@ export default function Services() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4 text-center text-2xl fontbold text-gray-400">What We Offer</h2>
-            <p className="body-large max-w-2xl mx-auto text-center text-gray-400">
+            <h2 className="heading-2 mb-4 text-center text-2xl fontbold text-gray-900 dark:text-white">What We Offer</h2>
+            <p className="body-large max-w-2xl mx-auto text-center text-gray-600 dark:text-gray-300">
               Explore our comprehensive range of services designed to meet 
               your unique needs and exceed your expectations.
             </p>

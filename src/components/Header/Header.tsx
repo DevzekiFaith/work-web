@@ -2,11 +2,11 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenu, HiX, HiSun, HiMoon, HiArrowRight } from 'react-icons/hi';
+import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi';
+import ThemeToggle from '@/components/ThemeToggle/ThemeToggle';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -16,28 +16,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    // Check for saved dark mode preference on component mount
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode !== null) {
-      setDarkMode(JSON.parse(savedDarkMode));
-    } else {
-      // Check system preference if no saved preference
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setDarkMode(systemPrefersDark);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Apply dark mode to document using Tailwind's class-based approach
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
 
   const navItems = [
     { href: '/', label: 'Home' },
@@ -53,7 +31,7 @@ export default function Header() {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100'
+          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg border-b border-gray-100 dark:border-gray-700'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
@@ -83,7 +61,7 @@ export default function Header() {
               >
                 <Link
                   href={item.href}
-                  className="relative text-gray-400 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 font-bold transition-colors duration-200 group px-3 py-2 rounded-lg hover:bg-gray-100"
+                  className="relative text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium transition-colors duration-200 group px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-full"></span>
@@ -94,17 +72,7 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
-              aria-label="Toggle dark mode"
-            >
-              {darkMode ? (
-                <HiSun className="w-5 h-5 text-yellow-500" />
-              ) : (
-                <HiMoon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-              )}
-            </button>
+            <ThemeToggle />
             <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started
               <HiArrowRight className="w-4 h-4" />
@@ -179,19 +147,9 @@ export default function Header() {
 
                 {/* Mobile Actions */}
                 <div className="p-6 border-t border-gray-100 dark:border-gray-700 space-y-4">
-                  <button
-                    onClick={() => setDarkMode(!darkMode)}
-                    className="w-full flex items-center justify-center space-x-2 p-3 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
-                  >
-                    {darkMode ? (
-                      <HiSun className="w-5 h-5 text-yellow-500" />
-                    ) : (
-                      <HiMoon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                    )}
-                    <span className="text-gray-900 dark:text-white font-bold">
-                      {darkMode ? 'Light Mode' : 'Dark Mode'}
-                    </span>
-                  </button>
+                  <div className="flex justify-center">
+                    <ThemeToggle />
+                  </div>
                   <Link
                     href="/contact"
                     onClick={() => setIsOpen(false)}

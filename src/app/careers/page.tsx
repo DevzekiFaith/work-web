@@ -156,12 +156,12 @@ const benefits = [
 
 export default function Careers() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
       
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
         
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -198,7 +198,7 @@ export default function Careers() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 text-4xl">
+              <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
                 Join Our
                 <br />
                 <span className="block">Amazing Team</span>
@@ -206,7 +206,7 @@ export default function Careers() {
             </motion.div>
             
             <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
+              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
