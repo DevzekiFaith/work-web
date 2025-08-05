@@ -2,6 +2,7 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { HiCalendar, HiClock, HiUser, HiTag, HiArrowRight } from 'react-icons/hi';
 import { useState } from 'react';
@@ -92,7 +93,6 @@ export default function Blog() {
     : posts.filter(post => post.category === selectedCategory);
   
   const featuredPost = posts.find(post => post.featured);
-  const regularPosts = posts.filter(post => !post.featured);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
@@ -168,10 +168,11 @@ export default function Blog() {
             >
               <div className="grid lg:grid-cols-2 gap-8">
                 <div className="relative h-64 lg:h-full min-h-[300px]">
-                  <img
+                  <Image
                     src={featuredPost.image}
                     alt={featuredPost.title}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-indigo-600 text-white text-sm font-medium rounded-full">
@@ -267,10 +268,11 @@ export default function Blog() {
                 viewport={{ once: true }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <Image
                     src={post.image}
                     alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="inline-flex items-center gap-1 px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-800 text-sm font-medium rounded-full">

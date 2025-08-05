@@ -186,7 +186,7 @@ export default function About() {
             <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center text-2xl mt-12">Our Impact in Numbers</h2>
             <p className="body-large max-w-2xl mx-auto">
               These numbers represent the trust our clients place in us and 
-              the success we've achieved together.
+              the success we&apos;ve achieved together.
             </p>
           </motion.div>
 
@@ -321,7 +321,7 @@ export default function About() {
           >
             <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center text-2xl mt-12">What Our Clients Say</h2>
             <p className="body-large max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our clients have to say 
+              Don&apos;t just take our word for it. Here&apos;s what our clients have to say 
               about working with Mindvest.
             </p>
           </motion.div>
@@ -342,7 +342,7 @@ export default function About() {
                   </svg>
                 </div>
                 <p className="body-base text-gray-700 mb-6 italic">
-                  "{testimonial.quote}"
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center space-x-4">
                   <Image
@@ -378,7 +378,7 @@ export default function About() {
             </h2>
             <p className="text-xl text-indigo-100 mb-8">
               Whether you need architectural design, construction services, custom software, 
-              or team development — we're ready to collaborate and bring your vision to life.
+              or team development — we&apos;re ready to collaborate and bring your vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="btn bg-white text-indigo-600 hover:bg-gray-100 rounded-lg px-6 py-3 font-semibold mb-4">

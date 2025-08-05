@@ -2,7 +2,7 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { motion } from 'framer-motion';
-import { HiLocationMarker, HiClock, HiCurrencyDollar, HiUsers, HiLightBulb, HiHeart, HiTrendingUp, HiArrowLeft, HiArrowRight, HiGlobeAlt } from 'react-icons/hi';
+import { HiLocationMarker, HiClock, HiCurrencyDollar, HiUsers, HiLightBulb, HiHeart, HiTrendingUp, HiArrowRight, HiGlobeAlt } from 'react-icons/hi';
 import Link from 'next/link';
 
 interface JobPosition {
@@ -429,11 +429,11 @@ export default function Careers() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Don't See the Perfect Role?
+              Don&apos;t See the Perfect Role?
             </h2>
             <p className="text-xl mb-8 text-indigo-100">
               We are always interested in connecting with talented individuals. 
-              Send us your resume and let us know how you'd like to contribute to our mission.
+              Send us your resume and let us know how you&apos;d like to contribute to our mission.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
