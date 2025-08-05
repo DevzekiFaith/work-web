@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Toaster, toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiX, HiArrowRight } from 'react-icons/hi';
+import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight } from 'react-icons/hi';
 import { Fragment } from 'react';
 import Link from 'next/link';
 
@@ -67,7 +67,7 @@ export default function Contact() {
       setIsOpen(true);
       setForm({ name: '', email: '', phone: '', company: '', service: '', message: '' });
       toast.success('Message sent successfully!');
-    } catch (err) {
+    } catch {
       toast.error('Failed to send message. Please try again.');
     } finally {
       setLoading(false);
@@ -120,7 +120,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Ready to transform your vision into reality? Get in touch with our expert team
-              and let's discuss how we can bring your ideas to life.
+              and let&apos;s discuss how we can bring your ideas to life.
             </motion.p>
           </div>
         </div>
@@ -167,7 +167,7 @@ export default function Contact() {
             >
               <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 dark:text-indigo-400 text-4xl ml-12">Send Us a Message</h2>
               <p className="body-large mb-8 text-gray-600 dark:text-gray-300 ml-12">
-                Fill out the form below and we'll get back to you within 24 hours.
+                Fill out the form below and we&apos;ll get back to you within 24 hours.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-8 pl-8">
@@ -339,7 +339,7 @@ export default function Contact() {
               <div className="mt-8 p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl text-white">
                 <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
                 <p className="mb-4 text-indigo-100">
-                  For urgent inquiries or immediate support, don't hesitate to call us directly.
+                  For urgent inquiries or immediate support, don&apos;t hesitate to call us directly.
                 </p>
                 <Link href="tel:+15551234567" className="btn bg-white text-indigo-600 hover:bg-gray-100">
                   Call Now: +1 (555) 123-4567
@@ -388,7 +388,7 @@ export default function Contact() {
                   </Dialog.Title>
 
                   <p className="text-gray-600 mb-6">
-                    Thank you for reaching out to us. We've received your message and
+                    Thank you for reaching out to us. We&apos;ve received your message and
                     will get back to you within 24 hours.
                   </p>
 
