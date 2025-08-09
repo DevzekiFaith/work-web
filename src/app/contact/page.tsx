@@ -13,22 +13,22 @@ const contactInfo = [
   {
     icon: HiMail,
     title: 'Email Us',
-    details: 'hello@mindvest.com',
+    details: 'hello@mindvestie.com',
     description: 'Send us an email anytime',
     color: 'from-blue-500 to-cyan-500'
   },
   {
     icon: HiPhone,
     title: 'Call Us',
-    details: '+1 (555) 123-4567',
+    details: '+234 7014441418',
     description: 'Mon-Fri from 8am to 6pm',
     color: 'from-emerald-500 to-teal-500'
   },
   {
     icon: HiLocationMarker,
     title: 'Visit Us',
-    details: '123 Innovation Drive',
-    description: 'Tech City, TC 12345',
+    details: 'Mindvest Office',
+    description: 'Tech City, Lagos',
     color: 'from-purple-500 to-pink-500'
   }
 ];
@@ -120,7 +120,7 @@ export default function Contact() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Ready to transform your vision into reality? Get in touch with our expert team
-              and let&apos;s discuss how we can bring your ideas to life.
+              and let us discuss how we can bring your ideas to life.
             </motion.p>
           </div>
         </div>
@@ -167,14 +167,14 @@ export default function Contact() {
             >
               <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 dark:text-indigo-400 text-4xl ml-12">Send Us a Message</h2>
               <p className="body-large mb-8 text-gray-600 dark:text-gray-300 ml-12">
-                Fill out the form below and we&apos;ll get back to you within 24 hours.
+                Fill out the form below and we will get back to you within 24 hours.
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-8 pl-8">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="group">
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                      Full Name *
+                      Full Name 
                     </label>
                     <div className="relative">
                       <input
@@ -191,7 +191,7 @@ export default function Contact() {
                   </div>
                   <div className="group">
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                      Email Address *
+                      Email Address 
                     </label>
                     <div className="relative">
                       <input
@@ -273,7 +273,7 @@ export default function Contact() {
 
                 <div className="group">
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                    Project Details *
+                    Project Details 
                   </label>
                   <div className="relative">
                     <textarea
@@ -326,7 +326,7 @@ export default function Contact() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-2 mb-6">Frequently Asked Questions</h2>
+              <h2 className="heading-2 mb-6 text-indigo-600 text-center text-2xl font-semibold">Frequently Asked Questions</h2>
               <div className="space-y-6">
                 {faqs.map((faq, index) => (
                   <div key={index} className="card p-6">
@@ -339,10 +339,10 @@ export default function Contact() {
               <div className="mt-8 p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl text-white">
                 <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
                 <p className="mb-4 text-indigo-100">
-                  For urgent inquiries or immediate support, don&apos;t hesitate to call us directly.
+                  For urgent inquiries or immediate support, do not hesitate to call us directly.
                 </p>
-                <Link href="tel:+15551234567" className="btn bg-white text-indigo-600 hover:bg-gray-100">
-                  Call Now: +1 (555) 123-4567
+                <Link href="tel:+2347014441418" className="btn bg-white text-indigo-600 hover:bg-gray-100">
+                  Call Now: +234 7014441418
                 </Link>
               </div>
             </motion.div>
@@ -388,7 +388,7 @@ export default function Contact() {
                   </Dialog.Title>
 
                   <p className="text-gray-600 mb-6">
-                    Thank you for reaching out to us. We&apos;ve received your message and
+                    Thank you for reaching out to us. We have received your message and
                     will get back to you within 24 hours.
                   </p>
 

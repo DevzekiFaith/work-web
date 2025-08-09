@@ -70,15 +70,15 @@ export default function Footer() {
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiMail className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">hello@mindvest.com</span>
+                    <span className="text-sm">hello@mindvestie.com</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiPhone className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">+1 (555) 123-4567</span>
+                    <span className="text-sm">+234 7014441418</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiLocationMarker className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">123 Innovation Drive, Tech City, TC 12345</span>
+                    <span className="text-sm">Mindvest Office, Tech City, Lagos</span>
                   </div>
                 </div>
 
