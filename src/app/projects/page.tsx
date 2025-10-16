@@ -135,8 +135,8 @@ export default function Projects() {
               transition={{ duration: 0.8 }}
             >
               <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
-                Our Project
-                <span className="block">Portfolio</span>
+                Lifebuild
+                <span className="block">Project Portfolio</span>
               </h1>
             </motion.div>
             
@@ -146,8 +146,8 @@ export default function Projects() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Discover our diverse portfolio of innovative projects spanning architecture, 
-              real estate development, technology solutions, and human capital initiatives.
+              Discover Lifebuild&apos;s diverse portfolio of innovative infrastructure projects spanning architecture, 
+              construction excellence, technology solutions, and comprehensive development initiatives.
             </motion.p>
 
             {/* Stats */}
@@ -293,8 +293,8 @@ export default function Projects() {
               Ready to Start Your Project?
             </h2>
             <p className="body-large mb-8 text-gray-600">
-              Let us collaborate to bring your vision to life. Our experienced team 
-              is ready to tackle projects of any scale and complexity.
+              Let Lifebuild by Yonan Technologies collaborate to bring your infrastructure vision to life. 
+              Our experienced team is ready to tackle projects of any scale and complexity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">

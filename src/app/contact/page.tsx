@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Toaster, toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight } from 'react-icons/hi';
+import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight, HiChat, HiSupport, HiUser, HiOfficeBuilding, HiGlobe, HiClock } from 'react-icons/hi';
 import { Fragment } from 'react';
 import Link from 'next/link';
 
@@ -13,38 +13,38 @@ const contactInfo = [
   {
     icon: HiMail,
     title: 'Email Us',
-    details: 'hello@mindvestie.com',
+    details: 'hello@lifebuild.com',
     description: 'Send us an email anytime',
-    color: 'from-blue-500 to-cyan-500'
+    color: 'from-purple-500 to-purple-700'
   },
   {
     icon: HiPhone,
     title: 'Call Us',
-    details: '+234 7014441418',
+    details: '+234701441418',
     description: 'Mon-Fri from 8am to 6pm',
-    color: 'from-emerald-500 to-teal-500'
+    color: 'from-purple-600 to-purple-800'
   },
   {
     icon: HiLocationMarker,
     title: 'Visit Us',
-    details: 'Mindvest Office',
-    description: 'Tech City, Lagos',
-    color: 'from-purple-500 to-pink-500'
+    details: 'Lifebuild Office',
+    description: 'Professional Development Center',
+    color: 'from-purple-700 to-purple-900'
   }
 ];
 
 const faqs = [
   {
     question: 'What services do you offer?',
-    answer: 'We provide architectural design, construction, software solutions, space planning, and human capital development services.'
+    answer: 'We provide consulting on public speaking, seminars and workshops, masterclass programs for becoming a person of interest, and upgrade academy for professional development.'
   },
   {
-    question: 'How long does a typical project take?',
-    answer: 'Project timelines vary depending on scope and complexity. We provide detailed timelines during our initial consultation.'
+    question: 'How long does a typical program take?',
+    answer: 'Program durations vary from 4-week intensive courses to 12-week comprehensive transformations. We provide detailed timelines during our initial consultation.'
   },
   {
     question: 'Do you work with international clients?',
-    answer: 'Yes, we work with clients globally and have experience with international projects and regulations.'
+    answer: 'Yes, we work with clients globally and offer both virtual and in-person sessions to accommodate different time zones and preferences.'
   }
 ];
 
@@ -75,78 +75,103 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <Header />
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"></div>
 
-        {/* Animated Background Elements */}
+        {/* Enhanced Glassmorphism Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-indigo-400/10 to-purple-400/10 rounded-full blur-3xl"
+            className="absolute top-20 left-20 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl"
             animate={{
               x: [0, 50, 0],
               y: [0, -30, 0],
             }}
             transition={{
-              duration: 15,
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl"
+            animate={{
+              x: [0, -30, 0],
+              y: [0, 40, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 30,
               repeat: Infinity,
               ease: "linear"
             }}
           />
         </div>
 
-        <div className="container-fluid relative z-10">
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 flex items-center justify-center font-bold text-gray-400 dark:text-gray-300 text-4xl">
+              <div className="mb-8">
+                <div className="inline-flex p-6 rounded-3xl neu-icon">
+                  <HiChat className="w-12 h-12 text-purple-600 dark:text-purple-400" />
+                </div>
+              </div>
+              
+              <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
                 Let us Start Your
-                <br />
-                <span className="block">Project Together</span>
+                <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
+                  Transformation Together
+                </span>
               </h1>
+              
+              <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+                Ready to become a person of interest? Get in touch with our team to begin your professional transformation journey.
+              </p>
             </motion.div>
-
-            <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto text-gray-600 dark:text-gray-300"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Ready to transform your vision into reality? Get in touch with our expert team
-              and let us discuss how we can bring your ideas to life.
-            </motion.p>
           </div>
         </div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-fluid">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+      <section className="py-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               return (
                 <motion.div
                   key={index}
-                  className="card card-hover p-8 text-center group"
-                  initial={{ opacity: 0, y: 30 }}
+                  className="neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${info.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                   </div>
-                  <h3 className="heading-4 mb-2">{info.title}</h3>
-                  <p className="text-lg font-semibold text-indigo-600 mb-2">{info.details}</p>
-                  <p className="body-base text-gray-600">{info.description}</p>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-2">{info.title}</h3>
+                  <p className="text-xl md:text-2xl font-medium text-purple-600 dark:text-purple-400 mb-2">{info.details}</p>
+                  <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300">{info.description}</p>
                 </motion.div>
               );
             })}
@@ -154,198 +179,247 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="section-padding">
-        <div className="container-fluid">
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Form */}
+      {/* Main Contact Form Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-2 mb-6 pb-12 font-bold text-indigo-600 dark:text-indigo-400 text-4xl ml-12">Send Us a Message</h2>
-              <p className="body-large mb-8 text-gray-600 dark:text-gray-300 ml-12">
-                Fill out the form below and we will get back to you within 24 hours.
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 dark:text-white mb-6">
+                Start Your Journey
+              </h2>
+              <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
+                Fill out the form below and we&apos;ll get back to you within 24 hours to discuss your transformation goals.
               </p>
+            </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-8 pl-8">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <motion.div
+                className="neu-card p-8 rounded-3xl"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group">
-                    <label htmlFor="name" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                      Full Name 
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <HiUser className="inline w-4 h-4 mr-2" />
+                        Full Name *
                     </label>
-                    <div className="relative">
                       <input
                         type="text"
-                        id="name"
                         name="name"
-                        required
                         value={form.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
-                        placeholder="John Doe"
+                        required
+                        className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 placeholder-white/60 dark:placeholder-gray-300/60 text-white dark:text-gray-300"
+                        placeholder="Enter your full name"
                       />
                     </div>
-                  </div>
-                  <div className="group">
-                    <label htmlFor="email" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                      Email Address 
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <HiMail className="inline w-4 h-4 mr-2" />
+                        Email Address *
                     </label>
-                    <div className="relative">
                       <input
                         type="email"
-                        id="email"
                         name="email"
-                        required
                         value={form.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
-                        placeholder="john@example.com"
+                        required
+                        className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 placeholder-white/60 dark:placeholder-gray-300/60 text-white dark:text-gray-300"
+                        placeholder="Enter your email"
                       />
-                    </div>
                   </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="group">
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <HiPhone className="inline w-4 h-4 mr-2" />
                       Phone Number
                     </label>
-                    <div className="relative">
                       <input
                         type="tel"
-                        id="phone"
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
-                        placeholder="+1 (555) 123-4567"
+                        className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 placeholder-white/60 dark:placeholder-gray-300/60 text-white dark:text-gray-300"
+                        placeholder="Enter your phone number"
                       />
                     </div>
-                  </div>
-                  <div className="group">
-                    <label htmlFor="company" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        <HiOfficeBuilding className="inline w-4 h-4 mr-2" />
                       Company
                     </label>
-                    <div className="relative">
                       <input
                         type="text"
-                        id="company"
                         name="company"
                         value={form.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md"
-                        placeholder="Your Company"
+                        className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 placeholder-white/60 dark:placeholder-gray-300/60 text-white dark:text-gray-300"
+                        placeholder="Enter your company"
                       />
-                    </div>
                   </div>
                 </div>
 
-                <div className="group">
-                  <label htmlFor="service" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                    Service Interested In
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <HiGlobe className="inline w-4 h-4 mr-2" />
+                      Service Interest
                   </label>
-                  <div className="relative">
                     <select
-                      id="service"
                       name="service"
                       value={form.service}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md appearance-none cursor-pointer"
+                      className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 text-white dark:text-gray-300"
                     >
-                      <option value="" className="text-gray-500">Select a service</option>
-                      <option value="architectural">Architectural Design</option>
-                      <option value="construction">Construction</option>
-                      <option value="software">Software Solutions</option>
-                      <option value="space-planning">Space Planning</option>
-                      <option value="human-capital">Human Capital Development</option>
-                      <option value="other">Other</option>
+                      <option value="">Select a service</option>
+                      <option value="consulting">Consulting Services</option>
+                      <option value="masterclass">Masterclass Program</option>
+                      <option value="upgrade-academy">Upgrade Academy</option>
+                      <option value="general">General Inquiry</option>
                     </select>
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                      <svg className="w-5 h-5 text-gray-400 dark:text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="group">
-                  <label htmlFor="message" className="block text-sm font-semibold text-gray-800 dark:text-gray-200 mb-3 group-focus-within:text-indigo-600 dark:group-focus-within:text-indigo-400 transition-colors duration-200">
-                    Project Details 
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      <HiChat className="inline w-4 h-4 mr-2" />
+                      Message *
                   </label>
-                  <div className="relative">
                     <textarea
-                      id="message"
                       name="message"
-                      rows={6}
-                      required
                       value={form.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-3.5 bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900 transition-all duration-200 hover:border-gray-300 dark:hover:border-gray-500 shadow-sm focus:shadow-md resize-none"
-                      placeholder="Tell us about your project, timeline, budget, and any specific requirements..."
-                    ></textarea>
-                  </div>
+                      required
+                      rows={5}
+                      className="w-full px-4 py-3 neu-input rounded-2xl focus:ring-2 focus:ring-purple-500 focus:outline-none transition-all duration-300 resize-none placeholder-white/60 dark:placeholder-gray-300/60 text-white dark:text-gray-300"
+                      placeholder="Tell us about your goals and how we can help you transform..."
+                    />
                 </div>
 
-                <div className="pt-4">
-                  <button
+                  <motion.button
                     type="submit"
                     disabled={loading}
-                    className="group relative w-full inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 focus:from-indigo-700 focus:to-purple-700 transition-all duration-300 transform hover:scale-[1.02] focus:scale-[1.02] shadow-lg hover:shadow-xl focus:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
+                    className="w-full neu-button-primary py-4 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 "></div>
-                    <span className="relative z-10 flex items-center gap-2">
                       {loading ? (
-                        <>
-                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
+                      <div className="flex items-center justify-center">
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
                           Sending Message...
-                        </>
+                      </div>
                       ) : (
-                        <>
+                      <div className="flex items-center justify-center">
+                        <HiArrowRight className="w-5 h-5 mr-2" />
                           Send Message
-                          <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                          </svg>
-                        </>
+                      </div>
                       )}
-                    </span>
-                  </button>
-                </div>
+                  </motion.button>
               </form>
             </motion.div>
 
-            {/* FAQ Section */}
+              {/* Additional Info */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+                className="space-y-8"
+                initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="heading-2 mb-6 text-indigo-600 text-center text-2xl font-semibold">Frequently Asked Questions</h2>
-              <div className="space-y-6">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="card p-6">
-                    <h3 className="font-semibold text-gray-900 mb-3">{faq.question}</h3>
-                    <p className="body-base text-gray-600">{faq.answer}</p>
+                {/* Response Time */}
+                <div className="neu-card p-8 rounded-3xl">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-2xl neu-icon mr-4">
+                      <HiClock className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Quick Response</h3>
                   </div>
-                ))}
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    We typically respond to all inquiries within 24 hours. For urgent matters, please call us directly.
+                  </p>
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl text-white">
-                <h3 className="text-xl font-semibold mb-4">Need Immediate Assistance?</h3>
-                <p className="mb-4 text-indigo-100">
-                  For urgent inquiries or immediate support, do not hesitate to call us directly.
-                </p>
-                <Link href="tel:+2347014441418" className="btn bg-white text-indigo-600 hover:bg-gray-100">
-                  Call Now: +234 7014441418
+                {/* Consultation Info */}
+                <div className="neu-card p-8 rounded-3xl">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-2xl neu-icon mr-4">
+                      <HiSupport className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Free Consultation</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                    Every new client gets a complimentary 30-minute consultation to discuss their goals and determine the best path forward.
+                  </p>
+                  <Link 
+                    href="/events" 
+                    className="inline-flex items-center gap-2 px-6 py-3 neu-button-primary text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    View Our Events
+                    <HiArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+
+                {/* Success Stories */}
+                <div className="neu-card p-8 rounded-3xl">
+                  <div className="flex items-center mb-4">
+                    <div className="p-3 rounded-2xl neu-icon mr-4">
+                      <HiCheckCircle className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Proven Results</h3>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    Over 1000+ professionals have transformed their careers through our programs. Join our community of successful leaders.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
+              Find answers to common questions about our programs and services.
+            </p>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto space-y-6">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                className="neu-card p-8 rounded-3xl"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">{faq.question}</h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
             </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -362,7 +436,7 @@ export default function Contact() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -376,32 +450,35 @@ export default function Contact() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 text-center shadow-2xl transition-all">
-                  <div className="flex justify-center mb-6">
-                    <div className="inline-flex p-4 rounded-full bg-emerald-100">
-                      <HiCheckCircle className="w-12 h-12 text-emerald-600" />
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden glass-card p-8 text-left align-middle shadow-xl transition-all rounded-3xl">
+                  <div className="text-center">
+                    <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full neu-icon mb-6">
+                      <HiCheckCircle className="h-8 w-8 text-green-600" />
+                    </div>
+                    <Dialog.Title as="h3" className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                      Message Sent Successfully!
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <p className="text-gray-600 dark:text-gray-300">
+                        Thank you for reaching out! We&apos;ve received your message and will get back to you within 24 hours.
+                      </p>
                     </div>
                   </div>
 
-                  <Dialog.Title className="text-2xl font-bold text-gray-900 mb-4">
-                    Message Sent Successfully!
-                  </Dialog.Title>
-
-                  <p className="text-gray-600 mb-6">
-                    Thank you for reaching out to us. We have received your message and
-                    will get back to you within 24 hours.
-                  </p>
-
-                  <div className="flex gap-4 justify-center">
+                  <div className="mt-8 flex gap-4">
                     <button
+                      type="button"
                       onClick={() => setIsOpen(false)}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-indigo-600 dark:text-indigo-400 font-semibold rounded-lg border-2 border-indigo-600 dark:border-indigo-400 hover:bg-indigo-50 dark:hover:bg-gray-700 transition-all duration-200"
+                      className="flex-1 glass-button text-gray-900 dark:text-white font-semibold rounded-2xl py-3 transition-all duration-300"
                     >
                       Close
                     </button>
-                    <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                      Explore Services
-                      <HiArrowRight className="w-5 h-5" />
+                    <Link 
+                      href="/events" 
+                      className="flex-1 neu-button-primary text-white font-semibold rounded-2xl py-3 transition-all duration-300 transform hover:scale-105 text-center inline-flex items-center justify-center"
+                    >
+                      View Events
+                      <HiArrowRight className="w-4 h-4 ml-2" />
                     </Link>
                   </div>
                 </Dialog.Panel>
@@ -410,6 +487,88 @@ export default function Contact() {
           </div>
         </Dialog>
       </Transition>
+
+      {/* Floating Support Button */}
+      <motion.div
+        className="fixed bottom-8 right-8 z-50"
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 1 }}
+      >
+        <a 
+          href="https://wa.me/2347014441418" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="neu-button-primary p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 group inline-block"
+        >
+          <HiChat className="w-6 h-6 text-white group-hover:rotate-12 transition-transform duration-300" />
+        </a>
+      </motion.div>
+
+      {/* Enhanced Support Section */}
+      <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-light text-gray-900 dark:text-white mb-4">
+              Need Immediate Assistance?
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 font-light">
+              Our support team is here to help you get started on your transformation journey.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <motion.div
+              className="neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
+                <HiSupport className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">WhatsApp Support</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Get instant answers to your questions through WhatsApp. We respond within minutes during business hours.
+              </p>
+              <a 
+                href="https://wa.me/2347014441418" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block neu-button-primary px-6 py-3 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                Start WhatsApp Chat
+              </a>
+            </motion.div>
+
+            <motion.div
+              className="neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
+                <HiPhone className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Phone Consultation</h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-6">
+                Schedule a free 30-minute consultation to discuss your goals.
+              </p>
+              <button className="neu-button-primary px-6 py-3 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105">
+                Schedule Call
+              </button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

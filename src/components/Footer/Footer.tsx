@@ -1,28 +1,25 @@
 'use client';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub } from 'react-icons/fa';
-import { HiMail, HiPhone, HiLocationMarker, HiArrowRight } from 'react-icons/hi';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub, FaWhatsapp } from 'react-icons/fa';
+import { HiMail, HiPhone, HiLocationMarker, HiArrowRight, HiCheckCircle } from 'react-icons/hi';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const footerLinks = {
   services: [
-    { name: 'Architectural Design', href: '/services/architectural' },
-    { name: 'Construction', href: '/services/construction' },
-    { name: 'Software Solutions', href: '/services/software-solutions' },
-    { name: 'Space Planning', href: '/services/space-planning' },
-    { name: 'Human Capital Development', href: '/services/human-capacity' }
+    { name: 'Consulting Services', href: '/contact' },
+    { name: 'Masterclass Program', href: '/contact' },
+    { name: 'Upgrade Academy', href: '/contact' },
+    { name: 'Events & Workshops', href: '/events' }
   ],
   company: [
     { name: 'About Us', href: '/about' },
-    { name: 'Our Projects', href: '/projects' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'Events', href: '/events' },
     { name: 'Contact', href: '/contact' }
   ],
   legal: [
     { name: 'Privacy Policy', href: '/privacy' },
-    { name: 'Terms of Service', href: '/terms' },
-    { name: 'Cookie Policy', href: '/cookies' }
+    { name: 'Terms of Service', href: '/terms' }
   ]
 };
 
@@ -31,10 +28,55 @@ const socialLinks = [
   { name: 'Twitter', icon: FaTwitter, href: 'https://twitter.com', color: 'hover:text-sky-400' },
   { name: 'LinkedIn', icon: FaLinkedinIn, href: 'https://linkedin.com', color: 'hover:text-blue-500' },
   { name: 'Instagram', icon: FaInstagram, href: 'https://instagram.com', color: 'hover:text-pink-400' },
+  { name: 'WhatsApp', icon: FaWhatsapp, href: 'https://chat.whatsapp.com/HSjJNBgDSOuH0qzTSruS7Y?mode=ems_share_t', color: 'hover:text-green-400' },
   { name: 'GitHub', icon: FaGithub, href: 'https://github.com', color: 'hover:text-gray-300' }
 ];
 
 export default function Footer() {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [subscriptionStatus, setSubscriptionStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email.trim()) {
+      setErrorMessage('Please enter your email address');
+      setSubscriptionStatus('error');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubscriptionStatus('idle');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubscriptionStatus('success');
+        setEmail('');
+      } else {
+        setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        setSubscriptionStatus('error');
+      }
+    } catch (error) {
+      setErrorMessage('Network error. Please check your connection and try again.');
+      setSubscriptionStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
       {/* Background Pattern */}
@@ -44,7 +86,7 @@ export default function Footer() {
         }} />
       </div>
 
-      <div className="container-fluid relative z-10">
+      <div className="container-fluid relative z-10 px-4 py-4">
         {/* Main Footer Content */}
         <div className="py-16">
           <div className="grid lg:grid-cols-5 md:grid-cols-2 gap-8">
@@ -58,11 +100,11 @@ export default function Footer() {
               >
                 <div className="mb-6">
                   <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-2xl tracking-tight inline-block mb-4">
-                    mindvest
+                    Lifebuild
                   </div>
                   <p className="body-base text-gray-300 max-w-md">
-                    Transforming visions into reality through innovative architectural design, 
-                    construction excellence, and comprehensive business solutions.
+                    Lifebuild - Transforming professionals into people of interest through expert consulting, 
+                    masterclass programs, and comprehensive upgrade academy for lasting professional impact.
                   </p>
                 </div>
 
@@ -70,15 +112,15 @@ export default function Footer() {
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiMail className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">hello@mindvestie.com</span>
+                    <span className="text-sm">hello@lifebuild.com</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiPhone className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">+234 7014441418</span>
+                    <span className="text-sm">+234701441418</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiLocationMarker className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">Mindvest Office, Tech City, Lagos</span>
+                    <span className="text-sm">Lifebuild Office, Lagos, Nigeria</span>
                   </div>
                 </div>
 
@@ -193,17 +235,56 @@ export default function Footer() {
           <div className="text-center max-w-2xl mx-auto">
             <h3 className="text-xl font-semibold mb-4 text-white">Stay Updated</h3>
             <p className="text-gray-300 mb-6">Get the latest news, updates, and insights delivered to your inbox.</p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="form-input flex-1 bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-indigo-500"
+                className="form-input flex-1 bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 rounded-lg px-4 py-3 transition-all duration-200"
+                disabled={isSubmitting}
               />
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap">
-                Subscribe
-                <HiArrowRight className="w-4 h-4" />
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Subscribing...
+                  </>
+                ) : (
+                  <>
+                    Subscribe
+                    <HiArrowRight className="w-4 h-4" />
+                  </>
+                )}
               </button>
-            </div>
+            </form>
+
+            {/* Status Messages */}
+            {subscriptionStatus === 'success' && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 flex items-center justify-center gap-2 text-green-400"
+              >
+                <HiCheckCircle className="w-5 h-5" />
+                <span className="text-sm">Successfully subscribed! Welcome to our community.</span>
+              </motion.div>
+            )}
+
+            {subscriptionStatus === 'error' && errorMessage && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-red-400 text-sm"
+              >
+                {errorMessage}
+              </motion.div>
+            )}
           </div>
         </motion.div>
 

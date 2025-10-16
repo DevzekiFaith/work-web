@@ -2,152 +2,144 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { motion } from 'framer-motion';
-import { HiLightBulb, HiCog, HiUsers, HiBriefcase, HiCheckCircle, HiHeart, HiStar, HiArrowRight } from 'react-icons/hi';
+import { HiLightBulb, HiCog, HiUsers, HiBriefcase, HiCheckCircle, HiHeart, HiStar, HiArrowRight, HiBookOpen, HiShoppingCart } from 'react-icons/hi';
 import { HiTrophy } from 'react-icons/hi2';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const stats = [
-  { icon: HiBriefcase, label: "Years of Excellence", value: "10+", color: "text-indigo-600" },
-  { icon: HiCheckCircle, label: "Projects Completed", value: "500+", color: "text-emerald-600" },
-  { icon: HiHeart, label: "Happy Clients", value: "50+", color: "text-rose-600" },
-  { icon: HiTrophy, label: "Awards Won", value: "15+", color: "text-amber-600" },
+  { icon: HiBriefcase, label: "Years of Excellence", value: "15+", color: "text-purple-600" },
+  { icon: HiCheckCircle, label: "Students Transformed", value: "1000+", color: "text-purple-600" },
+  { icon: HiHeart, label: "Workshops Delivered", value: "50+", color: "text-purple-600" },
+  { icon: HiTrophy, label: "Success Stories", value: "200+", color: "text-purple-600" },
 ];
 
 const services = [
   {
     icon: HiLightBulb,
-    title: "Architecture & Construction",
-    description: "Modern, functional, and sustainable spaces tailored to your unique vision and needs.",
-    color: "from-blue-500 to-cyan-500"
+    title: "Consulting Services",
+    description: "Expert guidance on public speaking, seminars, and workshops to elevate your communication skills and professional presence.",
+    color: "from-purple-600 to-purple-800"
   },
   {
     icon: HiCog,
-    title: "Software & Technology",
-    description: "Powerful digital tools and custom solutions to streamline workflows and scale businesses.",
-    color: "from-indigo-500 to-purple-500"
+    title: "Masterclass Programs",
+    description: "Transform into a person of interest through our comprehensive masterclass program designed to build your personal brand.",
+    color: "from-purple-700 to-purple-900"
   },
   {
     icon: HiUsers,
-    title: "Human Capital Development",
-    description: "Comprehensive training programs and strategies to upskill teams and drive growth.",
-    color: "from-emerald-500 to-teal-500"
+    title: "Upgrade Academy",
+    description: "Making better what you have or rebuilding what was laid down - comprehensive development and transformation programs.",
+    color: "from-purple-800 to-purple-950"
   },
 ];
 
 const values = [
   {
-    title: "Innovation",
-    description: "We embrace cutting-edge technologies and creative solutions to deliver exceptional results.",
+    title: "Transformation",
+    description: "We believe in the power of personal and professional transformation to unlock your full potential.",
     icon: HiStar
   },
   {
-    title: "Quality",
-    description: "Every project meets our rigorous standards for excellence and attention to detail.",
+    title: "Excellence",
+    description: "Every program meets our rigorous standards for quality and delivers measurable results.",
     icon: HiTrophy
   },
   {
-    title: "Collaboration",
-    description: "We work closely with our clients as partners to achieve shared success.",
+    title: "Community",
+    description: "We build supportive communities where professionals can grow and learn together.",
     icon: HiUsers
   },
   {
-    title: "Integrity",
-    description: "Transparency, honesty, and ethical practices guide everything we do.",
+    title: "Authenticity",
+    description: "We help you develop your authentic voice and become a genuine person of interest.",
     icon: HiHeart
   }
 ];
 
 const testimonials = [
   {
-    quote: "Mindvest transformed our vision into a breathtaking reality. Their seamless collaboration across architecture and technology exceeded every expectation.",
-    author: "Grace Amadi",
-    position: "Founder @ BuildSphere",
+    quote: "Lifebuild transformed my professional journey completely. Their masterclass program helped me become a recognized thought leader in my industry.",
+    author: "Sarah Johnson",
+    position: "Marketing Director @ TechCorp",
     image: "/photo1.jpg"
   },
   {
-    quote: "The team's expertise in both construction and software development made them the perfect partner for our complex project requirements.",
+    quote: "The consulting services at Lifebuild gave me the confidence and skills to speak at major conferences. I'm now a sought-after speaker in my field.",
     author: "Michael Chen",
-    position: "CEO @ TechConstruct",
+    position: "Entrepreneur @ StartupXYZ",
     image: "/photo2.jpg"
   }
 ];
 
 export default function About() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50"></div>
+      <section className="relative pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"></div>
         
-        {/* Animated Background Elements */}
+        {/* Enhanced Neumorphism Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-20 right-10 w-64 h-64 bg-gradient-to-br from-indigo-400/10 to-purple-400/10 rounded-full blur-3xl"
-            animate={{
-              x: [0, 50, 0],
-              y: [0, -30, 0],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
+          <div className="absolute top-20 left-20 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-green-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
 
-        <div className="container-fluid relative z-10">
+        <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
+              className="neu-card p-6 sm:p-8 md:p-10 lg:p-12 rounded-3xl mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-2xl mb-2 ml-12 font-bold flex">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
                 About
-                <span className="text-gray-400">Mindvest</span>
+                <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
+                  Lifebuild
+                </span>
               </h1>
+              
+              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-light mb-8 max-w-4xl mx-auto leading-relaxed">
+                Lifebuild empowers professionals through expert consulting, transformative masterclass programs, 
+                and comprehensive upgrade academy that create lasting personal and professional transformation.
+              </p>
             </motion.div>
-            
-            <motion.p
-              className="body-large mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              We empower clients through innovative design, scalable digital solutions, 
-              and people-centric programs that create lasting impact and drive real-world success.
-            </motion.p>
           </div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="section-padding">
-        <div className="container-fluid">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             <motion.div
+              className="neu-card p-6 sm:p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 group"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
+              whileHover={{ y: -5 }}
             >
-              <h2 className="heading-2 mb-6 font-bold text-gray-400 text-center text-2xl">Our Mission</h2>
-              <p className="body-large mb-6">
-                To transform visions into reality through innovative architectural design, 
-                reliable construction, cutting-edge software solutions, and comprehensive 
-                human capital development.
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 dark:text-white mb-6 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Our Mission</h2>
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                To transform professionals into people of interest through expert consulting, 
+                transformative masterclass programs, and comprehensive upgrade academy that build 
+                tomorrow&apos;s leaders with today&apos;s proven methodologies.
               </p>
-              <p className="body-base text-gray-600 mb-8">
-                We believe in the power of collaboration, combining technical expertise 
-                with creative vision to deliver solutions that exceed expectations and 
-                create lasting value for our clients.
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                We believe in the power of personal transformation, combining proven expertise 
+                with authentic development to deliver professional solutions that exceed expectations and 
+                create lasting value for our clients and their communities.
               </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                Start Your Project
-                <HiArrowRight className="w-5 h-5" />
+              <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 neu-button-primary text-white font-semibold text-base sm:text-lg rounded-2xl transition-all duration-300 transform hover:scale-105">
+                Start Your Journey
+                <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
               </Link>
             </motion.div>
 
@@ -158,15 +150,18 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <div className="relative rounded-2xl overflow-hidden">
-                <Image
-                  src="/v5.jpg"
-                  width={600}
-                  height={400}
-                  alt="Our Mission"
-                  className="w-full h-80 object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              <div className="neu-card p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 group">
+                <div className="relative rounded-2xl overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                  <Image
+                    src="/v5.jpg"
+                    width={600}
+                    height={400}
+                    alt="Our Mission"
+                    className="w-full h-80 object-cover rounded-2xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl group-hover:from-purple-500/20 transition-all duration-300"></div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -174,8 +169,8 @@ export default function About() {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-fluid">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -183,30 +178,31 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center text-2xl mt-12">Our Impact in Numbers</h2>
-            <p className="body-large max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">Our Impact in Numbers</h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
               These numbers represent the trust our clients place in us and 
               the success we&apos;ve achieved together.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
                 <motion.div
                   key={index}
-                  className="card text-center p-8 group hover:scale-105 transition-transform duration-300"
+                  className="neu-card text-center p-8 group hover:shadow-2xl transition-all duration-300 rounded-3xl cursor-default"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gray-100 mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className={`w-8 h-8 ${stat.color}`} />
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-2">{stat.value}</h3>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{stat.value}</h3>
+                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{stat.label}</p>
                 </motion.div>
               );
             })}
@@ -215,8 +211,8 @@ export default function About() {
       </section>
 
       {/* Our Values */}
-      <section className="section-padding">
-        <div className="container-fluid">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -224,30 +220,31 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center mt-12 text-2xl">Our Core Values</h2>
-            <p className="body-large max-w-2xl mx-auto">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">Our Core Values</h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
               These principles guide our work and define our commitment to excellence 
               in everything we do.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
             {values.map((value, index) => {
               const IconComponent = value.icon;
               return (
                 <motion.div
                   key={index}
-                  className="text-center group"
+                  className="text-center group neu-card p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                 >
-                  <div className="inline-flex p-4 rounded-2xl bg-gradient-to-r from-indigo-500 to-purple-500 mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-white" />
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
                   </div>
-                  <h3 className="heading-4 mb-4">{value.title}</h3>
-                  <p className="body-base text-gray-600">{value.description}</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{value.title}</h3>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{value.description}</p>
                 </motion.div>
               );
             })}
@@ -256,8 +253,8 @@ export default function About() {
       </section>
 
       {/* Services Overview */}
-      <section className="section-padding bg-gray-50">
-        <div className="container-fluid">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -265,30 +262,31 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center mt-12 text-2xl">What We Do</h2>
-            <p className="body-large max-w-2xl mx-auto">
-              Our comprehensive services span multiple disciplines, allowing us to 
-              provide integrated solutions for complex challenges.
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">What We Do</h2>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
+              Our comprehensive programs span multiple disciplines, allowing us to 
+              provide integrated solutions for professional transformation.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             {services.map((service, index) => {
               const IconComponent = service.icon;
               return (
                 <motion.div
                   key={index}
-                  className="card card-hover p-8 text-center group"
+                  className="neu-card p-8 text-center group hover:shadow-2xl transition-all duration-300 rounded-3xl cursor-pointer"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                 >
-                  <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-r ${service.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <IconComponent className="w-8 h-8 text-white" />
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
                   </div>
-                  <h3 className="heading-4 mb-4">{service.title}</h3>
-                  <p className="body-base text-gray-600">{service.description}</p>
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{service.title}</h3>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{service.description}</p>
                 </motion.div>
               );
             })}
@@ -301,17 +299,17 @@ export default function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Link href="/services" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl">
-              Explore All Services
-              <HiArrowRight className="w-5 h-5" />
+            <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 neu-button-primary text-white font-semibold text-base sm:text-lg rounded-2xl transition-all duration-300 transform hover:scale-105">
+              Get Started Today
+              <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="section-padding">
-        <div className="container-fluid">
+      <section className="py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -319,10 +317,10 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-4 font-bold text-gray-400 text-center text-2xl mt-12">What Our Clients Say</h2>
-            <p className="body-large max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">What Our Clients Say</h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
               Don&apos;t just take our word for it. Here&apos;s what our clients have to say 
-              about working with Mindvest.
+              about working with Lifebuild.
             </p>
           </motion.div>
 
@@ -330,31 +328,35 @@ export default function About() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="card p-8 relative"
+                className="neu-card p-8 relative rounded-3xl hover:shadow-2xl transition-all duration-300 group cursor-pointer"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
               >
-                <div className="absolute top-6 left-6 text-indigo-200 opacity-50">
+                <div className="absolute top-6 left-6 text-purple-200 opacity-50 group-hover:text-purple-300 group-hover:opacity-70 transition-all duration-300">
                   <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                   </svg>
                 </div>
-                <p className="body-base text-gray-700 mb-6 italic">
+                <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
                   &ldquo;{testimonial.quote}&rdquo;
                 </p>
                 <div className="flex items-center space-x-4">
+                  <div className="relative">
                   <Image
                     src={testimonial.image}
                     width={48}
                     height={48}
                     alt={testimonial.author}
-                    className="w-12 h-12 rounded-full object-cover"
+                      className="w-12 h-12 rounded-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-transparent group-hover:from-purple-500/30 transition-all duration-300"></div>
+                  </div>
                   <div>
-                    <div className="font-semibold text-gray-900">{testimonial.author}</div>
-                    <div className="text-sm text-gray-600">{testimonial.position}</div>
+                    <div className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{testimonial.author}</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{testimonial.position}</div>
                   </div>
                 </div>
               </motion.div>
@@ -363,9 +365,135 @@ export default function About() {
         </div>
       </section>
 
+      {/* Resources & Learning Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
+              Resources & Learning
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
+              Expand your knowledge with our curated collection of books and resources designed to accelerate your professional transformation.
+            </p>
+          </motion.div>
+
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
+              {/* Bookstore Card */}
+            <motion.div
+                className="neu-card p-8 rounded-3xl group hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+            >
+                <div className="flex items-center mb-6">
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <HiBookOpen className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
+              </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                Lifebuild Bookstore
+              </h3>
+                    <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">Curated Resources</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                Discover our collection of books, guides, and resources that will help you become a person of interest in your industry. 
+                Each resource is carefully selected to complement our programs and accelerate your transformation journey.
+              </p>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Professional Development Books
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Personal Branding Guides
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Leadership & Communication Resources
+                  </div>
+                </div>
+
+                <Link 
+                  href="https://selar.com/m/zeki-faith1" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 neu-button-primary text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 w-full justify-center"
+                >
+                  <HiShoppingCart className="w-5 h-5" />
+                  Explore Bookstore
+                  <HiArrowRight className="w-5 h-5" />
+                </Link>
+              </motion.div>
+
+              {/* Events Card */}
+              <motion.div
+                className="neu-card p-8 rounded-3xl group hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -8, scale: 1.02 }}
+              >
+                <div className="flex items-center mb-6">
+                  <div className="inline-flex p-4 rounded-2xl neu-icon mr-4 group-hover:scale-110 transition-transform duration-300">
+                    <HiLightBulb className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                      Upcoming Events
+                    </h3>
+                    <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">Live Learning</p>
+                  </div>
+                </div>
+                
+                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+                  Join our live workshops, masterclasses, and networking events designed to accelerate your professional growth and connect you with like-minded professionals.
+                </p>
+
+                <div className="space-y-3 mb-6">
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Public Speaking Masterclasses
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Personal Branding Workshops
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
+                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                    Networking & Community Events
+                  </div>
+                </div>
+
+                <Link 
+                  href="/events" 
+                  className="inline-flex items-center gap-2 px-8 py-4 glass-button text-gray-900 dark:text-white font-semibold rounded-2xl transition-all duration-300 hover:shadow-xl w-full justify-center"
+                >
+                  View All Events
+                  <HiArrowRight className="w-5 h-5" />
+                </Link>
+              </motion.div>
+              </div>
+          </div>
+        </div>
+      </section>
+
       {/* Call to Action */}
-      <section className="section-padding bg-gradient-to-br from-indigo-600 to-purple-700 text-white mt-12">
-        <div className="container-fluid">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -373,20 +501,24 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center text-2xl mt-12">
-              Let us Build the Future Together
+            <div className="neu-card p-12 rounded-3xl hover:shadow-2xl transition-all duration-300 group">
+              <h2 className="text-4xl md:text-5xl font-light mb-6 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+              Let us Transform Your Future Together
             </h2>
-            <p className="text-xl text-indigo-100 mb-8">
-              Whether you need architectural design, construction services, custom software, 
-              or team development — we&apos;re ready to collaborate and bring your vision to life.
+              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+              Whether you need consulting services, masterclass programs, or comprehensive upgrade academy — 
+              Lifebuild is ready to collaborate and bring your professional vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="btn bg-white text-indigo-600 hover:bg-gray-100 rounded-lg px-6 py-3 font-semibold mb-4">
-                Start Your Project
+                <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 neu-button-primary text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105">
+                Start Your Journey
+                  <HiArrowRight className="w-5 h-5 ml-2" />
               </Link>
-              <Link href="/projects" className="btn border-2 border-white text-white hover:bg-white hover:text-indigo-600 rounded-lg px-6 py-3 font-semibold mb-4">
-                View Our Work
+                <Link href="/events" className="inline-flex items-center justify-center px-8 py-4 glass-button text-gray-900 dark:text-white font-semibold rounded-2xl transition-all duration-300 hover:shadow-xl">
+                View Our Events
+                  <HiArrowRight className="w-5 h-5 ml-2" />
               </Link>
+              </div>
             </div>
           </motion.div>
         </div>
