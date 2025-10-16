@@ -28,7 +28,6 @@ export default function ProjectCard({
   location,
   date,
   tech,
-  viewMode,
 }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 

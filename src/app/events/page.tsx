@@ -1,7 +1,6 @@
 'use client';
-import Link from "next/link";
 import { motion } from "framer-motion";
-import { HiArrowRight, HiCalendar, HiLocationMarker, HiClock, HiUsers, HiMicrophone, HiAcademicCap, HiLightningBolt, HiCheckCircle } from "react-icons/hi";
+import { HiCalendar, HiLocationMarker, HiClock, HiUsers, HiAcademicCap, HiLightningBolt, HiCheckCircle } from "react-icons/hi";
 import { useState } from "react";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -80,7 +79,7 @@ export default function Events() {
         setErrorMessage(data.error || 'Something went wrong. Please try again.');
         setSubscriptionStatus('error');
       }
-    } catch (error) {
+    } catch {
       setErrorMessage('Network error. Please check your connection and try again.');
       setSubscriptionStatus('error');
     } finally {
@@ -282,7 +281,7 @@ export default function Events() {
                 className="mt-4 flex items-center justify-center gap-2 text-green-600 dark:text-green-400"
               >
                 <HiCheckCircle className="w-5 h-5" />
-                <span className="text-sm">Successfully subscribed! You'll receive updates about our events.</span>
+                <span className="text-sm">Successfully subscribed! You&apos;ll receive updates about our events.</span>
               </motion.div>
             )}
 

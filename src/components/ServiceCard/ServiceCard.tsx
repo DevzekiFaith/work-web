@@ -8,7 +8,7 @@ import 'swiper/css';
 import { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { HiX, HiArrowRight, HiEye } from 'react-icons/hi';
 import { Fragment } from 'react';
 

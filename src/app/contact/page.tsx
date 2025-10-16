@@ -20,7 +20,7 @@ const contactInfo = [
   {
     icon: HiPhone,
     title: 'Call Us',
-    details: '+234701441418',
+    details: '+2347014441418',
     description: 'Mon-Fri from 8am to 6pm',
     color: 'from-purple-600 to-purple-800'
   },

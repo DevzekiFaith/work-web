@@ -69,7 +69,7 @@ export default function Footer() {
         setErrorMessage(data.error || 'Something went wrong. Please try again.');
         setSubscriptionStatus('error');
       }
-    } catch (error) {
+    } catch {
       setErrorMessage('Network error. Please check your connection and try again.');
       setSubscriptionStatus('error');
     } finally {
@@ -116,7 +116,7 @@ export default function Footer() {
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiPhone className="w-5 h-5 text-indigo-400" />
-                    <span className="text-sm">+234701441418</span>
+                    <span className="text-sm">+2347014441418</span>
                   </div>
                   <div className="flex items-center space-x-3 text-gray-300">
                     <HiLocationMarker className="w-5 h-5 text-indigo-400" />

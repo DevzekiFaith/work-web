@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HiArrowRight, HiCheckCircle, HiMicrophone, HiAcademicCap, HiLightningBolt, HiNewspaper, HiChatAlt2, HiBookOpen, HiShoppingCart } from "react-icons/hi";
+import { HiArrowRight, HiCheckCircle, HiMicrophone, HiAcademicCap, HiLightningBolt, HiNewspaper, HiBookOpen, HiShoppingCart } from "react-icons/hi";
 import { FaWhatsapp } from "react-icons/fa";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
@@ -10,7 +10,7 @@ const services = [
   {
     icon: HiMicrophone,
     title: "CONSULTING",
-    description: "Unova Consulting offers comprehensive training sessions, strategy sessions, and framework development for institutions. Expert guidance on public speaking, seminars, and workshops to elevate your communication skills and professional presence.",
+    description: "Unova Consulting offers comprehensive training sessions, strategy sessions, and framework development for institutions.",
     color: "from-purple-600 to-purple-800"
   },
   {
@@ -69,7 +69,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mb-8"
             >
-              <h1 className="text-6xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
+              <h1 className="pt-22 text-6xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
                 Transform Your
                 <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                   Professional Journey
@@ -325,10 +325,10 @@ export default function Home() {
             >
               <div className="text-base text-purple-600 dark:text-purple-400 font-medium mb-3 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300">NEW PROGRAM</div>
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                Advanced Public Speaking Masterclass
+                Advanced Selling Skills for Creatives
               </h3>
               <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                Join our intensive 4-week program designed to transform you into a confident and compelling speaker.
+                Master the art of selling your creative work with our comprehensive 4-week program designed to transform you into a confident and successful creative entrepreneur.
               </p>
             </motion.div>
 
@@ -345,9 +345,19 @@ export default function Home() {
               <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                 Personal Brand Workshop
               </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+              <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 mb-6">
                 Learn how to build a powerful personal brand that makes you a person of interest in your industry.
               </p>
+              <Link 
+                href="https://selar.com/m/zeki-faith1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 neu-button-primary text-white font-semibold text-base rounded-xl transition-all duration-300 transform hover:scale-105 group-hover:shadow-lg"
+              >
+                <HiShoppingCart className="w-5 h-5" />
+                Register Now
+                <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
             </motion.div>
 
             {/* News Item 3 */}
