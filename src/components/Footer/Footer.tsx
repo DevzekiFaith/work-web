@@ -99,8 +99,15 @@ export default function Footer() {
                 viewport={{ once: true }}
               >
                 <div className="mb-6">
-                  <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-2xl tracking-tight inline-block mb-4">
-                    Lifebuild
+                  <div className="flex items-center space-x-3 mb-4">
+                    <img 
+                      src="/LB5.png" 
+                      alt="Lifebuild Logo" 
+                      className="w-12 h-12 object-contain"
+                    />
+                    <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-2xl tracking-tight">
+                      Lifebuild
+                    </div>
                   </div>
                   <p className="body-base text-gray-300 max-w-md">
                     Lifebuild - Transforming professionals into people of interest through expert consulting, 

@@ -38,15 +38,22 @@ export default function Header() {
       <div className="container mx-auto px-6 lg:px-8">
         <nav className="flex justify-between items-center py-4">
           {/* Logo */}
-          <Link href="/" className="group flex items-center space-x-2">
+          <Link href="/" className="group flex items-center space-x-3">
             <motion.div
               className="relative"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-              <div className="relative glass-button px-6 py-3 rounded-2xl font-bold text-xl tracking-tight text-purple-700 dark:text-purple-300 group-hover:text-purple-800 dark:group-hover:text-purple-200 transition-colors duration-300">
-                Lifebuild
+              <div className="relative glass-button px-4 py-2 rounded-2xl flex items-center space-x-2">
+                <img 
+                  src="/LB5.png" 
+                  alt="Lifebuild Logo" 
+                  className="w-8 h-8 object-contain"
+                />
+                <span className="font-bold text-xl tracking-tight text-purple-700 dark:text-purple-300 group-hover:text-purple-800 dark:group-hover:text-purple-200 transition-colors duration-300">
+                  Lifebuild
+                </span>
               </div>
             </motion.div>
           </Link>
@@ -119,8 +126,15 @@ export default function Header() {
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
                 <div className="flex justify-between items-center p-6 border-b border-white/20 dark:border-gray-700/30">
-                  <div className="glass-button px-4 py-2 rounded-xl font-bold text-lg text-purple-700 dark:text-purple-300">
-                    Lifebuild
+                  <div className="glass-button px-4 py-2 rounded-xl flex items-center space-x-2">
+                    <img 
+                      src="/LB5.png" 
+                      alt="Lifebuild Logo" 
+                      className="w-6 h-6 object-contain"
+                    />
+                    <span className="font-bold text-lg text-purple-700 dark:text-purple-300">
+                      Lifebuild
+                    </span>
                   </div>
                   <motion.button
                     onClick={() => setIsOpen(false)}

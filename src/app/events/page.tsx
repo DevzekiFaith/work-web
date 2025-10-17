@@ -101,6 +101,11 @@ export default function Events() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-8">
+              <img 
+                src="/LB7.png" 
+                alt="Lifebuild Logo" 
+                className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto object-contain mb-6"
+              />
               <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 shadow-lg">
                 <HiCalendar className="w-12 h-12 text-white" />
               </div>

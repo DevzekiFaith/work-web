@@ -62,11 +62,25 @@ export default function Home() {
 
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
+            {/* Logo */}
+            <motion.div
+              className="mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <img 
+                src="/LB7.png" 
+                alt="Lifebuild Logo" 
+                className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 mx-auto object-contain"
+              />
+            </motion.div>
+
             {/* Main heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8"
             >
               <h1 className="pt-22 text-6xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
