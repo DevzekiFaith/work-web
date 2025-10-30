@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { HiCalendar, HiLocationMarker, HiClock, HiUsers, HiAcademicCap, HiLightningBolt, HiCheckCircle } from "react-icons/hi";
 import { useState } from "react";
+import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -16,7 +17,8 @@ const upcomingEvents = [
     description: "Transform into a person of interest through our comprehensive masterclass program. Learn advanced techniques for becoming a recognized thought leader, building authentic influence, and creating lasting professional impact.",
     instructor: "Expert Transformation Coach",
     maxParticipants: 25,
-    price: "$497",
+    originalPrice: "$497",
+    currentPrice: "$100",
     icon: HiAcademicCap,
     color: "from-purple-600 to-purple-800"
   },
@@ -30,7 +32,8 @@ const upcomingEvents = [
     description: "Comprehensive transformation program to rebuild and upgrade your professional foundation. Perfect for career transitions and skill enhancement.",
     instructor: "Transformation Specialist",
     maxParticipants: 15,
-    price: "$997",
+    originalPrice: "$997",
+    currentPrice: "$220",
     icon: HiLightningBolt,
     color: "from-purple-800 to-purple-950"
   }
@@ -175,8 +178,16 @@ export default function Events() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-3xl md:text-4xl font-bold text-purple-700 dark:text-purple-400">
-                        {event.price}
+                      <div className="flex flex-col items-end gap-1">
+                        <div className="text-lg text-gray-500 dark:text-gray-400 line-through">
+                          {event.originalPrice}
+                        </div>
+                        <div className="text-3xl md:text-4xl font-bold text-purple-700 dark:text-purple-400">
+                          {event.currentPrice}
+                        </div>
+                        <div className="text-sm text-green-600 dark:text-green-400 font-medium">
+                          Limited Time Offer
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -222,9 +233,12 @@ export default function Events() {
 
                   {/* CTA Button */}
                   <div className="flex gap-3">
-                    <button className="flex-1 bg-gradient-to-r from-purple-700 to-purple-800 text-white font-semibold text-lg py-4 px-6 rounded-xl hover:from-purple-800 hover:to-purple-900 transition-all duration-300 shadow-sm hover:shadow-md">
+                    <Link 
+                      href={`/events/register/${event.id}`}
+                      className="flex-1 bg-gradient-to-r from-purple-700 to-purple-800 text-white font-semibold text-lg py-4 px-6 rounded-xl hover:from-purple-800 hover:to-purple-900 transition-all duration-300 shadow-sm hover:shadow-md text-center"
+                    >
                       Register Now
-                    </button>
+                    </Link>
                     <button className="px-6 py-4 border border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold text-lg rounded-xl hover:border-purple-300 dark:hover:border-purple-500 hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-all duration-300">
                       Learn More
                     </button>

@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100">
       <Header />
-
+      
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
         {/* Enhanced Glassmorphism background elements */}
@@ -59,7 +59,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
           <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-green-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
-
+        
         <div className="container mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
             {/* Logo */}
@@ -90,7 +90,7 @@ export default function Home() {
                 </span>
               </h1>
             </motion.div>
-
+            
             {/* Subtitle */}
             <motion.p
               className="text-2xl md:text-3xl lg:text-4xl text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-12 max-w-4xl mx-auto"
@@ -98,10 +98,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Elevate your professional presence through expert consulting, transformative masterclasses,
+              Elevate your professional presence through expert consulting, transformative masterclasses, 
               and comprehensive upgrade programs designed to make you a person of interest.
             </motion.p>
-
+            
             {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-6 justify-center mb-20"
@@ -109,15 +109,15 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <Link
-                href="/contact"
+              <Link 
+                href="/contact" 
                 className="group inline-flex items-center justify-center gap-3 px-10 py-5 neu-button-primary text-white font-semibold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105"
               >
                 Get Started Today
                 <HiArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link
-                href="/contact"
+              <Link 
+                href="/contact" 
                 className="group inline-flex items-center justify-center gap-3 px-10 py-5 glass-button text-gray-900 dark:text-white font-semibold text-lg rounded-2xl transition-all duration-300"
               >
                 Start Your Journey
@@ -133,8 +133,8 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.4 }}
             >
               {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
+                <motion.div 
+                  key={index} 
                   className="text-center group cursor-default neu-card p-6 rounded-2xl hover:shadow-2xl transition-all duration-300"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -188,7 +188,7 @@ export default function Home() {
                       <IconComponent className="w-14 h-14 text-purple-600 dark:text-purple-400" />
                     </div>
                   </div>
-
+                  
                   <h3 className="text-3xl md:text-4xl font-medium text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                     {service.title}
                   </h3>
@@ -207,8 +207,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Link
-              href="/contact"
+            <Link 
+              href="/contact" 
               className="group inline-flex items-center gap-2 px-8 py-4 glass-button text-gray-900 dark:text-white font-medium rounded-2xl transition-all duration-300"
             >
               Get Started Today
@@ -252,7 +252,7 @@ export default function Home() {
                     <HiCheckCircle className="w-8 h-8 text-purple-600 dark:text-purple-400" />
                   </div>
                 </div>
-
+                
                 <h3 className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                   {feature}
                 </h3>
@@ -277,19 +277,19 @@ export default function Home() {
                 <FaWhatsapp className="w-12 h-12 text-green-500 dark:text-green-400" />
               </div>
             </div>
-
+            
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 dark:text-white mb-6">
               Join Our
               <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                 Community
               </span>
             </h2>
-
+            
             <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light mb-12 max-w-3xl mx-auto leading-relaxed">
               Connect with like-minded professionals, get exclusive updates, and access our supportive community on WhatsApp.
             </p>
-
-            <a
+            
+            <a 
               href="https://chat.whatsapp.com/HSjJNBgDSOuH0qzTSruS7Y?mode=ems_share_t"
               target="_blank"
               rel="noopener noreferrer"
@@ -318,7 +318,7 @@ export default function Home() {
                 <HiNewspaper className="w-12 h-12 text-purple-600 dark:text-purple-400" />
               </div>
             </div>
-
+            
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 dark:text-white mb-6">
               Latest Updates
             </h2>
@@ -400,8 +400,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Link
-              href="/events"
+            <Link 
+              href="/events" 
               className="group inline-flex items-center gap-3 px-10 py-5 glass-button text-gray-900 dark:text-white font-semibold text-lg rounded-2xl transition-all duration-300"
             >
               View All News & Events
@@ -506,22 +506,22 @@ export default function Home() {
                 professional journey?
               </span>
             </h2>
-
+            
             <p className="text-xl text-gray-600 dark:text-gray-300 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join thousands of professionals who have transformed their careers through our proven programs.
+              Join thousands of professionals who have transformed their careers through our proven programs. 
               Your journey to becoming a person of interest starts here.
             </p>
-
+            
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link
-                href="/contact"
+              <Link 
+                href="/contact" 
                 className="group inline-flex items-center justify-center gap-2 px-10 py-5 neu-button-primary text-white font-medium rounded-2xl transition-all duration-300 transform hover:scale-105"
               >
                 Start Your Transformation
                 <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link
-                href="/events"
+              <Link 
+                href="/events" 
                 className="group inline-flex items-center justify-center gap-2 px-10 py-5 glass-button text-gray-900 dark:text-white font-medium rounded-2xl transition-all duration-300"
               >
                 View Upcoming Events
