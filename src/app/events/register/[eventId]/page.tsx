@@ -72,11 +72,26 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
     cvv: '',
     cardName: ''
   });
+  const [reflectionAnswers, setReflectionAnswers] = useState({
+    q1: '',
+    q2: '',
+    q3: '',
+    q4: '',
+    q5: ''
+  });
+  const [academyReflectionAnswers, setAcademyReflectionAnswers] = useState({
+    aq1: '',
+    aq2: '',
+    aq3: '',
+    aq4: '',
+    aq5: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const event = eventsData[resolvedParams.eventId as keyof typeof eventsData];
+  const eventIdNum = Number(resolvedParams.eventId);
+  const event = eventIdNum in eventsData ? eventsData[eventIdNum as unknown as keyof typeof eventsData] : undefined;
 
   useEffect(() => {
     if (!event) {
@@ -95,7 +110,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
       ...prev,
       [name]: value
     }));
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
@@ -125,22 +140,38 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
       if (!formData.cardName.trim()) newErrors.cardName = 'Cardholder name is required';
     }
 
+    if(event && event.type === 'MASTERCLASS') {
+      if(!reflectionAnswers.q1.trim()) newErrors.q1 = 'Please answer question 1';
+      if(!reflectionAnswers.q2.trim()) newErrors.q2 = 'Please answer question 2';
+      if(!reflectionAnswers.q3.trim()) newErrors.q3 = 'Please answer question 3';
+      if(!reflectionAnswers.q4.trim()) newErrors.q4 = 'Please answer question 4';
+      if(!reflectionAnswers.q5.trim()) newErrors.q5 = 'Please answer question 5';
+    }
+
+    if(event && event.type === 'ACADEMY') {
+      if(!academyReflectionAnswers.aq1.trim()) newErrors.aq1 = 'Please answer question 1';
+      if(!academyReflectionAnswers.aq2.trim()) newErrors.aq2 = 'Please answer question 2';
+      if(!academyReflectionAnswers.aq3.trim()) newErrors.aq3 = 'Please answer question 3';
+      if(!academyReflectionAnswers.aq4.trim()) newErrors.aq4 = 'Please answer question 4';
+      if(!academyReflectionAnswers.aq5.trim()) newErrors.aq5 = 'Please answer question 5';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
 
     setIsSubmitting(true);
-    
+
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
   };
@@ -149,7 +180,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900">
         <Header />
-        
+
         <div className="container mx-auto px-6 lg:px-8 py-24">
           <motion.div
             className="max-w-2xl mx-auto text-center"
@@ -167,7 +198,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 Thank you for registering for {event.title}. You will receive a confirmation email shortly with further details.
               </p>
-              
+
               <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 mb-8">
                 <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">Payment Instructions</h3>
                 <div className="space-y-6 text-left">
@@ -187,7 +218,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                       <p><strong>Bank Name:</strong> {paymentDetails.dollar.bankName}</p>
                     </div>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                     <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Payment Confirmation</h4>
                     <div className="text-lg text-gray-600 dark:text-gray-300">
@@ -196,14 +227,14 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         <p className="text-green-800 dark:text-green-200 font-medium mb-3">
                           WhatsApp: {whatsappNumber}
                         </p>
-                        <a 
+                        <a
                           href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=Hi, I just registered for ${event.title}. Please confirm my payment.`}
-                          target="_blank" 
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
                         >
                           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                           </svg>
                           Send WhatsApp Message
                         </a>
@@ -215,7 +246,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                   </div>
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/events"
@@ -233,7 +264,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
             </div>
           </motion.div>
         </div>
-        
+
         <Footer />
       </div>
     );
@@ -242,7 +273,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
       <Header />
-      
+
       {/* Hero Section */}
       <section className="py-16 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
         <div className="container mx-auto px-6 lg:px-8">
@@ -259,14 +290,14 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
               <HiArrowLeft className="w-5 h-5" />
               Back to Events
             </Link>
-            
+
             <h1 className="text-7xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white mb-4 leading-tight">
               Register for
               <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                 {event.title}
               </span>
             </h1>
-            
+
             <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto leading-relaxed">
               Complete your registration and secure your spot for this transformative experience.
             </p>
@@ -287,30 +318,30 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                 transition={{ duration: 0.6 }}
               >
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Event Details</h2>
-                
+
                 <div className="space-y-2">
                   <div>
                     <h3 className="text-lg font-medium text-gray-900 dark:text-white">{event.title}</h3>
                     <p className="text-purple-600 dark:text-purple-400 font-medium text-sm">{event.type}</p>
                   </div>
-                  
+
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
                       <HiCalendar className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                      <span className="text-sm">{new Date(event.date).toLocaleDateString('en-US', { 
-                        weekday: 'long', 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
+                      <span className="text-sm">{new Date(event.date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
                       })}</span>
                     </div>
-                    
+
                     <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
                       <HiLocationMarker className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                       <span className="text-sm">{event.location}</span>
                     </div>
                   </div>
-                  
+
                   <div className="pt-2 border-t border-gray-200 dark:border-gray-600">
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-600 dark:text-gray-300">Price:</span>
@@ -325,6 +356,64 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                     </div>
                   </div>
                 </div>
+                {event.type === 'MASTERCLASS' && (
+                  <div className="mt-5 bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
+                    <h4 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Why Do You Need This Masterclass?</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-800 dark:text-gray-200 text-base mb-6">
+                      <li>Are you seeking greater recognition and credibility in your field?</li>
+                      <li>Do you want to build authentic influence and a powerful personal brand?</li>
+                      <li>What could becoming a true person of interest unlock for your career and life?</li>
+                      <li>What are the key challenges holding you back from thought leadership?</li>
+                      <li>How would your life change if your voice and expertise were in demand?</li>
+                    </ul>
+                    <div>
+                      <h3 className="text-base font-semibold mb-2 text-purple-700">Your Personal Reflection (required):</h3>
+                      <label className="block mb-1">Are you seeking greater recognition and credibility in your field?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={reflectionAnswers.q1} onChange={e => setReflectionAnswers(ans => ({ ...ans, q1: e.target.value }))} required />
+
+                      <label className="block mb-1">Do you want to build authentic influence and a powerful personal brand?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={reflectionAnswers.q2} onChange={e => setReflectionAnswers(ans => ({ ...ans, q2: e.target.value }))} required />
+
+                      <label className="block mb-1">What could becoming a true person of interest unlock for your career and life?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={reflectionAnswers.q3} onChange={e => setReflectionAnswers(ans => ({ ...ans, q3: e.target.value }))} required />
+
+                      <label className="block mb-1">What are the key challenges holding you back from thought leadership?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={reflectionAnswers.q4} onChange={e => setReflectionAnswers(ans => ({ ...ans, q4: e.target.value }))} required />
+
+                      <label className="block mb-1">How would your life change if your voice and expertise were in demand?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={reflectionAnswers.q5} onChange={e => setReflectionAnswers(ans => ({ ...ans, q5: e.target.value }))} required />
+                    </div>
+                  </div>
+                )}
+                {event.type === 'ACADEMY' && (
+                  <div className="mt-5 bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
+                    <h4 className="text-lg font-semibold text-purple-700 dark:text-purple-300 mb-2">Why Choose Upgrade Academy?</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-gray-800 dark:text-gray-200 text-base mb-6">
+                      <li>Is it time to rebuild your professional foundation and future-proof your skills?</li>
+                      <li>Are you considering a major career move or reinvention?</li>
+                      <li>What is one skill you know you must master to unlock your next level?</li>
+                      <li>Have you invested in your professional growth as much as you want?</li>
+                      <li>How can expert guidance accelerate your transformation now?</li>
+                    </ul>
+                    <div>
+                      <h3 className="text-base font-semibold mb-2 text-purple-700">Your Personal Reflection (required):</h3>
+                      <label className="block mb-1">Is it time to rebuild your professional foundation and future-proof your skills?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={academyReflectionAnswers.aq1} onChange={e => setAcademyReflectionAnswers(ans => ({ ...ans, aq1: e.target.value }))} required />
+
+                      <label className="block mb-1">Are you considering a major career move or reinvention?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={academyReflectionAnswers.aq2} onChange={e => setAcademyReflectionAnswers(ans => ({ ...ans, aq2: e.target.value }))} required />
+
+                      <label className="block mb-1">What is one skill you know you must master to unlock your next level?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={academyReflectionAnswers.aq3} onChange={e => setAcademyReflectionAnswers(ans => ({ ...ans, aq3: e.target.value }))} required />
+
+                      <label className="block mb-1">Have you invested in your professional growth as much as you want?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={academyReflectionAnswers.aq4} onChange={e => setAcademyReflectionAnswers(ans => ({ ...ans, aq4: e.target.value }))} required />
+
+                      <label className="block mb-1">How can expert guidance accelerate your transformation now?</label>
+                      <textarea className="w-full mb-3 p-2 border rounded" value={academyReflectionAnswers.aq5} onChange={e => setAcademyReflectionAnswers(ans => ({ ...ans, aq5: e.target.value }))} required />
+                    </div>
+                  </div>
+                )}
               </motion.div>
 
               {/* Registration Form */}
@@ -335,7 +424,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 <h2 className="text-4xl font-semibold text-gray-900 dark:text-white mb-6">Registration Form</h2>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Personal Information */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -348,16 +437,15 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                          errors.firstName ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.firstName ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
                         placeholder="Enter your first name"
                       />
                       {errors.firstName && (
                         <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.firstName}</p>
                       )}
                     </div>
-                    
+
                     <div>
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Last Name *
@@ -367,9 +455,8 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                          errors.lastName ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.lastName ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
                         placeholder="Enter your last name"
                       />
                       {errors.lastName && (
@@ -387,9 +474,8 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                        errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        }`}
                       placeholder="Enter your email address"
                     />
                     {errors.email && (
@@ -406,9 +492,8 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                        errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        }`}
                       placeholder="Enter your phone number"
                     />
                     {errors.phone && (
@@ -426,9 +511,8 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                       name="address"
                       value={formData.address}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                        errors.address ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                      }`}
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.address ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                        }`}
                       placeholder="Enter your address"
                     />
                     {errors.address && (
@@ -446,16 +530,15 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         name="city"
                         value={formData.city}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                          errors.city ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.city ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
                         placeholder="City"
                       />
                       {errors.city && (
                         <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.city}</p>
                       )}
                     </div>
-                    
+
                     <div>
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
                         State *
@@ -465,16 +548,15 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         name="state"
                         value={formData.state}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                          errors.state ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.state ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
                         placeholder="State"
                       />
                       {errors.state && (
                         <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.state}</p>
                       )}
                     </div>
-                    
+
                     <div>
                       <label className="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Country *
@@ -484,9 +566,8 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         name="country"
                         value={formData.country}
                         onChange={handleInputChange}
-                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${
-                          errors.country ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
-                        }`}
+                        className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-300 bg-white dark:bg-gray-800 text-gray-900 dark:text-white ${errors.country ? 'border-red-500' : 'border-gray-200 dark:border-gray-600'
+                          }`}
                         placeholder="Country"
                       />
                       {errors.country && (
@@ -515,7 +596,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                           <div className="text-xs text-gray-500 dark:text-gray-400">Transfer to our Naira account</div>
                         </div>
                       </label>
-                      
+
                       <label className="flex items-center p-4 border border-gray-200 dark:border-gray-600 rounded-xl cursor-pointer hover:border-purple-300 dark:hover:border-purple-500 transition-all duration-300">
                         <input
                           type="radio"
@@ -547,7 +628,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                           <p><strong>Bank Name:</strong> {formData.paymentMethod === 'naira' ? paymentDetails.naira.bankName : paymentDetails.dollar.bankName}</p>
                         </div>
                       </div>
-                      
+
                       <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                         <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Payment Confirmation</h4>
                         <div className="text-lg text-gray-600 dark:text-gray-300">
@@ -556,14 +637,14 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                             <p className="text-green-800 dark:text-green-200 font-medium mb-3">
                               WhatsApp: {whatsappNumber}
                             </p>
-                            <a 
+                            <a
                               href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=Hi, I just registered for ${event.title}. Please confirm my payment.`}
-                              target="_blank" 
+                              target="_blank"
                               rel="noopener noreferrer"
                               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
                             >
                               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/>
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
                               </svg>
                               Send WhatsApp Message
                             </a>
