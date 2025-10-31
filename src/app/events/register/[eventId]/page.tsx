@@ -12,7 +12,7 @@ const eventsData = {
     id: 1,
     title: "Masterclass",
     type: "MASTERCLASS",
-    date: "2024-02-15",
+    date: "2025-10-14",
     time: "10:00 AM - 4:00 PM",
     location: "Virtual & In-Person",
     description: "Transform into a person of interest through our comprehensive masterclass program. Learn advanced techniques for becoming a recognized thought leader, building authentic influence, and creating lasting professional impact.",
@@ -27,7 +27,7 @@ const eventsData = {
     id: 2,
     title: "Upgrade Academy Intensive",
     type: "ACADEMY",
-    date: "2024-03-01",
+    date: "2025-10-16",
     time: "9:00 AM - 5:00 PM",
     location: "Executive Training Center",
     description: "Comprehensive transformation program to rebuild and upgrade your professional foundation. Perfect for career transitions and skill enhancement.",
@@ -140,20 +140,20 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
       if (!formData.cardName.trim()) newErrors.cardName = 'Cardholder name is required';
     }
 
-    if(event && event.type === 'MASTERCLASS') {
-      if(!reflectionAnswers.q1.trim()) newErrors.q1 = 'Please answer question 1';
-      if(!reflectionAnswers.q2.trim()) newErrors.q2 = 'Please answer question 2';
-      if(!reflectionAnswers.q3.trim()) newErrors.q3 = 'Please answer question 3';
-      if(!reflectionAnswers.q4.trim()) newErrors.q4 = 'Please answer question 4';
-      if(!reflectionAnswers.q5.trim()) newErrors.q5 = 'Please answer question 5';
+    if (event && event.type === 'MASTERCLASS') {
+      if (!reflectionAnswers.q1.trim()) newErrors.q1 = 'Please answer question 1';
+      if (!reflectionAnswers.q2.trim()) newErrors.q2 = 'Please answer question 2';
+      if (!reflectionAnswers.q3.trim()) newErrors.q3 = 'Please answer question 3';
+      if (!reflectionAnswers.q4.trim()) newErrors.q4 = 'Please answer question 4';
+      if (!reflectionAnswers.q5.trim()) newErrors.q5 = 'Please answer question 5';
     }
 
-    if(event && event.type === 'ACADEMY') {
-      if(!academyReflectionAnswers.aq1.trim()) newErrors.aq1 = 'Please answer question 1';
-      if(!academyReflectionAnswers.aq2.trim()) newErrors.aq2 = 'Please answer question 2';
-      if(!academyReflectionAnswers.aq3.trim()) newErrors.aq3 = 'Please answer question 3';
-      if(!academyReflectionAnswers.aq4.trim()) newErrors.aq4 = 'Please answer question 4';
-      if(!academyReflectionAnswers.aq5.trim()) newErrors.aq5 = 'Please answer question 5';
+    if (event && event.type === 'ACADEMY') {
+      if (!academyReflectionAnswers.aq1.trim()) newErrors.aq1 = 'Please answer question 1';
+      if (!academyReflectionAnswers.aq2.trim()) newErrors.aq2 = 'Please answer question 2';
+      if (!academyReflectionAnswers.aq3.trim()) newErrors.aq3 = 'Please answer question 3';
+      if (!academyReflectionAnswers.aq4.trim()) newErrors.aq4 = 'Please answer question 4';
+      if (!academyReflectionAnswers.aq5.trim()) newErrors.aq5 = 'Please answer question 5';
     }
 
     setErrors(newErrors);
@@ -219,6 +219,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                     </div>
                   </div>
 
+                  {/* Payment Confirmation */}
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
                     <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Payment Confirmation</h4>
                     <div className="text-lg text-gray-600 dark:text-gray-300">
@@ -629,31 +630,7 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
                         </div>
                       </div>
 
-                      <div className="pt-4 border-t border-gray-200 dark:border-gray-600">
-                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">Payment Confirmation</h4>
-                        <div className="text-lg text-gray-600 dark:text-gray-300">
-                          <p className="mb-3">After making your payment, please send a WhatsApp message to confirm your registration:</p>
-                          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-4">
-                            <p className="text-green-800 dark:text-green-200 font-medium mb-3">
-                              WhatsApp: {whatsappNumber}
-                            </p>
-                            <a
-                              href={`https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=Hi, I just registered for ${event.title}. Please confirm my payment.`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
-                            >
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488" />
-                              </svg>
-                              Send WhatsApp Message
-                            </a>
-                            <p className="text-sm text-green-700 dark:text-green-300 mt-2">
-                              Click to send a pre-filled message with your registration details
-                            </p>
-                          </div>
-                        </div>
-                      </div>
+                      {/* Payment Confirmation moved to success page */}
                     </div>
                   </div>
 
