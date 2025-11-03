@@ -17,6 +17,14 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Check if Supabase is configured
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      return NextResponse.json(
+        { success: false, error: 'Database not configured. Please contact support.' },
+        { status: 500 }
+      )
+    }
+
     // Save registration to Supabase
     const { data: registration, error } = await supabase
       .from('event_registrations')

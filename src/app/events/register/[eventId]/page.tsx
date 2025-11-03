@@ -1,6 +1,6 @@
 'use client';
 import { motion } from "framer-motion";
-import { HiUser, HiMail, HiPhone, HiLocationMarker, HiCreditCard, HiCheckCircle, HiArrowLeft, HiCalendar } from "react-icons/hi";
+import { HiLocationMarker, HiCheckCircle, HiArrowLeft, HiCalendar } from "react-icons/hi";
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { Toaster, toast } from "react-hot-toast";

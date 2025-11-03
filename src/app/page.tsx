@@ -83,7 +83,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mb-8"
             >
-              <h1 className="pt-22 text-6xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-light text-gray-900 dark:text-white leading-tight tracking-tight">
                 Transform Your
                 <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                   Professional Journey
