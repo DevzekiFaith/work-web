@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { HiUser, HiMail, HiPhone, HiLocationMarker, HiCreditCard, HiCheckCircle, HiArrowLeft, HiCalendar } from "react-icons/hi";
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
+import { Toaster, toast } from "react-hot-toast";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -157,6 +158,16 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
     }
 
     setErrors(newErrors);
+    
+    // Show toast notification if there are errors
+    if (Object.keys(newErrors).length > 0) {
+      const firstError = Object.values(newErrors)[0];
+      toast.error(`Please fill in all required fields: ${firstError}`, {
+        duration: 4000,
+        position: 'top-center',
+      });
+    }
+    
     return Object.keys(newErrors).length === 0;
   };
 
@@ -168,17 +179,64 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
     }
 
     setIsSubmitting(true);
+    toast.loading('Submitting your registration...', { id: 'registration' });
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Submit to API route
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          eventId: event.id,
+          eventType: event.type,
+          eventTitle: event.title,
+          eventDate: event.date,
+          eventLocation: event.location,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          country: formData.country,
+          paymentMethod: formData.paymentMethod,
+          reflectionAnswers: event.type === 'MASTERCLASS' ? reflectionAnswers : null,
+          academyReflectionAnswers: event.type === 'ACADEMY' ? academyReflectionAnswers : null,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.error || 'Registration failed');
+      }
+
+      toast.success('Registration successful! Check your email for confirmation.', { id: 'registration' });
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Registration error:', error);
+      toast.error(error instanceof Error ? error.message : 'Something went wrong. Please try again.', { id: 'registration' });
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-white dark:bg-gray-900">
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#363636',
+              color: '#fff',
+            },
+          }}
+        />
         <Header />
 
         <div className="container mx-auto px-6 lg:px-8 py-24">
@@ -273,6 +331,30 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
+      <Toaster 
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
       <Header />
 
       {/* Hero Section */}

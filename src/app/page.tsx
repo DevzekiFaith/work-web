@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiCheckCircle, HiMicrophone, HiAcademicCap, HiLightningBolt, HiNewspaper, HiBookOpen, HiShoppingCart } from "react-icons/hi";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaYoutube } from "react-icons/fa";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -289,16 +289,29 @@ export default function Home() {
               Connect with like-minded professionals, get exclusive updates, and access our supportive community on WhatsApp.
             </p>
             
-            <a 
-              href="https://chat.whatsapp.com/HSjJNBgDSOuH0qzTSruS7Y?mode=ems_share_t"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              <FaWhatsapp className="w-6 h-6" />
-              Join WhatsApp Group
-              <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <a 
+                href="https://chat.whatsapp.com/HSjJNBgDSOuH0qzTSruS7Y?mode=ems_share_t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <FaWhatsapp className="w-6 h-6" />
+                Join WhatsApp Group
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </a>
+              
+              <a 
+                href="https://www.youtube.com/@lifebuildglobal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-3 px-12 py-6 bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <FaYoutube className="w-6 h-6" />
+                Visit Our YouTube
+                <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
