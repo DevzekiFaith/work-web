@@ -1,13 +1,14 @@
 'use client';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { Toaster, toast } from 'react-hot-toast';
 import { motion } from 'framer-motion';
-import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight, HiChat, HiSupport, HiUser, HiOfficeBuilding, HiGlobe, HiClock } from 'react-icons/hi';
+import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight, HiChat, HiSupport, HiUser, HiOfficeBuilding, HiGlobe, HiClock, HiVideoCamera } from 'react-icons/hi';
 import { Fragment } from 'react';
 import Link from 'next/link';
+import Script from 'next/script';
 
 const contactInfo = [
   {
@@ -23,6 +24,14 @@ const contactInfo = [
     details: '+2347014441418',
     description: 'Mon-Fri from 8am to 6pm',
     color: 'from-purple-600 to-purple-800'
+  },
+  {
+    icon: HiVideoCamera,
+    title: 'Video Call',
+    details: 'Start Video Consultation',
+    description: 'Join a live video call with our team',
+    color: 'from-purple-700 to-purple-900',
+    isVideoCall: true
   },
   {
     icon: HiLocationMarker,
@@ -52,6 +61,11 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', company: '', service: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isVideoCallOpen, setIsVideoCallOpen] = useState(false);
+  const [jitsiScriptLoaded, setJitsiScriptLoaded] = useState(false);
+  const [isInitializing, setIsInitializing] = useState(false);
+  const jitsiContainerRef = useRef<HTMLDivElement>(null);
+  const jitsiApiRef = useRef<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -74,8 +88,221 @@ export default function Contact() {
     }
   };
 
+  // Initialize Jitsi Meet when video call modal opens
+  useEffect(() => {
+    if (!isVideoCallOpen || typeof window === 'undefined') {
+      return;
+    }
+
+    let initWithDelay: NodeJS.Timeout;
+
+    // Wait a bit for the modal to render and container to be ready
+    initWithDelay = setTimeout(() => {
+      if (!jitsiContainerRef.current) {
+        console.error('Container not ready after delay');
+        toast.error('Failed to initialize video call. Please try again.');
+        setIsInitializing(false);
+        return;
+      }
+
+      let attempts = 0;
+      const maxAttempts = 50; // 5 seconds max wait time
+
+      // Wait for Jitsi API to load if not already loaded
+      const initJitsi = () => {
+        attempts++;
+        
+        if (!(window as any).JitsiMeetExternalAPI) {
+          if (attempts >= maxAttempts) {
+            toast.error('Failed to load video call service. Please refresh the page and try again.');
+            setIsVideoCallOpen(false);
+            setIsInitializing(false);
+            return;
+          }
+          // Script not loaded yet, wait a bit and try again
+          setTimeout(initJitsi, 100);
+          return;
+        }
+
+        // Ensure container is ready
+        if (!jitsiContainerRef.current) {
+          console.error('Container not ready');
+          if (attempts < maxAttempts) {
+            setTimeout(initJitsi, 100);
+            return;
+          }
+          toast.error('Failed to initialize video call. Please try again.');
+          setIsInitializing(false);
+          return;
+        }
+
+      // Generate a unique room name
+      const roomName = `lifebuild-consultation-${Date.now()}-${Math.random().toString(36).substring(7)}`;
+      
+      const domain = 'meet.jit.si';
+      const options = {
+        roomName: roomName,
+        width: '100%',
+        height: '100%',
+        parentNode: jitsiContainerRef.current,
+        configOverwrite: {
+          startWithAudioMuted: false,
+          startWithVideoMuted: false,
+          enableWelcomePage: false,
+          enableClosePage: false,
+          disableDeepLinking: true,
+          defaultLanguage: 'en',
+        },
+        interfaceConfigOverwrite: {
+          TOOLBAR_BUTTONS: [
+            'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+            'fodeviceselection', 'hangup', 'chat', 'settings', 'videoquality', 'filmstrip',
+            'invite', 'feedback', 'stats', 'shortcuts'
+          ],
+          SHOW_JITSI_WATERMARK: false,
+          SHOW_WATERMARK_FOR_GUESTS: false,
+          SHOW_BRAND_WATERMARK: false,
+          SHOW_POWERED_BY: false,
+          APP_NAME: 'Lifebuild Consultation',
+          PROVIDER_NAME: 'Lifebuild',
+        },
+        userInfo: {
+          displayName: form.name || 'Guest',
+          email: form.email || '',
+        },
+      };
+
+      try {
+        setIsInitializing(true);
+        console.log('Initializing Jitsi Meet with room:', roomName);
+        const api = new (window as any).JitsiMeetExternalAPI(domain, options);
+        jitsiApiRef.current = api;
+        setIsInitializing(false);
+
+        // Handle ready event
+        api.addEventListener('videoConferenceJoined', () => {
+          console.log('Video conference joined');
+          toast.success('Connected to video call!');
+          setIsInitializing(false);
+          
+          // Ensure video and audio are enabled after joining
+          setTimeout(() => {
+            // Check if video/audio are muted and unmute them
+            api.isVideoMuted().then((isMuted: boolean) => {
+              if (isMuted) {
+                api.executeCommand('toggleVideo');
+              }
+            }).catch((error: any) => {
+              console.error('Error checking video mute status:', error);
+            });
+            
+            api.isAudioMuted().then((isMuted: boolean) => {
+              if (isMuted) {
+                api.executeCommand('toggleAudio');
+              }
+            }).catch((error: any) => {
+              console.error('Error checking audio mute status:', error);
+            });
+          }, 1000);
+        });
+
+        // Handle API ready
+        api.addEventListener('readyToClose', () => {
+          console.log('Ready to close');
+          setIsVideoCallOpen(false);
+        });
+
+        // Handle errors
+        api.addEventListener('errorOccurred', (error: any) => {
+          console.error('Jitsi error occurred:', error);
+          toast.error('An error occurred in the video call. Please try again.');
+          setIsInitializing(false);
+        });
+
+        // Handle track events to ensure camera/audio are active
+        api.addEventListener('trackAdded', () => {
+          console.log('Track added');
+        });
+
+        api.addEventListener('trackRemoved', () => {
+          console.log('Track removed');
+        });
+
+        // Handle camera/audio track events
+        api.addEventListener('participantJoined', (participant: any) => {
+          console.log('Participant joined:', participant);
+        });
+
+        // Handle participant left
+        api.addEventListener('participantLeft', () => {
+          console.log('Participant left');
+        });
+
+        // Handle camera/audio errors
+        api.addEventListener('videoError', (error: any) => {
+          console.error('Video error:', error);
+          toast.error('Camera access error. Please check permissions.');
+        });
+
+        api.addEventListener('audioError', (error: any) => {
+          console.error('Audio error:', error);
+          toast.error('Microphone access error. Please check permissions.');
+        });
+      } catch (error) {
+        console.error('Error initializing Jitsi:', error);
+        toast.error('Failed to start video call. Please try again.');
+        setIsInitializing(false);
+      }
+    };
+
+    initJitsi();
+    }, 300); // Small delay to ensure DOM is ready
+
+    return () => {
+      clearTimeout(initWithDelay);
+      if (jitsiApiRef.current) {
+        try {
+          jitsiApiRef.current.dispose();
+        } catch (error) {
+          console.error('Error disposing Jitsi API:', error);
+        }
+        jitsiApiRef.current = null;
+      }
+    };
+  }, [isVideoCallOpen, form.name, form.email]);
+
+  const handleOpenVideoCall = () => {
+    setIsVideoCallOpen(true);
+    setIsInitializing(true);
+  };
+
+  const handleCloseVideoCall = () => {
+    if (jitsiApiRef.current) {
+      try {
+        jitsiApiRef.current.dispose();
+      } catch (error) {
+        console.error('Error disposing Jitsi API:', error);
+      }
+      jitsiApiRef.current = null;
+    }
+    setIsVideoCallOpen(false);
+    setIsInitializing(false);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+      <Script
+        src="https://meet.jit.si/external_api.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          console.log('Jitsi Meet API loaded');
+          setJitsiScriptLoaded(true);
+        }}
+        onError={(e) => {
+          console.error('Failed to load Jitsi Meet API:', e);
+          toast.error('Failed to load video call service. Please refresh the page.');
+        }}
+      />
       <Header />
       <Toaster position="top-center" reverseOrder={false} />
 
@@ -148,9 +375,23 @@ export default function Contact() {
                 </span>
               </h1>
               
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed px-4">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed px-4 mb-8">
                 Ready to become a person of interest? Get in touch with our team to begin your professional transformation journey.
               </p>
+              
+              {/* Video Call Button */}
+              <motion.button
+                onClick={handleOpenVideoCall}
+                className="neu-button-primary px-8 py-4 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-3 text-lg md:text-xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <HiVideoCamera className="w-6 h-6 md:w-7 md:h-7" />
+                Start Video Call
+              </motion.button>
             </motion.div>
           </div>
         </div>
@@ -159,17 +400,18 @@ export default function Contact() {
       {/* Contact Info Cards */}
       <section className="py-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
         <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               return (
                 <motion.div
                   key={index}
-                  className="neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300"
+                  className={`neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300 ${(info as any).isVideoCall ? 'cursor-pointer' : ''}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  onClick={(info as any).isVideoCall ? handleOpenVideoCall : undefined}
                 >
                   <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400" />
@@ -429,6 +671,71 @@ export default function Contact() {
         </div>
       </section>
 
+      {/* Video Call Modal */}
+      <Transition appear show={isVideoCallOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-50" onClose={handleCloseVideoCall}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-6xl transform overflow-hidden rounded-3xl transition-all">
+                  <div className="glass-card p-6 relative">
+                    <div className="flex justify-between items-center mb-4">
+                      <Dialog.Title as="h3" className="text-2xl font-semibold text-gray-900 dark:text-white">
+                        Video Consultation
+                      </Dialog.Title>
+                      <button
+                        type="button"
+                        onClick={handleCloseVideoCall}
+                        className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors z-10"
+                      >
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div className="relative" style={{ height: '600px', minHeight: '600px' }}>
+                      <div 
+                        ref={jitsiContainerRef}
+                        className="w-full h-full rounded-2xl overflow-hidden bg-gray-900"
+                      />
+                      {(isInitializing || (typeof window !== 'undefined' && !(window as any).JitsiMeetExternalAPI)) && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-900 rounded-2xl z-20">
+                          <div className="text-center">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                            <p className="text-white">Loading video call...</p>
+                            <p className="text-gray-400 text-sm mt-2">Please allow camera and microphone access when prompted</p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
       {/* Success Modal */}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-50" onClose={() => setIsOpen(false)}>
@@ -561,14 +868,17 @@ export default function Contact() {
               viewport={{ once: true }}
             >
               <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
-                <HiPhone className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                <HiVideoCamera className="w-8 h-8 text-purple-600 dark:text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Phone Consultation</h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Video Consultation</h3>
               <p className="text-gray-600 dark:text-gray-300 mb-6">
-                Schedule a free 30-minute consultation to discuss your goals.
+                Start a live video call with our team for instant support and consultation.
               </p>
-              <button className="neu-button-primary px-6 py-3 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105">
-                Schedule Call
+              <button 
+                onClick={handleOpenVideoCall}
+                className="neu-button-primary px-6 py-3 text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                Start Video Call
               </button>
             </motion.div>
           </div>

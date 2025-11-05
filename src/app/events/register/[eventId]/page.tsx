@@ -97,7 +97,9 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
   useEffect(() => {
     if (!event) {
       // Redirect to events page if event not found
-      window.location.href = '/events';
+      if (typeof window !== 'undefined') {
+        window.location.href = '/events';
+      }
     }
   }, [event]);
 
