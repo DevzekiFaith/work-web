@@ -141,14 +141,14 @@ export default function Contact() {
                 </div>
               </div>
               
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-4">
                 Let us Start Your
                 <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                   Transformation Together
                 </span>
               </h1>
               
-              <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed px-4">
                 Ready to become a person of interest? Get in touch with our team to begin your professional transformation journey.
               </p>
             </motion.div>

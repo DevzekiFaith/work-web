@@ -134,7 +134,7 @@ export default function Projects() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="heading-1 mb-6 text-gray-900 dark:text-white">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white leading-tight px-4">
                 Lifebuild
                 <span className="block">Project Portfolio</span>
               </h1>
@@ -289,7 +289,7 @@ export default function Projects() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="heading-2 mb-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white px-4">
               Ready to Start Your Project?
             </h2>
             <p className="body-large mb-8 text-gray-600">

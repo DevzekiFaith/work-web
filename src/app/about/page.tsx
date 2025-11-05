@@ -79,42 +79,42 @@ export default function About() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 overflow-hidden">
+      <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 sm:pb-12 md:pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"></div>
         
         {/* Enhanced Neumorphism Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-green-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute top-20 left-20 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-56 sm:h-56 md:w-80 md:h-80 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          <div className="absolute top-1/4 right-1/4 w-28 h-28 sm:w-40 sm:h-40 md:w-64 md:h-64 bg-green-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
         </div>
 
-        <div className="container mx-auto px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
             <motion.div
-              className="neu-card p-6 sm:p-8 md:p-10 lg:p-12 rounded-3xl mb-8"
+              className="neu-card p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-2xl sm:rounded-3xl mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               {/* Logo */}
-              <div className="mb-8">
+              <div className="mb-6 sm:mb-8">
                 <img 
                   src="/LB7.png" 
                   alt="Lifebuild Logo" 
-                  className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto object-contain"
+                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 mx-auto object-contain"
                 />
               </div>
 
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-4">
                 About
                 <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                   Lifebuild
                 </span>
               </h1>
               
-              <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 dark:text-gray-300 font-light mb-8 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-600 dark:text-gray-300 font-light mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
                 Lifebuild empowers professionals through expert consulting, transformative masterclass programs, 
                 and comprehensive upgrade academy that create lasting personal and professional transformation.
               </p>
@@ -124,31 +124,31 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
             <motion.div
-              className="neu-card p-6 sm:p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 group"
+              className="neu-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl hover:shadow-2xl transition-all duration-300 group"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
             >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 dark:text-white mb-6 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Our Mission</h2>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Our Mission</h2>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
                 To transform professionals into people of interest through expert consulting, 
                 transformative masterclass programs, and comprehensive upgrade academy that build 
                 tomorrow&apos;s leaders with today&apos;s proven methodologies.
               </p>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
                 We believe in the power of personal transformation, combining proven expertise 
                 with authentic development to deliver professional solutions that exceed expectations and 
                 create lasting value for our clients and their communities.
               </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 neu-button-primary text-white font-semibold text-base sm:text-lg rounded-2xl transition-all duration-300 transform hover:scale-105">
+              <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 neu-button-primary text-white font-semibold text-xs sm:text-sm md:text-base lg:text-lg rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto justify-center">
                 Start Your Journey
-                <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
               </Link>
             </motion.div>
 
@@ -178,17 +178,17 @@ export default function About() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">Our Impact in Numbers</h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 px-4">Our Impact in Numbers</h2>
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto px-4">
               These numbers represent the trust our clients place in us and 
               the success we&apos;ve achieved together.
             </p>
@@ -501,8 +501,8 @@ export default function About() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-6 lg:px-8">
+      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
@@ -510,8 +510,8 @@ export default function About() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="neu-card p-12 rounded-3xl hover:shadow-2xl transition-all duration-300 group">
-              <h2 className="text-4xl md:text-5xl font-light mb-6 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+            <div className="neu-card p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-3xl hover:shadow-2xl transition-all duration-300 group">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 px-4">
               Let us Transform Your Future Together
             </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">

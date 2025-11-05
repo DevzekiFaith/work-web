@@ -1,6 +1,7 @@
 'use client';
 import { motion } from "framer-motion";
-import { HiCalendar, HiLocationMarker, HiClock, HiUsers, HiAcademicCap, HiLightningBolt, HiCheckCircle } from "react-icons/hi";
+import { HiCalendar, HiLocationMarker, HiClock, HiUsers, HiAcademicCap, HiLightningBolt, HiCheckCircle, HiArrowRight } from "react-icons/hi";
+import { FaTelegram } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header/Header";
@@ -114,16 +115,35 @@ export default function Events() {
               </div>
             </div>
             
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-gray-900 dark:text-white mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-4">
               Upcoming
               <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
                 Events & Programs
               </span>
             </h1>
             
-            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto leading-relaxed px-4 mb-8 sm:mb-10 md:mb-12">
               Join our transformative events designed to elevate your professional presence and transform you into a person of interest in your industry.
             </p>
+            
+            {/* Telegram Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="px-4"
+            >
+              <a 
+                href="https://t.me/+jOg74zBqjPpjNmM0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 md:px-12 py-4 sm:py-5 md:py-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold text-sm sm:text-base md:text-lg rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <FaTelegram className="w-5 h-5 sm:w-6 sm:h-6" />
+                Join Telegram Group for Event Updates
+                <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </motion.div>
           </motion.div>
         </div>
       </section>

@@ -742,3 +742,4 @@ export default function EventRegistration({ params }: { params: Promise<{ eventI
     </div>
   );
 }
+2
