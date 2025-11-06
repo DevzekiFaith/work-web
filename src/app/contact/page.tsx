@@ -10,7 +10,16 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
-const contactInfo = [
+interface ContactInfo {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  details: string;
+  description: string;
+  color: string;
+  isVideoCall?: boolean;
+}
+
+const contactInfo: ContactInfo[] = [
   {
     icon: HiMail,
     title: 'Email Us',
@@ -62,10 +71,16 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isVideoCallOpen, setIsVideoCallOpen] = useState(false);
-  const [jitsiScriptLoaded, setJitsiScriptLoaded] = useState(false);
   const [isInitializing, setIsInitializing] = useState(false);
   const jitsiContainerRef = useRef<HTMLDivElement>(null);
-  const jitsiApiRef = useRef<any>(null);
+  const jitsiApiRef = useRef<unknown>(null);
+
+  // Helper function to check if Jitsi API is loaded
+  const isJitsiApiLoaded = (): boolean => {
+    if (typeof window === 'undefined') return false;
+    const windowWithJitsi = window as unknown as Record<string, unknown>;
+    return typeof windowWithJitsi.JitsiMeetExternalAPI !== 'undefined';
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -94,10 +109,8 @@ export default function Contact() {
       return;
     }
 
-    let initWithDelay: NodeJS.Timeout;
-
     // Wait a bit for the modal to render and container to be ready
-    initWithDelay = setTimeout(() => {
+    const initWithDelay = setTimeout(() => {
       if (!jitsiContainerRef.current) {
         console.error('Container not ready after delay');
         toast.error('Failed to initialize video call. Please try again.');
@@ -112,7 +125,7 @@ export default function Contact() {
       const initJitsi = () => {
         attempts++;
         
-        if (!(window as any).JitsiMeetExternalAPI) {
+        if (!isJitsiApiLoaded()) {
           if (attempts >= maxAttempts) {
             toast.error('Failed to load video call service. Please refresh the page and try again.');
             setIsVideoCallOpen(false);
@@ -175,7 +188,18 @@ export default function Contact() {
       try {
         setIsInitializing(true);
         console.log('Initializing Jitsi Meet with room:', roomName);
-        const api = new (window as any).JitsiMeetExternalAPI(domain, options);
+        const windowWithJitsi = window as unknown as Record<string, unknown>;
+        const JitsiMeetExternalAPI = windowWithJitsi.JitsiMeetExternalAPI as new (
+          domain: string,
+          options: Record<string, unknown>
+        ) => {
+          addEventListener: (event: string, callback: (data?: unknown) => void) => void;
+          executeCommand: (command: string) => void;
+          isVideoMuted: () => Promise<boolean>;
+          isAudioMuted: () => Promise<boolean>;
+          dispose: () => void;
+        };
+        const api = new JitsiMeetExternalAPI(domain, options);
         jitsiApiRef.current = api;
         setIsInitializing(false);
 
@@ -192,7 +216,7 @@ export default function Contact() {
               if (isMuted) {
                 api.executeCommand('toggleVideo');
               }
-            }).catch((error: any) => {
+            }).catch((error: Error) => {
               console.error('Error checking video mute status:', error);
             });
             
@@ -200,7 +224,7 @@ export default function Contact() {
               if (isMuted) {
                 api.executeCommand('toggleAudio');
               }
-            }).catch((error: any) => {
+            }).catch((error: Error) => {
               console.error('Error checking audio mute status:', error);
             });
           }, 1000);
@@ -213,7 +237,7 @@ export default function Contact() {
         });
 
         // Handle errors
-        api.addEventListener('errorOccurred', (error: any) => {
+        api.addEventListener('errorOccurred', (error?: unknown) => {
           console.error('Jitsi error occurred:', error);
           toast.error('An error occurred in the video call. Please try again.');
           setIsInitializing(false);
@@ -229,7 +253,7 @@ export default function Contact() {
         });
 
         // Handle camera/audio track events
-        api.addEventListener('participantJoined', (participant: any) => {
+        api.addEventListener('participantJoined', (participant?: unknown) => {
           console.log('Participant joined:', participant);
         });
 
@@ -239,12 +263,12 @@ export default function Contact() {
         });
 
         // Handle camera/audio errors
-        api.addEventListener('videoError', (error: any) => {
+        api.addEventListener('videoError', (error?: unknown) => {
           console.error('Video error:', error);
           toast.error('Camera access error. Please check permissions.');
         });
 
-        api.addEventListener('audioError', (error: any) => {
+        api.addEventListener('audioError', (error?: unknown) => {
           console.error('Audio error:', error);
           toast.error('Microphone access error. Please check permissions.');
         });
@@ -262,7 +286,7 @@ export default function Contact() {
       clearTimeout(initWithDelay);
       if (jitsiApiRef.current) {
         try {
-          jitsiApiRef.current.dispose();
+          (jitsiApiRef.current as { dispose: () => void }).dispose();
         } catch (error) {
           console.error('Error disposing Jitsi API:', error);
         }
@@ -279,7 +303,7 @@ export default function Contact() {
   const handleCloseVideoCall = () => {
     if (jitsiApiRef.current) {
       try {
-        jitsiApiRef.current.dispose();
+        (jitsiApiRef.current as { dispose: () => void }).dispose();
       } catch (error) {
         console.error('Error disposing Jitsi API:', error);
       }
@@ -296,7 +320,6 @@ export default function Contact() {
         strategy="afterInteractive"
         onLoad={() => {
           console.log('Jitsi Meet API loaded');
-          setJitsiScriptLoaded(true);
         }}
         onError={(e) => {
           console.error('Failed to load Jitsi Meet API:', e);
@@ -406,12 +429,12 @@ export default function Contact() {
               return (
                 <motion.div
                   key={index}
-                  className={`neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300 ${(info as any).isVideoCall ? 'cursor-pointer' : ''}`}
+                  className={`neu-card p-8 rounded-3xl text-center group hover:scale-105 transition-all duration-300 ${info.isVideoCall ? 'cursor-pointer' : ''}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  onClick={(info as any).isVideoCall ? handleOpenVideoCall : undefined}
+                  onClick={info.isVideoCall ? handleOpenVideoCall : undefined}
                 >
                   <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400" />
@@ -718,7 +741,7 @@ export default function Contact() {
                         ref={jitsiContainerRef}
                         className="w-full h-full rounded-2xl overflow-hidden bg-gray-900"
                       />
-                      {(isInitializing || (typeof window !== 'undefined' && !(window as any).JitsiMeetExternalAPI)) && (
+                      {(isInitializing || (typeof window !== 'undefined' && !isJitsiApiLoaded())) && (
                         <div className="absolute inset-0 flex items-center justify-center bg-gray-900 rounded-2xl z-20">
                           <div className="text-center">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>

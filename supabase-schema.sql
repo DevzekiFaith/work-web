@@ -67,3 +67,4 @@ CREATE POLICY "Allow authenticated update payment status" ON event_registrations
 
 
 
+
