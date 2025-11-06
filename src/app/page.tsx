@@ -1,5 +1,6 @@
 'use client';
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiCheckCircle, HiMicrophone, HiAcademicCap, HiLightningBolt, HiNewspaper, HiBookOpen, HiShoppingCart } from "react-icons/hi";
 import { FaWhatsapp, FaYoutube } from "react-icons/fa";
@@ -69,10 +70,13 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <img 
+              <Image 
                 src="/LB7.png" 
                 alt="Lifebuild Logo" 
+                width={160}
+                height={160}
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 mx-auto object-contain"
+                priority
               />
             </motion.div>
 

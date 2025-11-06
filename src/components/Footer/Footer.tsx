@@ -2,6 +2,7 @@
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub, FaWhatsapp } from 'react-icons/fa';
 import { HiMail, HiPhone, HiLocationMarker, HiArrowRight, HiCheckCircle } from 'react-icons/hi';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
@@ -100,9 +101,11 @@ export default function Footer() {
               >
                 <div className="mb-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <img 
+                    <Image 
                       src="/LB5.png" 
                       alt="Lifebuild Logo" 
+                      width={48}
+                      height={48}
                       className="w-12 h-12 object-contain"
                     />
                     <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg font-bold text-2xl tracking-tight">

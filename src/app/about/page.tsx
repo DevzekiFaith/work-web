@@ -100,10 +100,13 @@ export default function About() {
             >
               {/* Logo */}
               <div className="mb-6 sm:mb-8">
-                <img 
+                <Image 
                   src="/LB7.png" 
                   alt="Lifebuild Logo" 
+                  width={128}
+                  height={128}
                   className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 mx-auto object-contain"
+                  priority
                 />
               </div>
 

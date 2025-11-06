@@ -4,6 +4,7 @@ import { HiCalendar, HiLocationMarker, HiClock, HiUsers, HiAcademicCap, HiLightn
 import { FaTelegram } from "react-icons/fa";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
@@ -105,10 +106,13 @@ export default function Events() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-8">
-              <img 
+              <Image 
                 src="/LB7.png" 
                 alt="Lifebuild Logo" 
+                width={112}
+                height={112}
                 className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto object-contain mb-6"
+                priority
               />
               <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 shadow-lg">
                 <HiCalendar className="w-12 h-12 text-white" />

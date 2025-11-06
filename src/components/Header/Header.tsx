@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi';
@@ -46,9 +47,11 @@ export default function Header() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
               <div className="relative glass-button px-4 py-2 rounded-2xl flex items-center space-x-2">
-                <img 
+                <Image 
                   src="/LB5.png" 
                   alt="Lifebuild Logo" 
+                  width={32}
+                  height={32}
                   className="w-8 h-8 object-contain"
                 />
                 <span className="font-bold text-xl tracking-tight text-purple-700 dark:text-purple-300 group-hover:text-purple-800 dark:group-hover:text-purple-200 transition-colors duration-300">
@@ -127,9 +130,11 @@ export default function Header() {
                 {/* Mobile Header */}
                 <div className="flex justify-between items-center p-6 border-b border-white/20 dark:border-gray-700/30">
                   <div className="glass-button px-4 py-2 rounded-xl flex items-center space-x-2">
-                    <img 
+                    <Image 
                       src="/LB5.png" 
                       alt="Lifebuild Logo" 
+                      width={24}
+                      height={24}
                       className="w-6 h-6 object-contain"
                     />
                     <span className="font-bold text-lg text-purple-700 dark:text-purple-300">

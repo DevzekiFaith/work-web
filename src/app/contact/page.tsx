@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { HiMail, HiPhone, HiLocationMarker, HiCheckCircle, HiArrowRight, HiChat, HiSupport, HiUser, HiOfficeBuilding, HiGlobe, HiClock, HiVideoCamera } from 'react-icons/hi';
 import { Fragment } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Script from 'next/script';
 
 interface ContactInfo {
@@ -381,10 +382,13 @@ export default function Contact() {
               transition={{ duration: 0.8 }}
             >
               <div className="mb-8">
-                <img 
+                <Image 
                   src="/LB7.png" 
                   alt="Lifebuild Logo" 
+                  width={112}
+                  height={112}
                   className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto object-contain mb-6"
+                  priority
                 />
                 <div className="inline-flex p-6 rounded-3xl neu-icon">
                   <HiChat className="w-12 h-12 text-purple-600 dark:text-purple-400" />
