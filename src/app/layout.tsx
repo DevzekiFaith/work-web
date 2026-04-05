@@ -1,18 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -22,16 +23,18 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Professional Transformation Programs | Consulting, Masterclass & Upgrade Academy",
-  description: "Transform your professional journey through expert consulting, transformative masterclasses, and comprehensive upgrade programs. Become a person of interest in your industry.",
-  keywords: "public speaking, consulting, masterclass, upgrade academy, professional development, personal branding, workshops, seminars",
-  authors: [{ name: "Professional Development Team" }],
+  title: "Zeki Ubor | Human Architecture & Leadership",
+  description: "Discover the architecture of your potential. Zeki Ubor provides insights on identity, mindset, and leadership through The Becoming Institute and specialized architecture programs.",
+  keywords: "Zeki Ubor, Human Architecture, Leadership Architecture, Organizational Architecture, The Becoming Institute, Personal Development, Mindset coach",
+  authors: [{ name: "Zeki Ubor" }],
   robots: "index, follow",
   openGraph: {
-    title: "Professional Transformation Programs | Become a Person of Interest",
-    description: "Elevate your professional presence through expert consulting, transformative masterclasses, and comprehensive upgrade programs designed to make you a person of interest.",
+    title: "Zeki Ubor | Human Architecture & Leadership",
+    description: "Discover the architecture of your potential. Access the Architecture Audit and join a global community of leaders.",
     type: "website",
     locale: "en_US",
+    url: "https://zekiubor.com",
+    siteName: "Zeki Ubor",
   },
 };
 
@@ -41,8 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+      <body className={`${inter.variable} ${cormorantGaramond.variable} antialiased overflow-x-hidden`}>
         <ThemeProvider>
           {children}
         </ThemeProvider>

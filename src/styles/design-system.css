@@ -2,41 +2,30 @@
 
 /* CSS Variables */
 :root {
-  --primary-50: #faf5ff;
-  --primary-100: #f3e8ff;
-  --primary-200: #e9d5ff;
-  --primary-300: #d8b4fe;
-  --primary-400: #c084fc;
-  --primary-500: #a855f7;
-  --primary-600: #9333ea;
-  --primary-700: #7c3aed;
-  --primary-800: #6b21a8;
-  --primary-900: #581c87;
-  --primary-950: #3b0764;
-
-  --secondary-50: #f8fafc;
-  --secondary-100: #f1f5f9;
-  --secondary-200: #e2e8f0;
-  --secondary-300: #cbd5e1;
-  --secondary-400: #94a3b8;
-  --secondary-500: #64748b;
-  --secondary-600: #475569;
-  --secondary-700: #334155;
-  --secondary-800: #1e293b;
-  --secondary-900: #0f172a;
-  --secondary-950: #020617;
+  --primary: #0D1B2A;
+  --accent-becoming: #C9A84C;
+  --accent-leadership: #8B5E3C;
+  --accent-org: #4A6FA5;
+  --personal-mark: #1C1C1E;
+  --bg-light: #F5F0E8;
+  
+  --font-display: var(--font-cormorant), serif;
+  --font-body: var(--font-inter), sans-serif;
 }
 
 /* Base Styles */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
-  color: var(--secondary-900);
-  background-color: var(--secondary-50);
+  color: var(--primary);
+  background-color: var(--bg-light);
+  -webkit-font-smoothing: antialiased;
 }
 
 .dark body {
@@ -143,21 +132,23 @@ body {
 }
 
 .neu-button-primary {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
-  box-shadow: 4px 4px 8px rgba(147, 51, 234, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, var(--accent-becoming), #8B5E3C);
+  box-shadow: 4px 4px 8px rgba(201, 168, 76, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  color: white;
+  color: #0D1B2A;
+  font-weight: 700;
 }
 
 .neu-button-primary:hover {
-  box-shadow: 2px 2px 4px rgba(147, 51, 234, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: 2px 2px 4px rgba(201, 168, 76, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #8B5E3C, var(--accent-becoming));
 }
 
 .neu-button-primary:active {
-  box-shadow: inset 2px 2px 4px rgba(147, 51, 234, 0.3), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+  box-shadow: inset 2px 2px 4px rgba(201, 168, 76, 0.3), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
 }
 
 .neu-input {
@@ -185,14 +176,14 @@ body {
 
 /* Utility Classes */
 .text-gradient {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, var(--accent-becoming), var(--accent-leadership));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  background: linear-gradient(135deg, var(--accent-becoming), var(--accent-leadership));
 }
 
 .bg-gradient-secondary {

@@ -1,6 +1,5 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX, HiArrowRight } from 'react-icons/hi';
@@ -21,140 +20,131 @@ export default function Header() {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
-    { href: '/events', label: 'Events' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/services', label: 'Pillars' },
+    { href: '/resources', label: 'Library' },
+    { href: '/contact', label: 'Inquiry' },
   ];
 
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'glass-card backdrop-blur-xl border-b border-white/20 dark:border-gray-700/30'
+          ? 'bg-[#F5F0E8]/90 dark:bg-[#1C1C1E]/90 backdrop-blur-xl border-b border-[#0D1B2A]/10 dark:border-white/10 shadow-sm'
           : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="container mx-auto px-6 lg:px-8">
-        <nav className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <Link href="/" className="group flex items-center space-x-3">
+      <div className="container mx-auto px-6 lg:px-12">
+        <nav className={`flex justify-between items-center transition-all duration-700 ${
+          scrolled ? 'py-4 md:py-6' : 'py-8 md:py-12 lg:py-14'
+        }`}>
+          {/* Logo / Personal Mark */}
+          <Link href="/" className="group flex items-center space-x-2">
             <motion.div
-              className="relative"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
+              className="flex flex-col"
+              whileHover={{ opacity: 0.8 }}
+              transition={{ duration: 0.3 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-800 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-              <div className="relative glass-button px-4 py-2 rounded-2xl flex items-center space-x-2">
-                <Image 
-                  src="/LB5.png" 
-                  alt="Lifebuild Logo" 
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 object-contain"
-                />
-                <span className="font-bold text-xl tracking-tight text-purple-700 dark:text-purple-300 group-hover:text-purple-800 dark:group-hover:text-purple-200 transition-colors duration-300">
-                  Lifebuild
-                </span>
-              </div>
+              <span className="font-display text-2xl md:text-3xl tracking-tight text-[#0D1B2A] dark:text-[#F5F0E8] leading-none">
+                Zeki Ubor
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#C9A84C] font-semibold mt-1">
+                Human Architecture
+              </span>
             </motion.div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center gap-12 xl:gap-16">
             {navItems.map((item, index) => (
               <motion.div
                 key={item.href}
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
+                transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
               >
                 <Link
                   href={item.href}
-                  className="relative glass-button px-4 py-2 rounded-xl font-medium transition-all duration-300 group hover:scale-105"
+                  className="relative group py-2"
                 >
-                  <span className="relative z-10 text-gray-700 dark:text-gray-300 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                  <span className="text-sm uppercase tracking-widest font-medium text-[#0D1B2A] dark:text-[#F5F0E8]/80 group-hover:text-[#C9A84C] transition-colors duration-300">
                     {item.label}
                   </span>
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-500/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#C9A84C] transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </motion.div>
             ))}
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center gap-6">
             <ThemeToggle />
             <Link 
-              href="/contact" 
-              className="group inline-flex items-center gap-2 px-6 py-3 neu-button-primary text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105"
+              href="/audit" 
+              className="group inline-flex items-center gap-2 px-8 py-4 bg-[#0D1B2A] dark:bg-[#F5F0E8] text-[#F5F0E8] dark:text-[#0D1B2A] text-[10px] uppercase tracking-[0.2em] font-bold rounded-none transition-all duration-500 hover:bg-[#C9A84C] hover:text-[#0D1B2A] dark:hover:bg-[#C9A84C]"
             >
-              Get Started
+              Architecture Audit
               <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
-            onClick={() => setIsOpen(true)}
-            className="lg:hidden glass-button p-3 rounded-xl transition-all duration-300"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            aria-label="Open menu"
-          >
-            <HiMenu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </motion.button>
+          <div className="flex items-center lg:hidden space-x-4">
+            <ThemeToggle />
+            <motion.button
+              onClick={() => setIsOpen(true)}
+              className="p-2 text-[#0D1B2A] dark:text-[#F5F0E8] transition-all duration-300"
+              whileTap={{ scale: 0.95 }}
+              aria-label="Open menu"
+            >
+              <HiMenu className="w-8 h-8" />
+            </motion.button>
+          </div>
         </nav>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/30 backdrop-blur-md z-50 lg:hidden"
-            onClick={() => setIsOpen(false)}
-          >
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-[#0D1B2A]/40 backdrop-blur-sm z-[60] lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="absolute right-0 top-0 h-full w-80 glass-card backdrop-blur-xl border-l border-white/20 dark:border-gray-700/30"
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+              className="fixed right-0 top-0 h-full w-full max-w-sm bg-[#F5F0E8] dark:bg-[#1C1C1E] z-[70] lg:hidden border-l border-[#0D1B2A]/10 dark:border-white/10"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
-                <div className="flex justify-between items-center p-6 border-b border-white/20 dark:border-gray-700/30">
-                  <div className="glass-button px-4 py-2 rounded-xl flex items-center space-x-2">
-                    <Image 
-                      src="/LB5.png" 
-                      alt="Lifebuild Logo" 
-                      width={24}
-                      height={24}
-                      className="w-6 h-6 object-contain"
-                    />
-                    <span className="font-bold text-lg text-purple-700 dark:text-purple-300">
-                      Lifebuild
+                <div className="flex justify-between items-center p-8 border-b border-[#0D1B2A]/5 dark:border-white/5">
+                  <div className="flex flex-col">
+                    <span className="font-display text-2xl tracking-tight text-[#0D1B2A] dark:text-[#F5F0E8]">
+                      Zeki Ubor
                     </span>
                   </div>
                   <motion.button
                     onClick={() => setIsOpen(false)}
-                    className="glass-button p-2 rounded-xl transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
+                    className="p-2 text-[#0D1B2A] dark:text-[#F5F0E8] transition-all duration-300"
                     whileTap={{ scale: 0.95 }}
                     aria-label="Close menu"
                   >
-                    <HiX className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+                    <HiX className="w-8 h-8" />
                   </motion.button>
                 </div>
 
                 {/* Mobile Navigation */}
-                <nav className="flex-1 px-6 py-8">
-                  <div className="space-y-4">
+                <nav className="flex-1 px-8 py-12">
+                  <div className="space-y-8">
                     {navItems.map((item, index) => (
                       <motion.div
                         key={item.href}
@@ -165,11 +155,11 @@ export default function Header() {
                         <Link
                           href={item.href}
                           onClick={() => setIsOpen(false)}
-                          className="block glass-button px-4 py-4 rounded-xl font-semibold text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 group"
+                          className="block text-2xl uppercase tracking-widest font-light text-[#0D1B2A] dark:text-[#F5F0E8] hover:text-[#C9A84C] transition-all duration-300 group"
                         >
                           <span className="flex items-center justify-between">
                             {item.label}
-                            <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                            <HiArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-2" />
                           </span>
                         </Link>
                       </motion.div>
@@ -178,22 +168,19 @@ export default function Header() {
                 </nav>
 
                 {/* Mobile Actions */}
-                <div className="p-6 border-t border-white/20 dark:border-gray-700/30 space-y-4">
-                  <div className="flex justify-center">
-                    <ThemeToggle />
-                  </div>
+                <div className="p-8 border-t border-[#0D1B2A]/5 dark:border-white/5">
                   <Link
-                    href="/contact"
+                    href="/audit"
                     onClick={() => setIsOpen(false)}
-                    className="group inline-flex items-center gap-2 px-6 py-4 neu-button-primary text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 w-full justify-center"
+                    className="flex items-center justify-center gap-4 px-8 py-5 bg-[#0D1B2A] dark:bg-[#F5F0E8] text-[#F5F0E8] dark:text-[#0D1B2A] text-sm uppercase tracking-[0.2em] font-bold transition-all duration-500 hover:bg-[#C9A84C]"
                   >
-                    Get Started
-                    <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    Take the Audit
+                    <HiArrowRight className="w-5 h-5" />
                   </Link>
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </motion.header>

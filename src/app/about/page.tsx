@@ -2,539 +2,207 @@
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { motion } from 'framer-motion';
-import { HiLightBulb, HiCog, HiUsers, HiBriefcase, HiCheckCircle, HiHeart, HiStar, HiArrowRight, HiBookOpen, HiShoppingCart } from 'react-icons/hi';
-import { HiTrophy } from 'react-icons/hi2';
-import Image from 'next/image';
+import { HiArrowRight, HiShieldCheck, HiOutlineLibrary, HiOutlinePuzzle, HiOutlineSparkles, HiOutlineCube } from 'react-icons/hi';
 import Link from 'next/link';
 
-const stats = [
-  { icon: HiBriefcase, label: "Years of Excellence", value: "15+", color: "text-purple-600" },
-  { icon: HiCheckCircle, label: "Students Transformed", value: "1000+", color: "text-purple-600" },
-  { icon: HiHeart, label: "Workshops Delivered", value: "50+", color: "text-purple-600" },
-  { icon: HiTrophy, label: "Success Stories", value: "200+", color: "text-purple-600" },
-];
-
-const services = [
-  {
-    icon: HiLightBulb,
-    title: "Consulting Services",
-    description: "Expert guidance on public speaking, seminars, and workshops to elevate your communication skills and professional presence.",
-    color: "from-purple-600 to-purple-800"
-  },
-  {
-    icon: HiCog,
-    title: "Masterclass Programs",
-    description: "Transform into a person of interest through our comprehensive masterclass program designed to build your personal brand.",
-    color: "from-purple-700 to-purple-900"
-  },
-  {
-    icon: HiUsers,
-    title: "Upgrade Academy",
-    description: "Making better what you have or rebuilding what was laid down - comprehensive development and transformation programs.",
-    color: "from-purple-800 to-purple-950"
-  },
-];
-
-const values = [
-  {
-    title: "Transformation",
-    description: "We believe in the power of personal and professional transformation to unlock your full potential.",
-    icon: HiStar
-  },
-  {
-    title: "Excellence",
-    description: "Every program meets our rigorous standards for quality and delivers measurable results.",
-    icon: HiTrophy
-  },
-  {
-    title: "Community",
-    description: "We build supportive communities where professionals can grow and learn together.",
-    icon: HiUsers
-  },
-  {
-    title: "Authenticity",
-    description: "We help you develop your authentic voice and become a genuine person of interest.",
-    icon: HiHeart
-  }
-];
-
-const testimonials = [
-  {
-    quote: "Lifebuild transformed my professional journey completely. Their masterclass program helped me become a recognized thought leader in my industry.",
-    author: "Sarah Johnson",
-    position: "Marketing Director @ TechCorp",
-    image: "/photo1.jpg"
-  },
-  {
-    quote: "The consulting services at Lifebuild gave me the confidence and skills to speak at major conferences. I'm now a sought-after speaker in my field.",
-    author: "Michael Chen",
-    position: "Entrepreneur @ StartupXYZ",
-    image: "/photo2.jpg"
-  }
-];
-
 export default function About() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
+  };
+
+  const layers = [
+    { title: "Layer 1: Identity", description: "The underlying bedrock upon which your entire life is built.", icon: HiOutlineCube },
+    { title: "Layer 2: Mindset", description: "The internal structural frames that determine how much weight you can carry.", icon: HiOutlineLibrary },
+    { title: "Layer 3: Values", description: "The core interior design that dictates the atmosphere of your presence.", icon: HiOutlinePuzzle },
+    { title: "Layer 4: Systems", description: "The mechanical and electrical flows that power your daily productivity.", icon: HiShieldCheck },
+    { title: "Layer 5: Presentation", description: "The exterior facade that the world interacts with first.", icon: HiOutlineSparkles },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-[#F5F0E8] text-[#0D1B2A]">
       <Header />
       
-      {/* Hero Section */}
-      <section className="relative pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-8 sm:pb-12 md:pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"></div>
-        
-        {/* Enhanced Neumorphism Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-20 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-40 h-40 sm:w-64 sm:h-64 md:w-96 md:h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-56 sm:h-56 md:w-80 md:h-80 bg-pink-300/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-          <div className="absolute top-1/4 right-1/4 w-28 h-28 sm:w-40 sm:h-40 md:w-64 md:h-64 bg-green-300/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-        </div>
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <motion.div
-              className="neu-card p-4 sm:p-6 md:p-8 lg:p-10 xl:p-12 rounded-2xl sm:rounded-3xl mb-6 sm:mb-8"
-              initial={{ opacity: 0, y: 30 }}
+      <main>
+        {/* HERO SECTION */}
+        <section className="relative pt-40 pb-20 md:pt-60 md:pb-32 overflow-hidden">
+          <div className="container mx-auto px-6 lg:px-12 text-center">
+            <motion.span 
+              className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }}
+            >
+              Master Architect
+            </motion.span>
+            <motion.h1 
+              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 uppercase"
+              initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
             >
-              {/* Logo */}
-              <div className="mb-6 sm:mb-8">
-                <Image 
-                  src="/LB7.png" 
-                  alt="Lifebuild Logo" 
-                  width={128}
-                  height={128}
-                  className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 mx-auto object-contain"
-                  priority
-                />
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 leading-tight px-4">
-                About
-                <span className="block font-medium bg-gradient-to-r from-purple-700 to-purple-900 bg-clip-text text-transparent">
-                  Lifebuild
-                </span>
-              </h1>
-              
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-600 dark:text-gray-300 font-light mb-6 sm:mb-8 max-w-4xl mx-auto leading-relaxed px-4">
-                Lifebuild empowers professionals through expert consulting, transformative masterclass programs, 
-                and comprehensive upgrade academy that create lasting personal and professional transformation.
-              </p>
-            </motion.div>
+              The Architect <br />
+              of Human <br />
+              <span className="italic">Potential</span>
+            </motion.h1>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Mission & Vision */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 items-center">
-            <motion.div
-              className="neu-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl hover:shadow-2xl transition-all duration-300 group"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -5 }}
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">Our Mission</h2>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                To transform professionals into people of interest through expert consulting, 
-                transformative masterclass programs, and comprehensive upgrade academy that build 
-                tomorrow&apos;s leaders with today&apos;s proven methodologies.
-              </p>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-gray-600 dark:text-gray-300 mb-6 sm:mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                We believe in the power of personal transformation, combining proven expertise 
-                with authentic development to deliver professional solutions that exceed expectations and 
-                create lasting value for our clients and their communities.
-              </p>
-              <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 neu-button-primary text-white font-semibold text-xs sm:text-sm md:text-base lg:text-lg rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 w-full sm:w-auto justify-center">
-                Start Your Journey
-                <HiArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <div className="neu-card p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 group">
-                <div className="relative rounded-2xl overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                  <Image
-                    src="/v5.jpg"
-                    width={600}
-                    height={400}
-                    alt="Our Mission"
-                    className="w-full h-80 object-cover rounded-2xl"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent rounded-2xl group-hover:from-purple-500/20 transition-all duration-300"></div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-10 sm:mb-12 md:mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-light text-gray-900 dark:text-white mb-4 sm:mb-6 px-4">Our Impact in Numbers</h2>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto px-4">
-              These numbers represent the trust our clients place in us and 
-              the success we&apos;ve achieved together.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {stats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="neu-card text-center p-8 group hover:shadow-2xl transition-all duration-300 rounded-3xl cursor-default"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                >
-                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{stat.value}</h3>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{stat.label}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">Our Core Values</h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
-              These principles guide our work and define our commitment to excellence 
-              in everything we do.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-            {values.map((value, index) => {
-              const IconComponent = value.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="text-center group neu-card p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                >
-                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{value.title}</h3>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{value.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Services Overview */}
-      <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 dark:text-white mb-6">What We Do</h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-gray-600 dark:text-gray-300 font-light max-w-3xl mx-auto">
-              Our comprehensive programs span multiple disciplines, allowing us to 
-              provide integrated solutions for professional transformation.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-            {services.map((service, index) => {
-              const IconComponent = service.icon;
-              return (
-                <motion.div
-                  key={index}
-                  className="neu-card p-8 text-center group hover:shadow-2xl transition-all duration-300 rounded-3xl cursor-pointer"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                >
-                  <div className="inline-flex p-4 rounded-2xl neu-icon mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-4 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{service.title}</h3>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 dark:text-gray-300 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{service.description}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Link href="/contact" className="inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 neu-button-primary text-white font-semibold text-base sm:text-lg rounded-2xl transition-all duration-300 transform hover:scale-105">
-              Get Started Today
-              <HiArrowRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-24 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
-        <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">What Our Clients Say</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
-              Don&apos;t just take our word for it. Here&apos;s what our clients have to say 
-              about working with Lifebuild.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                className="neu-card p-8 relative rounded-3xl hover:shadow-2xl transition-all duration-300 group cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                <div className="absolute top-6 left-6 text-purple-200 opacity-50 group-hover:text-purple-300 group-hover:opacity-70 transition-all duration-300">
-                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-6 italic leading-relaxed group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300">
-                  &ldquo;{testimonial.quote}&rdquo;
+        {/* SECTION 1 — THE STORY */}
+        <section className="py-32 md:py-48 lg:py-64 bg-[#0D1B2A] text-[#F5F0E8]">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center">
+              <motion.div {...fadeInUp}>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-12 border-l-4 border-[#C9A84C] pl-10">The Story</h2>
+                <p className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed mb-8 opacity-80">
+                  It started with blueprints and brick. I was running an architectural firm, working 18-hour days, 
+                  trying to force success through sheer sweat and struggle.
                 </p>
-                <div className="flex items-center space-x-4">
-                  <div className="relative">
-                  <Image
-                    src={testimonial.image}
-                    width={48}
-                    height={48}
-                    alt={testimonial.author}
-                      className="w-12 h-12 rounded-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/20 to-transparent group-hover:from-purple-500/30 transition-all duration-300"></div>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">{testimonial.author}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">{testimonial.position}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Resources & Learning Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-gray-900 dark:text-white mb-6">
-              Resources & Learning
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 font-light max-w-2xl mx-auto">
-              Expand your knowledge with our curated collection of books and resources designed to accelerate your professional transformation.
-            </p>
-          </motion.div>
-
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              {/* Bookstore Card */}
-            <motion.div
-                className="neu-card p-8 rounded-3xl group hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-            >
-                <div className="flex items-center mb-6">
-                  <div className="inline-flex p-4 rounded-2xl neu-icon mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <HiBookOpen className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
-              </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                Lifebuild Bookstore
-              </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">Curated Resources</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                Discover our collection of books, guides, and resources that will help you become a person of interest in your industry. 
-                Each resource is carefully selected to complement our programs and accelerate your transformation journey.
-              </p>
-
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Professional Development Books
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Personal Branding Guides
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Leadership & Communication Resources
-                  </div>
-                </div>
-
-                <Link 
-                  href="https://selar.com/m/zeki-faith1" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 neu-button-primary text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 w-full justify-center"
-                >
-                  <HiShoppingCart className="w-5 h-5" />
-                  Explore Bookstore
-                  <HiArrowRight className="w-5 h-5" />
-                </Link>
-              </motion.div>
-
-              {/* Events Card */}
-              <motion.div
-                className="neu-card p-8 rounded-3xl group hover:shadow-2xl transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -8, scale: 1.02 }}
-              >
-                <div className="flex items-center mb-6">
-                  <div className="inline-flex p-4 rounded-2xl neu-icon mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <HiLightBulb className="w-8 h-8 text-purple-600 dark:text-purple-400 group-hover:text-purple-700 dark:group-hover:text-purple-300 transition-colors duration-300" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
-                      Upcoming Events
-                    </h3>
-                    <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">Live Learning</p>
-                  </div>
-                </div>
-                
-                <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-                  Join our live workshops, masterclasses, and networking events designed to accelerate your professional growth and connect you with like-minded professionals.
+                <p className="text-lg font-light leading-relaxed mb-8 opacity-60">
+                  I was broke, I was exhausted, and I was hitting a ceiling I couldn&apos;t see. 
+                  Every effort felt like adding more weight to a building that wasn&apos;t designed to hold it. 
+                  I was working hard on the &quot;exterior&quot; of my life while the foundation was crumbling.
                 </p>
-
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Public Speaking Masterclasses
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Personal Branding Workshops
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                    Networking & Community Events
-                  </div>
-                </div>
-
-                <Link 
-                  href="/events" 
-                  className="inline-flex items-center gap-2 px-8 py-4 glass-button text-gray-900 dark:text-white font-semibold rounded-2xl transition-all duration-300 hover:shadow-xl w-full justify-center"
-                >
-                  View All Events
-                  <HiArrowRight className="w-5 h-5" />
-                </Link>
               </motion.div>
-              </div>
+              <motion.div 
+                className="relative aspect-square bg-[#1C1C1E] border border-[#C9A84C]/20 p-8"
+                {...fadeInUp}
+              >
+                <div className="absolute inset-0 opacity-10" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23C9A84C' fill-rule='evenodd'/%3E%3C/svg%3E")`}} />
+                <div className="h-full w-full flex items-center justify-center border border-[#C9A84C]/10">
+                  <span className="font-display text-6xl sm:text-7xl md:text-8xl text-[#C9A84C] opacity-20">ZEKI</span>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Call to Action */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="neu-card p-6 sm:p-8 md:p-10 lg:p-12 rounded-2xl sm:rounded-3xl hover:shadow-2xl transition-all duration-300 group">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-light mb-4 sm:mb-6 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300 px-4">
-              Let us Transform Your Future Together
-            </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
-              Whether you need consulting services, masterclass programs, or comprehensive upgrade academy — 
-              Lifebuild is ready to collaborate and bring your professional vision to life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/contact" className="inline-flex items-center justify-center px-8 py-4 neu-button-primary text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105">
-                Start Your Journey
-                  <HiArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-                <Link href="/events" className="inline-flex items-center justify-center px-8 py-4 glass-button text-gray-900 dark:text-white font-semibold rounded-2xl transition-all duration-300 hover:shadow-xl">
-                View Our Events
-                  <HiArrowRight className="w-5 h-5 ml-2" />
-              </Link>
+        {/* SECTION 2 — THE TURNING POINT */}
+        <section className="py-32 md:py-48 lg:py-60 bg-white">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.div {...fadeInUp}>
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-12">The Realization</h2>
+                <p className="text-xl sm:text-2xl md:text-3xl text-[#0D1B2A]/80 font-light leading-relaxed italic mb-12">
+                  &quot;The problem was never the business. <br className="hidden md:block" />
+                  It was the inner architecture beneath the business.&quot;
+                </p>
+                <p className="text-lg text-[#0D1B2A]/60 font-light leading-relaxed">
+                  As an architect, I knew that if a building fails, you don&apos;t just repaint the walls. 
+                  You go to the site. You check the soil. You look at the structural steel. 
+                  I realized I was trying to build a skyscraper on the foundation of a shack. 
+                  It wasn&apos;t about more effort; it was about better architecture.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3 — THE MISSION */}
+        <section className="py-32 md:py-48 lg:py-64 bg-[#F5F0E8]">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="flex flex-col md:flex-row gap-20 items-center">
+               <div className="md:w-1/2">
+                <motion.div {...fadeInUp}>
+                  <h2 className="font-display text-4xl md:text-5xl mb-8">The Mission</h2>
+                  <p className="text-xl text-[#0D1B2A]/80 font-light leading-relaxed mb-8">
+                    My life&apos;s work is now dedicated to ensuring you never hit that ceiling again. 
+                    I don&apos;t just coach; I engineer.
+                  </p>
+                  <p className="text-[#0D1B2A]/60 font-light leading-relaxed">
+                    Connected back to my days in the firm, I now help individuals and leaders design their lives 
+                    from the ground up. We deconstruct the old, unstable patterns and replace them with 
+                    unshakeable internal structures that can support monumental external impact.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="md:w-1/2 grid grid-cols-2 gap-4">
+                <div className="h-40 bg-[#0D1B2A] flex items-center justify-center"><span className="text-[#C9A84C] font-bold">DECONSTRUCT</span></div>
+                <div className="h-40 bg-[#C9A84C] mt-8 flex items-center justify-center"><span className="text-[#0D1B2A] font-bold">DESIGN</span></div>
+                <div className="h-40 bg-[#8B5E3C] flex items-center justify-center"><span className="text-white font-bold">DEVELOP</span></div>
+                <div className="h-40 bg-[#4A6FA5] mt-8 flex items-center justify-center"><span className="text-white font-bold">DEPLOY</span></div>
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        {/* SECTION 4 — THE FRAMEWORK */}
+        <section className="py-32 bg-white border-t border-[#0D1B2A]/5">
+          <div className="container mx-auto px-6 lg:px-12">
+            <motion.div className="text-center mb-24" {...fadeInUp}>
+              <h2 className="font-display text-4xl md:text-6xl mb-8">The Human Architecture Framework</h2>
+              <p className="text-xl text-[#0D1B2A]/60 font-light">Structure determines capacity. Five layers to access your potential.</p>
+            </motion.div>
+            
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-14">
+              {layers.map((layer, i) => {
+                const Icon = layer.icon;
+                return (
+                  <motion.div 
+                    key={i} 
+                    className="p-8 bg-[#F5F0E8] border border-[#0D1B2A]/5 hover:border-[#C9A84C] transition-all duration-500"
+                    {...fadeInUp}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Icon className="w-8 h-8 text-[#C9A84C] mb-6" />
+                    <h3 className="font-bold text-sm uppercase tracking-widest mb-4">{layer.title}</h3>
+                    <p className="text-xs text-[#0D1B2A]/60 leading-relaxed font-light">{layer.description}</p>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 5 — THE CREDENTIALS */}
+        <section className="py-32">
+          <div className="container mx-auto px-6 lg:px-12">
+            <div className="max-w-3xl mx-auto">
+              <motion.div className="text-center mb-20" {...fadeInUp}>
+                <h2 className="font-display text-4xl md:text-5xl mb-8">The Professional Blueprint</h2>
+                <div className="w-20 h-1 bg-[#C9A84C] mx-auto" />
+              </motion.div>
+              
+              <div className="space-y-12">
+                {[
+                  { label: "Training", value: "Architect by Professional Training", detail: "Expertise in physical structure and foundational integrity." },
+                  { label: "Skill", value: "Frontend Engineer by Skill", detail: "Digital craftsmanship and the ability to design seamless experiences." },
+                  { label: "Calling", value: "Transformational Educator by Calling", detail: "Devoted to the elevation of human consciousness and potential." },
+                  { label: "Enterprise", value: "Founder, Mindvest Global Resources", detail: "A global ecosystem for leadership and architectural development." }
+                ].map((cred, i) => (
+                  <motion.div 
+                    key={i} 
+                    className="flex flex-col md:flex-row md:items-center gap-4 md:gap-12"
+                    {...fadeInUp}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <span className="text-[#C9A84C] font-bold uppercase tracking-widest text-[10px] w-24">{cred.label}</span>
+                    <div>
+                      <h4 className="text-xl font-bold mb-1">{cred.value}</h4>
+                      <p className="text-[#0D1B2A]/60 font-light text-sm">{cred.detail}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div 
+                className="mt-32 text-center"
+                {...fadeInUp}
+              >
+                <Link 
+                  href="/services" 
+                  className="group inline-flex items-center gap-4 px-12 py-6 bg-[#0D1B2A] text-white font-bold uppercase tracking-[0.3em] text-sm hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 shadow-2xl"
+                >
+                  Work With Me
+                  <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
