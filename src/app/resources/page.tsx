@@ -33,7 +33,6 @@ export default function Resources() {
   const categories = [
     { title: 'The Architecture Letter', icon: HiOutlineBookOpen, details: 'Weekly insights on identity and mindset.', count: '52+ Issues' },
     { title: 'Visionary Vault', icon: HiOutlineCollection, details: 'Architectural blueprints for structural leadership.', count: '12 Blueprints' },
-    { title: 'Becoming Sessions', icon: HiOutlineVideoCamera, details: 'Recorded masterclasses on personal evolution.', count: '24+ Videos' },
     { title: 'Global Blueprint', icon: HiOutlineGlobe, details: 'A comprehensive guide to scaling your impact.', count: '8 Modules' }
   ];
 

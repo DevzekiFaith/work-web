@@ -58,7 +58,6 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li><Link href="/audit" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Architecture Audit</Link></li>
                 <li><Link href="/newsletter" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Architecture Letter</Link></li>
-                <li><Link href="/events" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Masterclasses</Link></li>
               </ul>
             </div>
           </motion.div>

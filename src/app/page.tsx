@@ -232,43 +232,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FEATURED — MASTERCLASS BANNER */}
-        <section className="py-20 md:py-48 lg:py-64 bg-[#0D1B2A]">
-          <div className="container mx-auto px-6 lg:px-12">
-            <motion.div 
-               className="relative overflow-hidden bg-gradient-to-br from-[#1C1C1E] to-[#0D1B2A] p-12 md:p-20 border border-[#C9A84C]/20"
-               {...fadeInUp}
-            >
-              {/* Background Accent */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-[#C9A84C]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2" />
-              
-              <div className="max-w-3xl relative z-10">
-                <span className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-6">Upcoming Masterclass</span>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-[#F5F0E8] mb-8 leading-tight break-words">
-                  Becoming a Person <br /> of Interest
-                </h2>
-                <div className="flex flex-wrap items-center gap-8 mb-12">
-                  <div className="flex flex-col">
-                    <span className="text-[#F5F0E8]/40 text-[10px] uppercase tracking-widest mb-1">Next Session</span>
-                    <span className="text-[#F5F0E8] font-bold tracking-widest uppercase">To Be Announced</span>
-                   </div>
-                  <div className="w-px h-10 bg-white/10 hidden md:block" />
-                  <div className="flex flex-col">
-                    <span className="text-[#F5F0E8]/40 text-[10px] uppercase tracking-widest mb-1">Duration</span>
-                    <span className="text-[#F5F0E8] font-bold tracking-widest uppercase">4 Intense Weeks</span>
-                  </div>
-                </div>
-                <Link 
-                  href="/masterclass" 
-                  className="group inline-flex items-center gap-4 px-8 py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:bg-[#F5F0E8]"
-                >
-                  Reserve Your Seat
-                  <HiArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
 
         {/* LEAD MAGNET SECTION */}
         <section className="py-32 md:py-48 lg:py-64 bg-white">

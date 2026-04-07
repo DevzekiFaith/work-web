@@ -22,12 +22,12 @@ export default function Services() {
       icon: HiOutlineUserGroup,
       description: "A sanctuary for personal evolution. We deconstruct legacy identities and blueprint a version of yourself that is engineered for global resonance.",
       offers: [
-        "Becoming a Person of Interest Masterclass — Monthly",
+        "Personal Evolution Frameworks",
         "Group Coaching Cohort — 8 weeks",
         "Private 1:1 Coaching"
       ],
-      cta: "Join The Next Masterclass",
-      link: "/events"
+      cta: "Inquire for Coaching",
+      link: "/contact"
     },
     {
       title: "The Leadership Architecture",
