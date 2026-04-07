@@ -36,7 +36,7 @@ export default function Resources() {
               The Library
             </motion.span>
             <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
+              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-8 sm:mb-12 break-words"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
@@ -64,12 +64,12 @@ export default function Resources() {
                 return (
                   <motion.div 
                     key={index}
-                    className="p-8 sm:p-12 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-2xl"
+                    className="p-8 sm:p-12 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-2xl flex flex-col"
                     {...fadeInUp}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Icon className="w-12 h-12 text-[#C9A84C] mb-12" />
-                    <h2 className="font-display text-3xl mb-4">{category.title}</h2>
+                    <Icon className="w-10 h-10 md:w-12 md:h-12 text-[#C9A84C] mb-8 md:mb-12" />
+                    <h2 className="font-display text-2xl md:text-3xl mb-4 break-words">{category.title}</h2>
                     <p className="text-sm text-[#0D1B2A]/60 font-light leading-relaxed mb-8 h-[4.5rem] overflow-hidden">
                       {category.details}
                     </p>
@@ -88,7 +88,7 @@ export default function Resources() {
         <section className="py-40 bg-[#0D1B2A] text-[#F5F0E8]">
           <div className="container mx-auto px-6 lg:px-12 text-center">
             <motion.div className="max-w-3xl mx-auto" {...fadeInUp}>
-              <h2 className="font-display text-5xl mb-12">Subscribe to <br /> The Architecture Letter</h2>
+              <h2 className="font-display text-4xl sm:text-5xl mb-8 sm:mb-12 break-words">Subscribe to <br /> The Architecture Letter</h2>
               <p className="text-2xl font-light mb-16 opacity-60">
                 Weekly architectural insights on identity, mindset, and becoming — straight to your inbox. Free.
               </p>

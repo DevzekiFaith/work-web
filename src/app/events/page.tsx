@@ -61,7 +61,7 @@ export default function Events() {
               The Masterclasses
             </motion.span>
             <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
+              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-8 sm:mb-12 break-words"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
@@ -89,24 +89,24 @@ export default function Events() {
                 return (
                   <motion.div 
                     key={index}
-                    className="group bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-2xl overflow-hidden"
+                    className="group bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-2xl overflow-hidden flex flex-col"
                     {...fadeInUp}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <div className="p-12">
-                      <div className="flex items-start justify-between mb-12">
-                        <div className={`w-16 h-16 ${event.color} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform`}>
-                          <Icon className="w-8 h-8" />
+                    <div className="p-12 flex-1 flex flex-col">
+                      <div className="flex flex-row items-start justify-between mb-8 md:mb-12">
+                        <div className={`w-12 h-12 md:w-16 md:h-16 ${event.color} flex items-center justify-center text-white shadow-xl group-hover:scale-110 transition-transform`}>
+                          <Icon className="w-6 h-6 md:w-8 md:h-8" />
                         </div>
                         <div className="text-right">
                           <span className="text-[10px] uppercase tracking-widest text-[#0D1B2A]/40 block mb-2">{event.type}</span>
-                          <span className="text-2xl font-display text-[#0D1B2A]">{event.currentPrice}</span>
+                          <span className="text-xl md:text-2xl font-display text-[#0D1B2A]">{event.currentPrice}</span>
                           <span className="text-xs text-[#0D1B2A]/30 line-through block italic">{event.originalPrice}</span>
                         </div>
                       </div>
 
-                      <h2 className="font-display text-4xl mb-6 group-hover:text-[#C9A84C] transition-colors">{event.title}</h2>
-                      <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 min-h-[80px]">
+                      <h2 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#C9A84C] transition-colors break-words">{event.title}</h2>
+                      <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-8 md:mb-12 flex-1">
                         {event.description}
                       </p>
 
@@ -144,7 +144,7 @@ export default function Events() {
         <section className="py-20 bg-[#0D1B2A] text-[#F5F0E8]">
           <div className="container mx-auto px-6 lg:px-12 text-center">
             <motion.div className="max-w-3xl mx-auto" {...fadeInUp}>
-              <h2 className="font-display text-4xl mb-8">Join The Architecture Circle</h2>
+              <h2 className="font-display text-3xl sm:text-4xl mb-8 break-words">Join The Architecture Circle</h2>
               <p className="text-xl font-light mb-12 opacity-60">
                 Get immediate notifications on session dates and exclusive insights directly on Telegram.
               </p>

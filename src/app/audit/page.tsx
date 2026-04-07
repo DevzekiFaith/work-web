@@ -62,7 +62,7 @@ export default function Audit() {
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#C9A84C]">Diagnostic Tool</span>
             </motion.div>
             <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
+              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-8 sm:mb-12 break-words"
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
@@ -89,7 +89,7 @@ export default function Audit() {
               className="bg-white border border-[#0D1B2A]/5 p-12 md:p-24 shadow-2xl text-center"
               {...fadeInUp}
             >
-              <h2 className="font-display text-4xl mb-8 uppercase tracking-tight italic">Initiating Structural <br aria-hidden="true" /> Scan...</h2>
+              <h2 className="font-display text-3xl sm:text-4xl mb-8 uppercase tracking-tight italic break-words">Initiating Structural <br aria-hidden="true" className="hidden sm:block" /> Scan...</h2>
               <p className="text-xl text-[#0D1B2A]/60 font-light mb-12">
                 We are currently recalibrating the Architecture Audit for its maximum impact. 
                 Enter your email below to be the first to access the diagnostic tool.
@@ -121,7 +121,7 @@ export default function Audit() {
         {/* THE 5 LAYERS PREVIEW */}
         <section className="py-32 bg-white border-t border-[#0D1B2A]/5">
           <div className="container mx-auto px-6 lg:px-12 text-center">
-            <h2 className="font-display text-3xl sm:text-4xl mb-24">The 5 Layers of Potential</h2>
+            <h2 className="font-display text-3xl sm:text-4xl mb-16 sm:mb-24 break-words">The 5 Layers of Potential</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
               {['Identity', 'Mindset', 'Values', 'Systems', 'Presentation'].map((layer, i) => (
                 <motion.div 

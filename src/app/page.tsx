@@ -86,7 +86,7 @@ export default function Home() {
               </motion.span>
               
               <motion.h1 
-                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 sm:mb-16"
+                className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 sm:mb-16 break-words"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const, delay: 0.1 }}
@@ -177,13 +177,13 @@ export default function Home() {
             >
               {/* Pillar 1 */}
               <motion.div 
-                className="group relative p-10 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-xl"
+                className="group relative p-10 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-xl flex flex-col"
                 variants={fadeInUp}
               >
-                <div className="w-16 h-1 text-[#C9A84C] bg-[#C9A84C] mb-16" />
-                <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#C9A84C] transition-colors">The Becoming Institute</h3>
+                <div className="w-12 h-1 md:w-16 md:h-1 text-[#C9A84C] bg-[#C9A84C] mb-12 md:mb-16" />
+                <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#C9A84C] transition-colors break-words">The Becoming Institute</h3>
                 <p className="text-[#C9A84C] font-bold uppercase tracking-widest text-[10px] mb-8">For Individuals</p>
-                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 min-h-[100px]">
+                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
                   A sanctuary for personal evolution, providing the tools to deconstruct limiting identities and build a self that commands interest.
                 </p>
                 <Link href="/becoming-institute" className="flex items-center justify-between group/link pt-8 border-t border-[#0D1B2A]/5">
@@ -194,13 +194,13 @@ export default function Home() {
 
               {/* Pillar 2 */}
               <motion.div 
-                className="group relative p-10 sm:p-16 lg:p-20 bg-[#0D1B2A] text-[#F5F0E8] border border-transparent transition-all duration-500 hover:shadow-2xl"
+                className="group relative p-10 sm:p-16 lg:p-20 bg-[#0D1B2A] text-[#F5F0E8] border border-transparent transition-all duration-500 hover:shadow-2xl flex flex-col"
                 variants={fadeInUp}
               >
-                <div className="w-16 h-1 bg-[#8B5E3C] mb-16" />
-                <h3 className="font-display text-3xl sm:text-4xl mb-6 text-[#F5F0E8] group-hover:text-[#8B5E3C] transition-colors">The Leadership Architecture</h3>
+                <div className="w-12 h-1 md:w-16 md:h-1 bg-[#8B5E3C] mb-12 md:mb-16" />
+                <h3 className="font-display text-3xl sm:text-4xl mb-6 text-[#F5F0E8] group-hover:text-[#8B5E3C] transition-colors break-words">The Leadership Architecture</h3>
                 <p className="text-[#8B5E3C] font-bold uppercase tracking-widest text-[10px] mb-8">For Leaders</p>
-                <p className="text-[#F5F0E8]/60 font-light leading-relaxed mb-12 min-h-[100px]">
+                <p className="text-[#F5F0E8]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
                   Engineered frameworks for modern executives and entrepreneurs to lead with architectural precision and unshakeable authority.
                 </p>
                 <Link href="/leadership-architecture" className="flex items-center justify-between group/link pt-8 border-t border-white/10">
@@ -211,13 +211,13 @@ export default function Home() {
 
               {/* Pillar 3 */}
               <motion.div 
-                className="group relative p-10 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#4A6FA5]/30 transition-all duration-500 hover:shadow-xl"
+                className="group relative p-10 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#4A6FA5]/30 transition-all duration-500 hover:shadow-xl flex flex-col"
                 variants={fadeInUp}
               >
-                <div className="w-16 h-1 bg-[#4A6FA5] mb-16" />
-                <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#4A6FA5] transition-colors text-[#0D1B2A]">Organizational Architecture</h3>
+                <div className="w-12 h-1 md:w-16 md:h-1 bg-[#4A6FA5] mb-12 md:mb-16" />
+                <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#4A6FA5] transition-colors text-[#0D1B2A] break-words">Organizational Architecture</h3>
                 <p className="text-[#4A6FA5] font-bold uppercase tracking-widest text-[10px] mb-8">For Organizations</p>
-                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 min-h-[100px]">
+                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
                   Scalable structural design for institutions seeking to align their human capital with their monumental vision.
                 </p>
                 <Link href="/organizational-architecture" className="flex items-center justify-between group/link pt-8 border-t border-[#0D1B2A]/5">
@@ -241,7 +241,7 @@ export default function Home() {
               
               <div className="max-w-3xl relative z-10">
                 <span className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-6">Upcoming Masterclass</span>
-                <h2 className="font-display text-4xl md:text-6xl text-[#F5F0E8] mb-8 leading-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-6xl text-[#F5F0E8] mb-8 leading-tight break-words">
                   Becoming a Person <br /> of Interest
                 </h2>
                 <div className="flex flex-wrap items-center gap-8 mb-12">
@@ -294,8 +294,8 @@ export default function Home() {
                 className="bg-[#F5F0E8] p-12 md:p-16 shadow-2xl relative"
                 {...fadeInUp}
               >
-                <div className="absolute top-0 right-12 w-8 h-1 bg-[#C9A84C]" />
-                <h3 className="font-display text-3xl mb-2">Download The Audit</h3>
+                <div className="absolute top-0 right-8 md:right-12 w-8 h-1 bg-[#C9A84C]" />
+                <h3 className="font-display text-3xl mb-2 break-words">Download The Audit</h3>
                 <p className="text-sm text-[#0D1B2A]/50 font-light mb-10">Start your architectural assessment today.</p>
                 
                 <form onSubmit={handleAuditSubmit} className="space-y-6">
