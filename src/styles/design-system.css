@@ -13,9 +13,21 @@
   --font-body: var(--font-inter), sans-serif;
   
   /* Fluid Spacing Scale */
-  --section-py: clamp(5rem, 12vh, 16rem);
-  --container-px: clamp(1.5rem, 6vw, 8rem);
-  --grid-gap: clamp(2rem, 5vw, 6rem);
+  --section-py: clamp(4rem, 10vh, 12rem);
+  --container-px: clamp(1rem, 5vw, 6rem);
+  --grid-gap: clamp(1.5rem, 4vw, 4rem);
+
+  /* Fluid Typography */
+  --font-size-xs: clamp(0.7rem, 0.8vw, 0.9rem);
+  --font-size-sm: clamp(0.8rem, 1vw, 1rem);
+  --font-size-base: clamp(0.95rem, 1.2vw, 1.1rem);
+  --font-size-lg: clamp(1.1rem, 1.5vw, 1.3rem);
+  --font-size-xl: clamp(1.25rem, 2vw, 1.6rem);
+  --font-size-2xl: clamp(1.5rem, 3vw, 2.2rem);
+  --font-size-3xl: clamp(1.8rem, 4vw, 3rem);
+  --font-size-4xl: clamp(2.2rem, 5vw, 4.5rem);
+  --font-size-5xl: clamp(3rem, 8vw, 7rem);
+  --font-size-display: clamp(4rem, 12vw, 12rem);
 }
 
 /* Base Styles */
@@ -245,6 +257,66 @@ body {
   background: linear-gradient(90deg, #334155, #475569, #334155);
   background-size: 200% 100%;
 }
+
+/* Shared Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1C1C1E;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #F5F0E8;
+}
+
+/* Enhanced Hover Effects */
+.hover-lift {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.15);
+}
+
+.glow-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-on-hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.glow-on-hover:hover::after {
+  opacity: 1;
+}
+
+/* Fluid Heading Classes */
+.fluid-h1 { font-size: var(--font-size-5xl); font-family: var(--font-display); line-height: 0.9; }
+.fluid-h2 { font-size: var(--font-size-4xl); font-family: var(--font-display); line-height: 1; }
+.fluid-h3 { font-size: var(--font-size-3xl); font-family: var(--font-display); line-height: 1.1; }
+.fluid-display { font-size: var(--font-size-display); font-family: var(--font-display); line-height: 0.85; }
 
 /* Form Styles */
 .form-input {

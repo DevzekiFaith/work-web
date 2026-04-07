@@ -28,16 +28,19 @@ export default function Header() {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-[#F5F0E8]/90 dark:bg-[#1C1C1E]/90 backdrop-blur-xl border-b border-[#0D1B2A]/10 dark:border-white/10 shadow-sm'
-          : 'bg-transparent'
+          ? 'bg-[#F5F0E8]/95 dark:bg-[#1C1C1E]/95 backdrop-blur-xl border-b border-[#0D1B2A]/10 dark:border-white/10 shadow-md'
+          : 'bg-[#F5F0E8]/0 lg:bg-transparent'
       }`}
+      style={{
+        backgroundColor: scrolled ? undefined : (typeof window !== 'undefined' && window.innerWidth < 1024 ? 'rgba(245, 240, 232, 0.8)' : 'transparent')
+      }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container mx-auto fluid-container">
         <nav className={`flex justify-between items-center transition-all duration-700 ${
-          scrolled ? 'py-4 md:py-6' : 'py-8 md:py-12 lg:py-16'
+          scrolled ? 'py-4 md:py-6' : 'py-6 md:py-10 lg:py-16'
         }`}>
           {/* Logo / Personal Mark */}
           <Link href="/" className="group flex items-center space-x-2">
@@ -112,7 +115,7 @@ export default function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-[#0D1B2A]/40 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 bg-[#0D1B2A]/60 backdrop-blur-md z-[60] lg:hidden"
               onClick={() => setIsOpen(false)}
             />
             <motion.div
@@ -120,7 +123,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 h-full w-full max-w-sm bg-[#F5F0E8] dark:bg-[#1C1C1E] z-[70] lg:hidden border-l border-[#0D1B2A]/10 dark:border-white/10"
+              className="fixed right-0 top-0 h-full w-full max-w-sm bg-[#F5F0E8] dark:bg-[#1C1C1E] z-[70] lg:hidden border-l border-[#0D1B2A]/10 dark:border-white/10 shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col h-full">
@@ -167,7 +170,7 @@ export default function Header() {
                 </nav>
 
                 {/* Mobile Actions */}
-                <div className="p-8 border-t border-[#0D1B2A]/5 dark:border-white/5">
+                <div className="p-8 pb-16 border-t border-[#0D1B2A]/5 dark:border-white/5">
                   <Link
                     href="/audit"
                     onClick={() => setIsOpen(false)}

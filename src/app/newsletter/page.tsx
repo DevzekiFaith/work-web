@@ -51,7 +51,7 @@ export default function Newsletter() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+        <section className="relative pt-72 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
           <div className="container mx-auto fluid-container text-center">
             <motion.div
               className="inline-flex items-center gap-3 px-6 py-2 bg-[#C9A84C]/10 rounded-full mb-8"
@@ -62,10 +62,10 @@ export default function Newsletter() {
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#C9A84C]">The Weekly Dispatch</span>
             </motion.div>
             <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
-              initial={{ opacity: 0, y: 40 }}
+              className="fluid-h1 mb-12"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               The Architecture <br />
               <span className="italic uppercase">Letter</span>
@@ -85,7 +85,7 @@ export default function Newsletter() {
         <section className="fluid-section">
           <div className="container mx-auto fluid-container max-w-4xl">
             <motion.div 
-              className="bg-[#0D1B2A] p-10 sm:p-12 md:p-24 shadow-2xl relative overflow-hidden text-center"
+              className="bg-[#0D1B2A] p-8 sm:p-12 md:p-24 shadow-2xl relative overflow-hidden text-center hover-lift"
               {...fadeInUp}
             >
               <h2 className="font-display text-3xl sm:text-4xl text-white mb-8 tracking-tight">Access The Structural <br /> Insights</h2>

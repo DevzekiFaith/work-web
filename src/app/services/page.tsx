@@ -67,26 +67,15 @@ export default function Services() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-48 pb-24 md:pt-72 md:pb-48 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+        <section className="relative pt-72 pb-24 md:pt-72 md:pb-48 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
           <div className="container mx-auto fluid-container text-center">
-            <motion.span 
-              className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              The Services
-            </motion.span>
-            <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              Building <br />
-              <span className="italic">Excellence</span> <br />
-              With Precision
-            </motion.h1>
+              <h1 className="fluid-display mb-12 uppercase italic">Structural <br /> Pillars</h1>
+            </motion.div>
             <motion.p 
               className="text-xl md:text-2xl text-[#0D1B2A]/60 font-light max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0 }}
@@ -95,6 +84,48 @@ export default function Services() {
             >
               From personal identity to organizational culture, we provide the architectural blueprints for unshakeable impact.
             </motion.p>
+          </div>
+        </section>
+
+        {/* PILLARS GRID */}
+        <section className="fluid-section bg-white/50 border-b border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container">
+            <div className="grid lg:grid-cols-3 gap-12 sm:gap-16">
+              {[
+                { 
+                  title: "The Becoming Institute", 
+                  label: "Personal Evolution", 
+                  desc: "A sanctuary for individual transformation. Deconstruct limiting identities and build a self that commands interest.",
+                  color: "#C9A84C"
+                },
+                { 
+                  title: "Leadership Architecture", 
+                  label: "Executive Authority", 
+                  desc: "Frameworks for leaders to design their influence with architectural precision and unshakeable authority.",
+                  color: "#8B5E3C"
+                },
+                { 
+                  title: "Organizational Architecture", 
+                  label: "Institutional Design", 
+                  desc: "Structural design for institutions seeking to align their human capital with their monumental vision.",
+                  color: "#4A6FA5"
+                }
+              ].map((pillar, i) => (
+                <motion.div 
+                  key={i}
+                  className="group p-10 sm:p-12 bg-white border border-[#0D1B2A]/5 hover-lift glow-on-hover flex flex-col"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <div className="w-12 h-1 mb-10" style={{ backgroundColor: pillar.color }} />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-4" style={{ color: pillar.color }}>{pillar.label}</span>
+                  <h3 className="fluid-h3 mb-8 group-hover:translate-x-2 transition-transform duration-500">{pillar.title}</h3>
+                  <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-10 flex-1">{pillar.desc}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 

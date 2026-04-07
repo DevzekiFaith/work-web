@@ -53,7 +53,7 @@ export default function Audit() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+        <section className="relative pt-72 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
           <div className="container mx-auto fluid-container text-center">
             <motion.div
               className="inline-flex items-center gap-3 px-6 py-2 bg-[#C9A84C]/10 rounded-full mb-8"
@@ -64,10 +64,10 @@ export default function Audit() {
               <span className="text-[10px] font-bold uppercase tracking-widest text-[#C9A84C]">Diagnostic Tool</span>
             </motion.div>
             <motion.h1 
-              className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-8 sm:mb-12 break-words"
-              initial={{ opacity: 0, y: 40 }}
+              className="fluid-h1 mb-8 sm:mb-12 break-words"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               The Human <br />
               <span className="italic uppercase">Architecture</span> <br />
@@ -88,7 +88,7 @@ export default function Audit() {
         <section className="fluid-section">
           <div className="container mx-auto fluid-container max-w-4xl">
             <motion.div 
-              className="bg-white border border-[#0D1B2A]/5 p-12 md:p-24 shadow-2xl text-center"
+              className="bg-white border border-[#0D1B2A]/5 p-8 sm:p-12 md:p-24 shadow-2xl text-center hover-lift"
               {...fadeInUp}
             >
               <h2 className="font-display text-3xl sm:text-4xl mb-8 uppercase tracking-tight italic break-words">Initiating Structural <br aria-hidden="true" className="hidden sm:block" /> Scan...</h2>

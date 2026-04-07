@@ -27,57 +27,50 @@ export default function About() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden">
+        <section className="relative pt-72 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden">
           <div className="container mx-auto fluid-container text-center">
-            <motion.span 
-              className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Master Architect
-            </motion.span>
-            <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 uppercase"
-              initial={{ opacity: 0, y: 40 }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
-              The Architect <br />
-              of Human <br />
-              <span className="italic">Potential</span>
-            </motion.h1>
+              <h1 className="fluid-display mb-12 uppercase italic">The Master <br /> Architect</h1>
+            </motion.div>
           </div>
         </section>
 
-        {/* SECTION 1 — THE STORY */}
-        <section className="fluid-section bg-[#0D1B2A] text-[#F5F0E8]">
+        {/* THE STORY SECTION */}
+        <motion.section 
+          className="fluid-section bg-white/50 border-y border-[#0D1B2A]/5"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1 }}
+        >
           <div className="container mx-auto fluid-container">
-            <div className="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center">
-              <motion.div {...fadeInUp}>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-12 border-l-4 border-[#C9A84C] pl-10">The Story</h2>
-                <p className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed mb-8 opacity-80">
-                  It started with blueprints and brick. I was running an architectural firm, working 18-hour days, 
-                  trying to force success through sheer sweat and struggle.
-                </p>
-                <p className="text-lg font-light leading-relaxed mb-8 opacity-60">
-                  I was broke, I was exhausted, and I was hitting a ceiling I couldn&apos;t see. 
-                  Every effort felt like adding more weight to a building that wasn&apos;t designed to hold it. 
-                  I was working hard on the &quot;exterior&quot; of my life while the foundation was crumbling.
-                </p>
-              </motion.div>
-              <motion.div 
-                className="relative aspect-square bg-[#1C1C1E] border border-[#C9A84C]/20 p-8"
-                {...fadeInUp}
-              >
-                <div className="absolute inset-0 opacity-10" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23C9A84C' fill-rule='evenodd'/%3E%3C/svg%3E")`}} />
-                <div className="h-full w-full flex items-center justify-center border border-[#C9A84C]/10">
-                  <span className="font-display text-6xl sm:text-7xl md:text-8xl text-[#C9A84C] opacity-20">ZEKI</span>
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+              <div className="relative aspect-[4/5] bg-[#0D1B2A]/5 overflow-hidden group">
+                <div className="absolute inset-0 bg-[#C9A84C]/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700" />
+                <img 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80" 
+                  alt="Zeki Ubor" 
+                  className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                />
+              </div>
+              <div>
+                <h2 className="fluid-h2 mb-8 uppercase italic">Designing <br /> Destiny</h2>
+                <div className="space-y-6 text-lg sm:text-xl text-[#0D1B2A]/70 font-light leading-relaxed">
+                  <p>
+                    Zeki Ubor is not just a coach; he is an architect of the human condition. With over two decades of experience in high-performance psychology and leadership structuralism, he has deconstructed the conventional and built the monumental.
+                  </p>
+                  <p>
+                    His philosophy, <strong>Human Architecture</strong>, is based on the premise that identity is not a destination but a deliberate construction. By redesigning the internal blueprints of mindset and value systems, Zeki enables visionaries to stand unshakeable.
+                  </p>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* SECTION 2 — THE TURNING POINT */}
         <section className="fluid-section bg-white">

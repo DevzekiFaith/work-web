@@ -56,7 +56,7 @@ export default function Contact() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+        <section className="relative min-h-[90vh] flex items-center pt-72 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
           <div className="container mx-auto fluid-container">
             <div className="max-w-4xl">
               <motion.span 
@@ -67,8 +67,8 @@ export default function Contact() {
                 Direct Inquiry
               </motion.span>
               <motion.h1 
-                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 uppercase"
-                initial={{ opacity: 0, y: 40 }}
+                className="fluid-h1 mb-12 uppercase"
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
               >
@@ -120,14 +120,28 @@ export default function Contact() {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Subject</label>
-                    <input 
-                      type="text" 
-                      value={formData.subject}
-                      onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                      className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light"
-                      placeholder="Consultation Inquiry"
-                    />
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Subject *</label>
+                    <div className="relative">
+                      <select 
+                        required
+                        value={formData.subject}
+                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                        className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light appearance-none cursor-pointer"
+                      >
+                        <option value="" disabled className="bg-[#F5F0E8]">Select Inquiry Subject</option>
+                        <option value="Becoming Institute" className="bg-[#F5F0E8]">The Becoming Institute (Individual)</option>
+                        <option value="Leadership Architecture" className="bg-[#F5F0E8]">Leadership Architecture (Executive)</option>
+                        <option value="Organizational Architecture" className="bg-[#F5F0E8]">Organizational Architecture (Corporate)</option>
+                        <option value="Speaking Engagement" className="bg-[#F5F0E8]">Speaking Engagement</option>
+                        <option value="Architecture Audit" className="bg-[#F5F0E8]">Architecture Audit Inquiry</option>
+                        <option value="General Consultation" className="bg-[#F5F0E8]">General Consultation</option>
+                      </select>
+                      <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="w-4 h-4 text-[#C9A84C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Message *</label>
@@ -155,9 +169,9 @@ export default function Contact() {
               <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
                 <h2 className="font-display text-3xl sm:text-4xl mb-12 uppercase italic">Direct Channels</h2>
                 <div className="space-y-16">
-                  <div className="flex items-start gap-8">
-                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
-                      <HiMail className="w-6 h-6 text-[#C9A84C]" />
+                  <div className="flex items-start gap-8 group/info hover-lift">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0 group-hover/info:bg-[#C9A84C] group-hover/info:text-white transition-colors duration-500">
+                      <HiMail className="w-6 h-6 text-[#C9A84C] group-hover/info:text-white" />
                     </div>
                     <div>
                       <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Electronic Mail</h4>
@@ -165,9 +179,9 @@ export default function Contact() {
                     </div>
                   </div>
                   
-                  <div className="flex items-start gap-8">
-                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
-                      <HiPhone className="w-6 h-6 text-[#C9A84C]" />
+                  <div className="flex items-start gap-8 group/info hover-lift">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0 group-hover/info:bg-[#C9A84C] group-hover/info:text-white transition-colors duration-500">
+                      <HiPhone className="w-6 h-6 text-[#C9A84C] group-hover/info:text-white" />
                     </div>
                     <div>
                       <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Voice & Text</h4>
@@ -175,9 +189,9 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  <div className="flex items-start gap-8">
-                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
-                      <HiLocationMarker className="w-6 h-6 text-[#C9A84C]" />
+                  <div className="flex items-start gap-8 group/info hover-lift">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0 group-hover/info:bg-[#C9A84C] group-hover/info:text-white transition-colors duration-500">
+                      <HiLocationMarker className="w-6 h-6 text-[#C9A84C] group-hover/info:text-white" />
                     </div>
                     <div>
                       <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Primary Station</h4>
