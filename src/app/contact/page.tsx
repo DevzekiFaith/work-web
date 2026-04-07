@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiMail, HiPhone, HiLocationMarker, HiArrowRight, HiOutlineVideoCamera } from 'react-icons/hi';
 import { Toaster, toast } from 'react-hot-toast';
+import { track } from '@vercel/analytics';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
@@ -12,7 +13,7 @@ export default function Contact() {
 
   const contactInfo = [
     { icon: HiMail, title: 'Email', details: 'zeki@zekiubor.com', color: 'text-[#C9A84C]' },
-    { icon: HiPhone, title: 'Phone', details: '+234 701 444 1418', color: 'text-[#8B5E3C]' },
+    { icon: HiPhone, title: 'Phone', details: '+234 911 905 9859', color: 'text-[#8B5E3C]' },
     { icon: HiOutlineVideoCamera, title: 'Consultation', details: 'Schedule a Video Call', color: 'text-[#4A6FA5]' },
     { icon: HiLocationMarker, title: 'Global', details: 'Nigera & Beyond', color: 'text-[#1C1C1E]' }
   ];
@@ -29,6 +30,7 @@ export default function Contact() {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000));
       toast.success('Your blueprint request has been sent.');
+      track("inquiry_submitted", { service: form.service });
       setForm({ name: '', email: '', phone: '', service: '', message: '' });
     } catch {
       toast.error('Structural failure in sending message. Please try again.');

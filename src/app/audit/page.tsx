@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { HiShieldCheck } from "react-icons/hi";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { track } from "@vercel/analytics";
 
 export default function Audit() {
   const [email, setEmail] = useState("");
@@ -18,6 +19,7 @@ export default function Audit() {
     // Simulate API call
     setTimeout(() => {
       toast.success("You are on the list! We will notify you.");
+      track("audit_waitlist_signup", { email });
       setEmail("");
       setIsSubmitting(false);
     }, 1000);

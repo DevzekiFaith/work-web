@@ -43,8 +43,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": ["Person", "Organization"],
+    name: "Zeki Ubor",
+    url: "https://zekiubor.com",
+    jobTitle: "Human Architecture Strategist",
+    brand: "The Becoming Institute"
+  };
+
   return (
     <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${inter.variable} ${cormorantGaramond.variable} antialiased overflow-x-hidden`}>
         <ThemeProvider>
           {children}

@@ -1,10 +1,28 @@
 'use client';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { HiArrowRight, HiOutlineBookOpen, HiOutlineCollection, HiOutlineVideoCamera, HiOutlineGlobe } from "react-icons/hi";
+import { Toaster, toast } from "react-hot-toast";
+import { track } from "@vercel/analytics";
 
 export default function Resources() {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setIsSubmitting(true);
+    setTimeout(() => {
+      toast.success("Welcome to the inner circle.");
+      track("newsletter_signup", { email, source: "resources_page" });
+      setEmail("");
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
     whileInView: { opacity: 1, y: 0 },
@@ -21,6 +39,20 @@ export default function Resources() {
 
   return (
     <div className="min-h-screen bg-[#F5F0E8] text-[#0D1B2A]">
+      <Toaster 
+        position="top-center" 
+        toastOptions={{
+          style: {
+            background: '#0D1B2A',
+            color: '#F5F0E8',
+            borderRadius: '0px',
+            fontFamily: 'var(--font-inter)',
+            fontSize: '14px',
+            border: '1px solid rgba(201, 168, 76, 0.3)'
+          },
+          success: { iconTheme: { primary: '#C9A84C', secondary: '#0D1B2A' } }
+        }} 
+      />
       <Header />
       
       <main>
@@ -92,16 +124,23 @@ export default function Resources() {
               <p className="text-2xl font-light mb-16 opacity-60">
                 Weekly architectural insights on identity, mindset, and becoming — straight to your inbox. Free.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto">
+              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-6 max-w-lg mx-auto">
                 <input 
                   type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Blueprint Email" 
+                  required
                   className="flex-1 bg-transparent border-b border-[#F5F0E8]/30 px-0 py-4 text-[#F5F0E8] focus:border-[#C9A84C] outline-none transition-colors placeholder:text-white/20 font-light"
                 />
-                <button className="px-12 py-5 bg-[#C9A84C] text-[#0D1B2A] font-bold uppercase tracking-[0.2em] text-xs hover:bg-[#F5F0E8] transition-all duration-300">
-                  Join The Letter
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-12 py-5 bg-[#C9A84C] text-[#0D1B2A] font-bold uppercase tracking-[0.2em] text-xs hover:bg-[#F5F0E8] transition-all duration-300 disabled:opacity-50"
+                 >
+                  {isSubmitting ? "Processing..." : "Join The Letter"}
                 </button>
-              </div>
+              </form>
             </motion.div>
           </div>
         </section>

@@ -6,6 +6,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { track } from "@vercel/analytics";
 
 export default function Home() {
   const [auditEmail, setAuditEmail] = useState("");
@@ -20,6 +21,7 @@ export default function Home() {
     setIsSubmittingAudit(true);
     setTimeout(() => {
       toast.success("Audit sent to your email!");
+      track("audit_download", { email: auditEmail });
       setAuditEmail("");
       setIsSubmittingAudit(false);
     }, 1000);
@@ -31,6 +33,7 @@ export default function Home() {
     setIsSubmittingNews(true);
     setTimeout(() => {
       toast.success("Subscribed to the Architecture Letter!");
+      track("newsletter_signup", { email: newsEmail, source: "homepage_footer" });
       setNewsEmail("");
       setIsSubmittingNews(false);
     }, 1000);
