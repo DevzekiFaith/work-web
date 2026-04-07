@@ -73,11 +73,11 @@ export default function Home() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative min-h-screen flex items-center pt-32 pb-20 md:pt-48 md:pb-32 lg:pt-60 overflow-hidden">
+        <section className="relative min-h-[90vh] flex items-center pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden">
           {/* Subtle architectural background element */}
           <div className="absolute top-0 right-0 w-1/2 h-full bg-[#0D1B2A]/[0.02] -skew-x-12 transform translate-x-20 z-0" />
           
-          <div className="container mx-auto px-6 lg:px-12 relative z-10">
+          <div className="container mx-auto fluid-container relative z-10">
             <div className="max-w-4xl">
               <motion.span 
                 className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.3em] text-xs mb-6"
@@ -138,8 +138,8 @@ export default function Home() {
         </section>
 
         {/* ABOUT SNAPSHOT */}
-        <section className="py-32 md:py-48 lg:py-64 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-white">
+          <div className="container mx-auto fluid-container">
             <div className="flex flex-col md:flex-row items-end gap-12">
               <div className="md:w-1/2">
                 <motion.h2 
@@ -151,9 +151,9 @@ export default function Home() {
               </div>
               <div className="md:w-1/2">
                 <motion.div {...fadeInUp}>
-                  <p className="text-lg sm:text-xl md:text-2xl text-[#0D1B2A]/70 font-light leading-relaxed mb-8">
-                    Zeki Ubor is a strategist dedicated to helping visionaries build the internal structures required for external impact. 
-                    He believes true leadership is not found, it is engineered.
+                  <p className="text-lg sm:text-xl md:text-2xl text-[#0D1B2A]/70 font-light leading-relaxed mb-10">
+                    A strategist for visionaries building internal structures for external impact. 
+                    True leadership is not found; it is engineered.
                   </p>
                   <Link 
                     href="/about" 
@@ -169,8 +169,8 @@ export default function Home() {
         </section>
 
         {/* WHAT I DO — THREE COLUMNS */}
-        <section className="py-32 md:py-48 lg:py-64">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section">
+          <div className="container mx-auto fluid-container">
             <motion.div 
               className="grid lg:grid-cols-3 gap-16 lg:gap-24"
               variants={staggerContainer}
@@ -180,14 +180,14 @@ export default function Home() {
             >
               {/* Pillar 1 */}
               <motion.div 
-                className="group relative p-10 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-xl flex flex-col"
+                className="group relative p-12 sm:p-16 lg:p-20 bg-white border border-[#0D1B2A]/5 hover:border-[#C9A84C]/30 transition-all duration-500 hover:shadow-2xl flex flex-col"
                 variants={fadeInUp}
               >
                 <div className="w-12 h-1 md:w-16 md:h-1 text-[#C9A84C] bg-[#C9A84C] mb-12 md:mb-16" />
                 <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#C9A84C] transition-colors break-words">The Becoming Institute</h3>
                 <p className="text-[#C9A84C] font-bold uppercase tracking-widest text-[10px] mb-8">For Individuals</p>
-                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
-                  A sanctuary for personal evolution, providing the tools to deconstruct limiting identities and build a self that commands interest.
+                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1">
+                  A sanctuary for personal evolution. Deconstruct limiting identities and build a self that commands interest.
                 </p>
                 <Link href="/becoming-institute" className="flex items-center justify-between group/link pt-8 border-t border-[#0D1B2A]/5">
                   <span className="text-xs uppercase tracking-widest font-bold text-[#0D1B2A]">Explore Institute</span>
@@ -203,8 +203,8 @@ export default function Home() {
                 <div className="w-12 h-1 md:w-16 md:h-1 bg-[#8B5E3C] mb-12 md:mb-16" />
                 <h3 className="font-display text-3xl sm:text-4xl mb-6 text-[#F5F0E8] group-hover:text-[#8B5E3C] transition-colors break-words">The Leadership Architecture</h3>
                 <p className="text-[#8B5E3C] font-bold uppercase tracking-widest text-[10px] mb-8">For Leaders</p>
-                <p className="text-[#F5F0E8]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
-                  Engineered frameworks for modern executives and entrepreneurs to lead with architectural precision and unshakeable authority.
+                <p className="text-[#F5F0E8]/60 font-light leading-relaxed mb-12 flex-1">
+                  Frameworks for executives and entrepreneurs to lead with architectural precision and unshakeable authority.
                 </p>
                 <Link href="/leadership-architecture" className="flex items-center justify-between group/link pt-8 border-t border-white/10">
                   <span className="text-xs uppercase tracking-widest font-bold text-[#F5F0E8]">Access Frameworks</span>
@@ -220,8 +220,8 @@ export default function Home() {
                 <div className="w-12 h-1 md:w-16 md:h-1 bg-[#4A6FA5] mb-12 md:mb-16" />
                 <h3 className="font-display text-3xl sm:text-4xl mb-6 group-hover:text-[#4A6FA5] transition-colors text-[#0D1B2A] break-words">Organizational Architecture</h3>
                 <p className="text-[#4A6FA5] font-bold uppercase tracking-widest text-[10px] mb-8">For Organizations</p>
-                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1 min-h-[100px]">
-                  Scalable structural design for institutions seeking to align their human capital with their monumental vision.
+                <p className="text-[#0D1B2A]/60 font-light leading-relaxed mb-12 flex-1">
+                  Structural design for institutions seeking to align their human capital with their monumental vision.
                 </p>
                 <Link href="/organizational-architecture" className="flex items-center justify-between group/link pt-8 border-t border-[#0D1B2A]/5">
                   <span className="text-xs uppercase tracking-widest font-bold text-[#0D1B2A]">Consulting Services</span>
@@ -234,8 +234,8 @@ export default function Home() {
 
 
         {/* LEAD MAGNET SECTION */}
-        <section className="py-32 md:py-48 lg:py-64 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-white">
+          <div className="container mx-auto fluid-container">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <motion.div {...fadeInUp}>
                 <h2 className="font-display text-4xl md:text-5xl mb-8">Determine Your Foundation</h2>
@@ -289,8 +289,8 @@ export default function Home() {
         </section>
 
         {/* NEWSLETTER SECTION */}
-        <section className="py-32 border-t border-[#0D1B2A]/5">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
+        <section className="fluid-section border-t border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container text-center">
             <motion.div className="max-w-3xl mx-auto" {...fadeInUp}>
               <span className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8">Weekly Enlightenment</span>
               <h2 className="font-display text-5xl md:text-7xl mb-8 tracking-tight">The Architecture Letter</h2>

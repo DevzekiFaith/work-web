@@ -1,41 +1,44 @@
 'use client';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { HiMail, HiPhone, HiLocationMarker, HiArrowRight, HiOutlineVideoCamera } from 'react-icons/hi';
-import { Toaster, toast } from 'react-hot-toast';
-import { track } from '@vercel/analytics';
+import { motion } from "framer-motion";
+import { HiMail, HiPhone, HiLocationMarker, HiArrowRight } from "react-icons/hi";
+import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
-  const [loading, setLoading] = useState(false);
-
-  const contactInfo = [
-    { icon: HiMail, title: 'Email', details: 'zeki@zekiubor.com', color: 'text-[#C9A84C]' },
-    { icon: HiPhone, title: 'Phone', details: '+234 911 905 9859', color: 'text-[#8B5E3C]' },
-    { icon: HiOutlineVideoCamera, title: 'Consultation', details: 'Schedule a Video Call', color: 'text-[#4A6FA5]' },
-    { icon: HiLocationMarker, title: 'Global', details: 'Nigera & Beyond', color: 'text-[#1C1C1E]' }
-  ];
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
+    if (!formData.name || !formData.email || !formData.message) {
+      return toast.error("Please fill in all required fields.");
+    }
+    
+    setIsSubmitting(true);
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      toast.success('Your blueprint request has been sent.');
-      track("inquiry_submitted", { service: form.service });
-      setForm({ name: '', email: '', phone: '', service: '', message: '' });
-    } catch {
-      toast.error('Structural failure in sending message. Please try again.');
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (res.ok) {
+        toast.success("Message sent! I will be in touch soon.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Failed to connect. Please check your connection.");
     } finally {
-      setLoading(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -48,171 +51,149 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-[#F5F0E8] text-[#0D1B2A]">
+      <Toaster position="top-right" />
       <Header />
-      <Toaster position="bottom-right" reverseOrder={false} />
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-40 pb-20 md:pt-60 md:pb-32 overflow-hidden border-b border-[#0D1B2A]/5">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
-            <motion.span 
-              className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-            >
-              Consultation
-            </motion.span>
-            <motion.h1 
-              className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] as const }}
-            >
-              Design Your <br />
-              <span className="italic">Future</span>
-            </motion.h1>
-            <motion.p 
-              className="text-lg sm:text-xl md:text-2xl text-[#0D1B2A]/60 font-light max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Start the architectural assessment of your potential. Let&apos;s build with intention.
-            </motion.p>
-          </div>
-        </section>
-
-        {/* CONTACT GRID */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-20">
-              {/* Info Column */}
-              <motion.div {...fadeInUp}>
-                <h2 className="font-display text-4xl mb-12">Structural <br /> Connections</h2>
-                <div className="grid sm:grid-cols-2 gap-12 mb-20">
-                  {contactInfo.map((info, i) => {
-                    const Icon = info.icon;
-                    return (
-                      <div key={i}>
-                        <Icon className={`w-6 h-6 sm:w-8 sm:h-8 ${info.color} mb-4`} />
-                        <h3 className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#0D1B2A]/40 mb-2">{info.title}</h3>
-                        <p className="text-base sm:text-lg font-bold">{info.details}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-                
-                <div className="p-12 bg-[#F5F0E8] border border-[#0D1B2A]/5">
-                  <h3 className="font-display text-2xl mb-4">Availability</h3>
-                  <p className="text-sm text-[#0D1B2A]/60 font-light leading-relaxed mb-8">
-                    We accept a limited number of architectural consultations each month to ensure the highest 
-                    level of structural integrity for our clients.
-                  </p>
-                  <div className="flex items-center gap-4 text-[#C9A84C] font-bold text-[10px] tracking-widest uppercase">
-                    <div className="w-2 h-2 rounded-full bg-[#C9A84C] animate-pulse" />
-                    Currently Accepting Applications
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Form Column */}
-              <motion.div 
-                className="bg-[#0D1B2A] p-12 md:p-20 shadow-2xl relative overflow-hidden"
-                {...fadeInUp}
+        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container">
+            <div className="max-w-4xl">
+              <motion.span 
+                className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
-                {/* Background Accent */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-[#C9A84C]/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                
-                <h3 className="font-display text-3xl text-white mb-8">Inquiry Blueprint</h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
-                  <div className="space-y-6">
-                    <div>
-                      <input 
-                        type="text" 
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Full Name" 
-                        required
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-4 text-[#F5F0E8] focus:border-[#C9A84C] outline-none transition-colors placeholder:text-white/20 font-light"
-                      />
-                    </div>
-                    <div>
-                      <input 
-                        type="email" 
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="Work Email" 
-                        required
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-4 text-[#F5F0E8] focus:border-[#C9A84C] outline-none transition-colors placeholder:text-white/20 font-light"
-                      />
-                    </div>
-                    <div>
-                      <select 
-                        name="service"
-                        value={form.service}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-4 text-[#F5F0E8] focus:border-[#C9A84C] outline-none transition-colors font-light appearance-none"
-                      >
-                        <option value="" className="bg-[#0D1B2A]">Select Architecture Layer</option>
-                        <option value="becoming" className="bg-[#0D1B2A]">Becoming Institute (Individuals)</option>
-                        <option value="leadership" className="bg-[#0D1B2A]">Leadership Architecture (Leaders)</option>
-                        <option value="organizational" className="bg-[#0D1B2A]">Organizational Architecture (Institutions)</option>
-                        <option value="general" className="bg-[#0D1B2A]">General Inquiry</option>
-                      </select>
-                    </div>
-                    <div>
-                      <textarea 
-                        name="message"
-                        value={form.message}
-                        onChange={handleChange}
-                        placeholder="How can we help rebuild your potential?" 
-                        required
-                        rows={4}
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-4 text-[#F5F0E8] focus:border-[#C9A84C] outline-none transition-colors placeholder:text-white/20 font-light resize-none"
-                      />
-                    </div>
-                  </div>
-                  
-                  <button 
-                    type="submit" 
-                    disabled={loading}
-                    className="group w-full flex items-center justify-between py-6 bg-[#C9A84C] text-[#0D1B2A] font-bold uppercase tracking-[0.3em] text-xs px-10 transition-all duration-300 hover:bg-[#F5F0E8] disabled:opacity-50"
-                  >
-                    {loading ? 'Transmitting...' : 'Send Inquiry'}
-                    <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
-                  </button>
-                </form>
-              </motion.div>
+                Direct Inquiry
+              </motion.span>
+              <motion.h1 
+                className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-tight leading-[0.9] mb-12 uppercase"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                Begin The <br />
+                <span className="italic">Dialogue</span>
+              </motion.h1>
+              <motion.p 
+                className="text-xl md:text-2xl text-[#0D1B2A]/60 font-light max-w-2xl leading-relaxed"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                True transformation starts with a single high-fidelity conversation. Reach out for consultations, speaking engagements, or professional inquiries.
+              </motion.p>
             </div>
           </div>
         </section>
 
-        {/* FREQUENT AUDITS */}
-        <section className="py-32 bg-[#F5F0E8]">
-          <div className="container mx-auto px-6 lg:px-12">
-            <h2 className="font-display text-4xl mb-16 text-center">Frequently Audited</h2>
-            <div className="max-w-4xl mx-auto space-y-8">
-              {[
-                { q: "How long is the first consultation?", a: "Initial architectural deep-dives typically last 45 minutes to ensure we can identify the core structural needs." },
-                { q: "Do you work with individuals outside Nigeria?", a: "Yes, our 'Human Architecture' framework is global. We operate across time zones via high-fidelity virtual studio sessions." },
-                { q: "What is the next step after I send an inquiry?", a: "Our team will review your blueprint and respond within 24 hours to schedule your preliminary audit." }
-              ].map((faq, i) => (
-                <motion.div 
-                  key={i} 
-                  className="p-10 bg-white border border-[#0D1B2A]/5"
-                  {...fadeInUp}
-                >
-                  <h4 className="font-bold text-sm uppercase tracking-widest mb-4 flex items-center gap-4">
-                    <span className="text-[#C9A84C]">0{i+1}</span> {faq.q}
-                  </h4>
-                  <p className="text-[#0D1B2A]/60 font-light leading-relaxed">{faq.a}</p>
-                </motion.div>
-              ))}
+        {/* CONTACT CONTENT */}
+        <section className="fluid-section">
+          <div className="container mx-auto fluid-container">
+            <div className="grid lg:grid-cols-2 gap-24 lg:gap-40">
+              {/* Form Side */}
+              <motion.div {...fadeInUp}>
+                <h2 className="font-display text-3xl sm:text-4xl mb-12 uppercase italic">Send A Blueprint</h2>
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Full Name *</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
+                        className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light"
+                        placeholder="Zeki Ubor"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Professional Email *</label>
+                      <input 
+                        type="email" 
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light"
+                        placeholder="zeki@ubor.com"
+                      />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Subject</label>
+                    <input 
+                      type="text" 
+                      value={formData.subject}
+                      onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                      className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light"
+                      placeholder="Consultation Inquiry"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-[#0D1B2A]/50">Message *</label>
+                    <textarea 
+                      rows={5}
+                      required
+                      value={formData.message}
+                      onChange={(e) => setFormData({...formData, message: e.target.value})}
+                      className="w-full bg-transparent border-b border-[#0D1B2A]/20 py-4 focus:border-[#C9A84C] outline-none transition-colors font-light resize-none"
+                      placeholder="Tell me about your architectural needs..."
+                    />
+                  </div>
+                  <button 
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="group inline-flex items-center gap-6 px-12 py-6 bg-[#0D1B2A] text-white font-bold uppercase tracking-[0.4em] text-[10px] hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 shadow-2xl disabled:opacity-70"
+                  >
+                    {isSubmitting ? "Transmitting..." : "Send Inquiry"}
+                    <HiArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
+                  </button>
+                </form>
+              </motion.div>
+
+              {/* Info Side */}
+              <motion.div {...fadeInUp} transition={{ delay: 0.2 }}>
+                <h2 className="font-display text-3xl sm:text-4xl mb-12 uppercase italic">Direct Channels</h2>
+                <div className="space-y-16">
+                  <div className="flex items-start gap-8">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
+                      <HiMail className="w-6 h-6 text-[#C9A84C]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Electronic Mail</h4>
+                      <p className="text-xl sm:text-2xl font-light">unovaconsultingfirstafrica@gmail.com</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-8">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
+                      <HiPhone className="w-6 h-6 text-[#C9A84C]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Voice & Text</h4>
+                      <p className="text-xl sm:text-2xl font-light">+234 911 905 9859</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-8">
+                    <div className="w-16 h-16 bg-[#C9A84C]/10 flex items-center justify-center flex-shrink-0">
+                      <HiLocationMarker className="w-6 h-6 text-[#C9A84C]" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold uppercase tracking-widest text-[10px] text-[#0D1B2A]/50 mb-2">Primary Station</h4>
+                      <p className="text-xl sm:text-2xl font-light">Lagos, Nigeria</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Visual architectural element */}
+                <div className="mt-24 p-12 border border-[#C9A84C]/20 bg-[#C9A84C]/5 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#C9A84C]/10 -skew-x-12 transform translate-x-10 -translate-y-10 group-hover:translate-x-8 group-hover:-translate-y-8 transition-transform duration-700" />
+                  <p className="text-[#0D1B2A]/70 italic font-light leading-relaxed relative z-10">
+                    &quot;A building is not just a place to be but a way to be. Your life is the most important structure you will ever design.&quot;
+                  </p>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

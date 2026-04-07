@@ -3,7 +3,7 @@ import { supabase } from '@/lib/supabase'
 import { sendEmail } from '@/lib/email'
 
 // Admin email for notifications
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@example.com'
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'unovaconsultingfirstafrica@gmail.com'
 
 export async function POST(request: NextRequest) {
   try {

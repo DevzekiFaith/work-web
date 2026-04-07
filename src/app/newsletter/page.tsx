@@ -51,8 +51,8 @@ export default function Newsletter() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-40 pb-20 md:pt-60 md:pb-32 overflow-hidden border-b border-[#0D1B2A]/5">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
+        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container text-center">
             <motion.div
               className="inline-flex items-center gap-3 px-6 py-2 bg-[#C9A84C]/10 rounded-full mb-8"
               initial={{ opacity: 0 }}
@@ -82,8 +82,8 @@ export default function Newsletter() {
         </section>
 
         {/* SUBSCRIPTION SECTION */}
-        <section className="py-32">
-          <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
+        <section className="fluid-section">
+          <div className="container mx-auto fluid-container max-w-4xl">
             <motion.div 
               className="bg-[#0D1B2A] p-10 sm:p-12 md:p-24 shadow-2xl relative overflow-hidden text-center"
               {...fadeInUp}
@@ -117,8 +117,8 @@ export default function Newsletter() {
         </section>
 
         {/* BENEFITS SECTION */}
-        <section className="py-32 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-white">
+          <div className="container mx-auto fluid-container">
             <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
               {[
                 { title: "Structural Logic", desc: "No fluff. Just architectural precision for your mental frameworks." },

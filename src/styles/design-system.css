@@ -11,6 +11,11 @@
   
   --font-display: var(--font-cormorant), serif;
   --font-body: var(--font-inter), sans-serif;
+  
+  /* Fluid Spacing Scale */
+  --section-py: clamp(5rem, 12vh, 16rem);
+  --container-px: clamp(1.5rem, 6vw, 8rem);
+  --grid-gap: clamp(2rem, 5vw, 6rem);
 }
 
 /* Base Styles */
@@ -281,8 +286,18 @@ body {
 /* Grid Utilities */
 .grid-auto-fit {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--grid-gap);
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.fluid-section {
+  padding-top: var(--section-py);
+  padding-bottom: var(--section-py);
+}
+
+.fluid-container {
+  padding-left: var(--container-px);
+  padding-right: var(--container-px);
 }
 
 /* Hover Effects */

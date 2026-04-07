@@ -27,8 +27,8 @@ export default function About() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-40 pb-20 md:pt-60 md:pb-32 overflow-hidden">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
+        <section className="relative pt-48 pb-24 md:pt-72 md:pb-40 lg:pt-80 overflow-hidden">
+          <div className="container mx-auto fluid-container text-center">
             <motion.span 
               className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
@@ -51,8 +51,8 @@ export default function About() {
         </section>
 
         {/* SECTION 1 — THE STORY */}
-        <section className="py-32 md:py-48 lg:py-64 bg-[#0D1B2A] text-[#F5F0E8]">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-[#0D1B2A] text-[#F5F0E8]">
+          <div className="container mx-auto fluid-container">
             <div className="grid lg:grid-cols-2 gap-24 lg:gap-32 items-center">
               <motion.div {...fadeInUp}>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-12 border-l-4 border-[#C9A84C] pl-10">The Story</h2>
@@ -80,8 +80,8 @@ export default function About() {
         </section>
 
         {/* SECTION 2 — THE TURNING POINT */}
-        <section className="py-32 md:py-48 lg:py-60 bg-white">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-white">
+          <div className="container mx-auto fluid-container">
             <div className="max-w-4xl mx-auto text-center">
               <motion.div {...fadeInUp}>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl mb-12">The Realization</h2>
@@ -101,8 +101,8 @@ export default function About() {
         </section>
 
         {/* SECTION 3 — THE MISSION */}
-        <section className="py-32 md:py-48 lg:py-64 bg-[#F5F0E8]">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-[#F5F0E8]">
+          <div className="container mx-auto fluid-container">
             <div className="flex flex-col md:flex-row gap-20 items-center">
                <div className="md:w-1/2">
                 <motion.div {...fadeInUp}>
@@ -129,8 +129,8 @@ export default function About() {
         </section>
 
         {/* SECTION 4 — THE FRAMEWORK */}
-        <section className="py-32 bg-white border-t border-[#0D1B2A]/5">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section bg-white border-t border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container">
             <motion.div className="text-center mb-24" {...fadeInUp}>
               <h2 className="font-display text-4xl md:text-6xl mb-8">The Human Architecture Framework</h2>
               <p className="text-xl text-[#0D1B2A]/60 font-light">Structure determines capacity. Five layers to access your potential.</p>
@@ -157,8 +157,8 @@ export default function About() {
         </section>
 
         {/* SECTION 5 — THE CREDENTIALS */}
-        <section className="py-32">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section">
+          <div className="container mx-auto fluid-container">
             <div className="max-w-3xl mx-auto">
               <motion.div className="text-center mb-20" {...fadeInUp}>
                 <h2 className="font-display text-4xl md:text-5xl mb-8">The Professional Blueprint</h2>

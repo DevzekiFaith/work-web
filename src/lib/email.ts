@@ -1,6 +1,6 @@
 import { Resend } from 'resend'
 
-const FROM_EMAIL = process.env.FROM_EMAIL || 'onboarding@resend.dev'
+const FROM_EMAIL = process.env.FROM_EMAIL || 'unovaconsultingfirstafrica@gmail.com'
 
 // Email function using Resend
 export async function sendEmail(to: string, subject: string, html: string) {

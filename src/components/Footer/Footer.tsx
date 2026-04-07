@@ -13,8 +13,8 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0D1B2A] text-[#F5F0E8] py-24 md:py-48 overflow-hidden border-t border-white/5">
-      <div className="container mx-auto px-6 lg:px-12">
+    <footer className="bg-[#0D1B2A] text-[#F5F0E8] fluid-section overflow-hidden border-t border-white/5">
+      <div className="container mx-auto fluid-container">
         <div className="flex flex-col md:flex-row justify-between items-start gap-20 lg:gap-32 mb-24 md:mb-48">
           {/* Brand Identity */}
           <motion.div 
@@ -49,8 +49,8 @@ export default function Footer() {
               <ul className="space-y-4">
                 <li><Link href="/" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Home</Link></li>
                 <li><Link href="/about" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">About</Link></li>
-                <li><Link href="/resources" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Resources</Link></li>
-                <li><Link href="/contact" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Contact</Link></li>
+                <li><Link href="/services" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Pillars</Link></li>
+                <li><Link href="/contact" className="text-[#F5F0E8]/70 hover:text-[#C9A84C] transition-colors duration-300 font-light">Inquiry</Link></li>
               </ul>
             </div>
             <div>

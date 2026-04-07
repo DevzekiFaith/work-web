@@ -67,8 +67,8 @@ export default function Services() {
       
       <main>
         {/* HERO SECTION */}
-        <section className="relative pt-40 pb-20 md:pt-60 md:pb-48 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
-          <div className="container mx-auto px-6 lg:px-12 text-center">
+        <section className="relative pt-48 pb-24 md:pt-72 md:pb-48 lg:pt-80 overflow-hidden border-b border-[#0D1B2A]/5">
+          <div className="container mx-auto fluid-container text-center">
             <motion.span 
               className="inline-block text-[#C9A84C] font-bold uppercase tracking-[0.4em] text-[10px] mb-8"
               initial={{ opacity: 0 }}
@@ -99,8 +99,8 @@ export default function Services() {
         </section>
 
         {/* SERVICES CONTENT */}
-        <section className="py-32 md:py-48 lg:py-64">
-          <div className="container mx-auto px-6 lg:px-12">
+        <section className="fluid-section">
+          <div className="container mx-auto fluid-container">
             <div className="space-y-48 lg:space-y-72">
               {sections.map((section, index) => {
                 const Icon = section.icon;
@@ -166,11 +166,11 @@ export default function Services() {
         </section>
 
         {/* BESPOKE SECTION */}
-        <section className="py-40 bg-[#0D1B2A] text-[#F5F0E8] relative overflow-hidden">
+        <section className="fluid-section bg-[#0D1B2A] text-[#F5F0E8] relative overflow-hidden">
            {/* Subtle Architectural Pattern */}
           <div className="absolute inset-0 opacity-5" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0V0zm1 1h58v58H1V1z' fill='%23C9A84C' fill-rule='evenodd'/%3E%3C/svg%3E")`}} />
           
-          <div className="container mx-auto px-6 lg:px-12 text-center relative z-10">
+          <div className="container mx-auto fluid-container text-center relative z-10">
             <motion.div className="max-w-4xl mx-auto" {...fadeInUp}>
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#C9A84C] mb-8 block">Bespoke Strategy</span>
               <h2 className="font-display text-5xl md:text-7xl mb-12 italic leading-tight">Need a Custom <br className="hidden md:block" /> Architectural Blueprint?</h2>

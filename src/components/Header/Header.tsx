@@ -21,7 +21,6 @@ export default function Header() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/services', label: 'Pillars' },
-    { href: '/resources', label: 'Library' },
     { href: '/contact', label: 'Inquiry' },
   ];
 
@@ -36,9 +35,9 @@ export default function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      <div className="container mx-auto px-6 lg:px-12">
+      <div className="container mx-auto fluid-container">
         <nav className={`flex justify-between items-center transition-all duration-700 ${
-          scrolled ? 'py-4 md:py-6' : 'py-8 md:py-12 lg:py-14'
+          scrolled ? 'py-4 md:py-6' : 'py-8 md:py-12 lg:py-16'
         }`}>
           {/* Logo / Personal Mark */}
           <Link href="/" className="group flex items-center space-x-2">

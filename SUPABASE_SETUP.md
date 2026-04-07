@@ -14,7 +14,7 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 # Admin Email for Notifications
-ADMIN_EMAIL=admin@example.com
+ADMIN_EMAIL=unovaconsultingfirstafrica@gmail.com
 
 # Email Service (see Email Setup below)
 ```

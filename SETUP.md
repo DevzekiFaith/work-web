@@ -27,7 +27,7 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url_here
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key_here
 
 # Admin Email for Notifications
-ADMIN_EMAIL=your_admin_email@example.com
+ADMIN_EMAIL=unovaconsultingfirstafrica@gmail.com
 
 # Email Service (choose one)
 # Option 1: Resend (Recommended)
@@ -39,7 +39,7 @@ RESEND_API_KEY=your_resend_api_key_here
 # Option 3: Nodemailer (SMTP)
 # SMTP_HOST=smtp.example.com
 # SMTP_PORT=587
-# SMTP_USER=your_email@example.com
+# SMTP_USER=unovaconsultingfirstafrica@gmail.com
 # SMTP_PASS=your_password_here
 ```
 
