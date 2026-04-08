@@ -8,21 +8,42 @@ import { Toaster, toast } from "react-hot-toast";
 import { track } from "@vercel/analytics";
 
 export default function Audit() {
-  const [email, setEmail] = useState("");
+  const [formData, setFormData] = useState({ name: "", email: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return toast.error("Please enter your email");
+    if (!formData.name || !formData.email) return toast.error("Please fill in all fields");
     
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("You are on the list! We will notify you.");
-      track("audit_waitlist_signup", { email });
-      setEmail("");
+    try {
+      const res = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (res.ok) {
+        toast.success("Structural Scan initiated! Starting download...");
+        track("audit_download", { email: formData.email, name: formData.name });
+        
+        // Trigger automatic download of the Audit lead magnet
+        const link = document.createElement('a');
+        link.href = '/Audit.pdf';
+        link.download = 'Architecture_Audit_ZekiUbor.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        setFormData({ name: "", email: "" });
+      } else {
+        toast.error("Failed to initiate scan. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Connection error. Please check your network.");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
@@ -97,22 +118,32 @@ export default function Audit() {
                 Enter your email below to be the first to access the diagnostic tool.
               </p>
               
-              <div className="max-w-md mx-auto">
-                <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
-                  <input 
-                    type="email" 
-                    placeholder="Blueprint Email" 
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="flex-1 px-8 py-5 bg-[#F5F0E8] border-none outline-none text-sm font-light focus:ring-1 focus:ring-[#C9A84C] transition-all"
-                  />
+              <div className="max-w-xl mx-auto">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <input 
+                      type="text" 
+                      placeholder="Full Name" 
+                      value={formData.name}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                      required
+                      className="flex-1 px-8 py-5 bg-[#F5F0E8] border-none outline-none text-sm font-light focus:ring-1 focus:ring-[#C9A84C] transition-all"
+                    />
+                    <input 
+                      type="email" 
+                      placeholder="Professional Email" 
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      required
+                      className="flex-1 px-8 py-5 bg-[#F5F0E8] border-none outline-none text-sm font-light focus:ring-1 focus:ring-[#C9A84C] transition-all"
+                    />
+                  </div>
                   <button 
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-10 py-5 bg-[#0D1B2A] text-white font-bold uppercase tracking-widest text-[10px] hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full px-10 py-6 bg-[#0D1B2A] text-white font-bold uppercase tracking-widest text-[10px] hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl"
                   >
-                    {isSubmitting ? "Processing..." : "Notify Me"}
+                    {isSubmitting ? "Initiating Scan..." : "Download The Audit"}
                   </button>
                 </form>
               </div>

@@ -15,28 +15,65 @@ export default function Home() {
   const [newsEmail, setNewsEmail] = useState("");
   const [isSubmittingNews, setIsSubmittingNews] = useState(false);
 
-  const handleAuditSubmit = (e: React.FormEvent) => {
+  const handleAuditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!auditEmail) return toast.error("Please enter your email");
     setIsSubmittingAudit(true);
-    setTimeout(() => {
-      toast.success("Audit sent to your email!");
-      track("audit_download", { email: auditEmail });
-      setAuditEmail("");
+    
+    try {
+      const res = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: auditEmail, name: "Homepage Lead" })
+      });
+      
+      if (res.ok) {
+        toast.success("Structural Scan initiated! Starting download...");
+        track("audit_download", { email: auditEmail });
+        
+        // Trigger automatic download of the Audit lead magnet
+        const link = document.createElement('a');
+        link.href = '/Audit.pdf';
+        link.download = 'Architecture_Audit_ZekiUbor.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        setAuditEmail("");
+      } else {
+        toast.error("Failed to process audit. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Connection error. Please check your network.");
+    } finally {
       setIsSubmittingAudit(false);
-    }, 1000);
+    }
   };
 
-  const handleNewsSubmit = (e: React.FormEvent) => {
+  const handleNewsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsEmail) return toast.error("Please enter your email");
     setIsSubmittingNews(true);
-    setTimeout(() => {
-      toast.success("Subscribed to the Architecture Letter!");
-      track("newsletter_signup", { email: newsEmail, source: "homepage_footer" });
-      setNewsEmail("");
+    
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newsEmail })
+      });
+      
+      if (res.ok) {
+        toast.success("Subscribed to the Architecture Letter!");
+        track("newsletter_signup", { email: newsEmail, source: "homepage_footer" });
+        setNewsEmail("");
+      } else {
+        toast.error("Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Connection error. Please check your network.");
+    } finally {
       setIsSubmittingNews(false);
-    }, 1000);
+    }
   };
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },

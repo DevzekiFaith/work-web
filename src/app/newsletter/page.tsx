@@ -10,17 +10,29 @@ export default function Newsletter() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return toast.error("Please enter your email");
     
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Subscribed to the Architecture Letter!");
-      setEmail("");
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      
+      if (res.ok) {
+        toast.success("Subscribed to the Architecture Letter!");
+        setEmail("");
+      } else {
+        toast.error("Subscription failed. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Connection error. Please check your network.");
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
   const fadeInUp = {
     initial: { opacity: 0, y: 30 },
