@@ -9,6 +9,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { track } from "@vercel/analytics";
 
 export default function Home() {
+  const [auditName, setAuditName] = useState("");
   const [auditEmail, setAuditEmail] = useState("");
   const [isSubmittingAudit, setIsSubmittingAudit] = useState(false);
   
@@ -24,7 +25,7 @@ export default function Home() {
       const res = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: auditEmail, name: "Homepage Lead" })
+        body: JSON.stringify({ email: auditEmail, name: auditName })
       });
       
       if (res.ok) {
@@ -39,6 +40,7 @@ export default function Home() {
         link.click();
         document.body.removeChild(link);
         
+        setAuditName("");
         setAuditEmail("");
       } else {
         toast.error("Failed to process audit. Please try again.");
@@ -254,32 +256,48 @@ export default function Home() {
               </motion.div>
               
               <motion.div 
-                className="bg-[#F5F0E8] p-12 md:p-16 shadow-2xl relative"
+                className="bg-[#F5F0E8] p-12 md:p-16 shadow-2xl relative overflow-hidden group hover-lift transition-all duration-700"
                 {...fadeInUp}
               >
-                <div className="absolute top-0 right-8 md:right-12 w-8 h-1 bg-[#C9A84C]" />
-                <h3 className="fluid-h3 mb-2 break-words">Download The Audit</h3>
-                <p className="text-sm text-[#0D1B2A]/50 font-light mb-10">Start your architectural assessment today.</p>
+                {/* Decorative architectural elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#C9A84C]/5 -rotate-45 translate-x-16 -translate-y-16" />
+                <div className="absolute bottom-0 left-0 w-24 h-24 border-l border-b border-[#C9A84C]/20" />
                 
-                <form onSubmit={handleAuditSubmit} className="space-y-6">
-                  <div>
-                    <input 
-                      type="email" 
-                      placeholder="Your Professional Email" 
-                      value={auditEmail}
-                      onChange={(e) => setAuditEmail(e.target.value)}
-                      required
-                      className="w-full bg-white border border-[#0D1B2A]/10 px-6 py-4 text-sm focus:outline-none focus:border-[#C9A84C] transition-colors"
-                    />
-                  </div>
-                  <button 
-                    type="submit"
-                    disabled={isSubmittingAudit}
-                    className="w-full py-5 bg-[#0D1B2A] text-white font-bold uppercase tracking-widest text-xs hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isSubmittingAudit ? "Processing..." : "Download For Free"}
-                  </button>
-                </form>
+                <div className="relative z-10">
+                  <div className="w-12 h-1 bg-[#C9A84C] mb-8" />
+                  <h3 className="fluid-h3 mb-2 break-words text-[#0D1B2A]">Download The Audit</h3>
+                  <p className="text-sm text-[#0D1B2A]/50 font-light mb-10">Start your architectural assessment today.</p>
+                  
+                  <form onSubmit={handleAuditSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                      <input 
+                        type="text" 
+                        placeholder="Your Full Name" 
+                        value={auditName}
+                        onChange={(e) => setAuditName(e.target.value)}
+                        required
+                        className="w-full bg-white border border-[#0D1B2A]/10 px-6 py-4 text-sm focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-[#0D1B2A]/30"
+                      />
+                      <input 
+                        type="email" 
+                        placeholder="Your Professional Email" 
+                        value={auditEmail}
+                        onChange={(e) => setAuditEmail(e.target.value)}
+                        required
+                        className="w-full bg-white border border-[#0D1B2A]/10 px-6 py-4 text-sm focus:outline-none focus:border-[#C9A84C] transition-all placeholder:text-[#0D1B2A]/30"
+                      />
+                    </div>
+                    <button 
+                      type="submit"
+                      disabled={isSubmittingAudit}
+                      className="w-full py-5 bg-[#0D1B2A] text-white font-bold uppercase tracking-widest text-[10px] sm:text-xs hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-500 disabled:opacity-70 disabled:cursor-not-allowed shadow-xl group/btn overflow-hidden relative"
+                    >
+                      <span className="relative z-10">{isSubmittingAudit ? "Initiating Scan..." : "Download For Free"}</span>
+                      <div className="absolute inset-0 bg-white/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
+                    </button>
+                    <p className="text-[10px] text-center text-[#0D1B2A]/30 uppercase tracking-[0.2em]">Confidential Diagnostic • Instant Access</p>
+                  </form>
+                </div>
               </motion.div>
             </div>
           </div>
