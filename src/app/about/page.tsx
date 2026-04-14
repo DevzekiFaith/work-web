@@ -52,7 +52,7 @@ export default function About() {
               <div className="relative aspect-[4/5] bg-[#0D1B2A]/5 overflow-hidden group">
                 <div className="absolute inset-0 bg-[#C9A84C]/10 mix-blend-overlay group-hover:opacity-0 transition-opacity duration-700" />
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80" 
+                  src="/ZekiUbor.webp" 
                   alt="Zeki Ubor" 
                   className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
                 />
